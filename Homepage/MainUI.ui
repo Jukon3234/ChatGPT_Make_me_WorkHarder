@@ -13,10 +13,6 @@
   <property name="windowTitle">
    <string>GBF_scrept</string>
   </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>../systemdata/icon/unnamed.png</normaloff>../systemdata/icon/unnamed.png</iconset>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="2">
@@ -363,10 +359,6 @@
   <action name="actionHelp">
    <property name="checkable">
     <bool>false</bool>
-   </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>../systemdata/icon/help.png</normaloff>../systemdata/icon/help.png</iconset>
    </property>
    <property name="text">
     <string>關於</string>

@@ -3,17 +3,24 @@ from PyQt5.QtWidgets import *
 
 from Call_MainUi import MainPageWindow
 from Call_Help import HelpPageWindow
+import Homepage.ICON
 
 class MainWindow(QWidget):
     
     def __init__(self):
         super().__init__()
-        self.initUI()
+        self.initMainUI()
+        #self.initTitleUI_info()
+    
+    def initTitleUI_info(self):
+        self.setWindowIcon(QtGui.QIcon(":/systemdata/icon/ICON.ico"))
+        self.setWindowTitle('自動人 我的超人')
 
-    def initUI(self):
+    def initMainUI(self):
         self.resize(411, 423)
         self.layout = QGridLayout()
         self.setLayout(self.layout)
+        
         
         self.Stack = QStackedWidget()
         self.layout.addWidget(self.Stack)
@@ -25,6 +32,8 @@ class MainWindow(QWidget):
         self.Stack.addWidget(self.CallHelpUi)
 
         self.CallMainUi.chooseSignal.connect(self.showDialog)
+
+        
 
     def showDialog(self,msg):
         if msg == 'Help':

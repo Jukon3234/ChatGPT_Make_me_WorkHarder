@@ -14,6 +14,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
 
     def initUI(self):    
+        #self.actionHelp.
         self.actionHelp.triggered.connect(self.showDialog)
     
     def showDialog(self):
