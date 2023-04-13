@@ -330,28 +330,16 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionAdd">
-   <property name="icon">
-    <iconset>
-     <normaloff>icon/diskette.png</normaloff>icon/diskette.png</iconset>
-   </property>
    <property name="text">
     <string>Add</string>
    </property>
   </action>
   <action name="actionOpen">
-   <property name="icon">
-    <iconset>
-     <normaloff>icon/folder_open.png</normaloff>icon/folder_open.png</iconset>
-   </property>
    <property name="text">
     <string>Open</string>
    </property>
   </action>
   <action name="actionEXIT">
-   <property name="icon">
-    <iconset>
-     <normaloff>icon/door.png</normaloff>icon/door.png</iconset>
-   </property>
    <property name="text">
     <string>EXIT</string>
    </property>

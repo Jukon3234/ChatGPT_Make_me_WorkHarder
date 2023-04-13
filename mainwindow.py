@@ -3,7 +3,8 @@ from PyQt5.QtWidgets import *
 
 from Call_MainUi import MainPageWindow
 from Call_Help import HelpPageWindow
-import Homepage.ICON
+from PyQt5.QtGui import QPixmap
+import systemdata.icon.ICON
 
 class MainWindow(QWidget):
     
@@ -13,7 +14,9 @@ class MainWindow(QWidget):
         #self.initTitleUI_info()
     
     def initTitleUI_info(self):
-        self.setWindowIcon(QtGui.QIcon(":/systemdata/icon/ICON.ico"))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/ICON.ico"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        self.setWindowIcon(QIcon(icon))
         self.setWindowTitle('自動人 我的超人')
 
     def initMainUI(self):
