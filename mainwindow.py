@@ -11,12 +11,12 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.initMainUI()
-        #self.initTitleUI_info()
+        self.initTitleUI_info()
     
     def initTitleUI_info(self):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/ICON.ico"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        self.setWindowIcon(QIcon(icon))
+        self.setWindowIcon(icon)
         self.setWindowTitle('自動人 我的超人')
 
     def initMainUI(self):
