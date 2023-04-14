@@ -32,7 +32,7 @@ class MainWindow(QWidget):
         self.CallHelpUi = HelpPageWindow()
         
         self.Stack.addWidget(self.CallMainUi)
-        self.Stack.addWidget(self.CallHelpUi)
+        #self.Stack.addWidget(self.CallHelpUi)
 
         self.CallMainUi.chooseSignal.connect(self.showDialog)
 
@@ -40,4 +40,6 @@ class MainWindow(QWidget):
 
     def showDialog(self,msg):
         if msg == 'Help':
-            self.Stack.setCurrentIndex(1)
+            #self.Stack.setCurrentIndex(1)
+            self.CallHelpUi.show()
+            print("Help")
