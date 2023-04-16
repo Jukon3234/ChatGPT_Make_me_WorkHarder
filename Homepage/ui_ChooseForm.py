@@ -53,8 +53,6 @@ class Ui_ChooseForm(object):
         self.treeWidget.setSortingEnabled(True)
         self.treeWidget.headerItem().setText(0, _translate("ChooseForm", "執行單元"))
         self.treeWidget.headerItem().setText(1, _translate("ChooseForm", "功能說明"))
-        self.treeWidget.headerItem().setText(2, _translate("ChooseForm", "功能設定1"))
-        self.treeWidget.headerItem().setText(3, _translate("ChooseForm", "功能設定2"))
         __sortingEnabled = self.treeWidget.isSortingEnabled()
         self.treeWidget.setSortingEnabled(False)
         self.treeWidget.topLevelItem(0).setText(0, _translate("ChooseForm", "刷轉世"))

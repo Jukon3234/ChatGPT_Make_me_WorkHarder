@@ -14,7 +14,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         super(MainPageWindow, self).__init__(parent)
         self.setupUi(self)
         self.initUiindex()
-        self.initUI()
+        self.initbuttonUI()
 
     def initUiindex(self):
         titleicon = QtGui.QIcon()
@@ -35,10 +35,13 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.actionEXIT.setIcon(Exiticon)#help
 
 
-    def initUI(self):
+    def initbuttonUI(self):
         self.actionHelp.triggered.connect(self.showDialog)
+        self.AddpushButton.clicked.connect(self.showDialog)
     
     def showDialog(self):
         sender = self.sender()
         if sender == self.actionHelp:
-            self.chooseSignal.emit('Help')        
+            self.chooseSignal.emit('Help')
+        if sender == self.AddpushButton:
+            self.groupBox_2.hide()

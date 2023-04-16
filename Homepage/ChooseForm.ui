@@ -75,16 +75,6 @@
          <string>功能說明</string>
         </property>
        </column>
-       <column>
-        <property name="text">
-         <string>功能設定1</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>功能設定2</string>
-        </property>
-       </column>
        <item>
         <property name="text">
          <string>刷轉世</string>
@@ -99,12 +89,6 @@
         </property>
         <property name="text">
          <string>執行方陣腳本</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="text">
-         <string/>
         </property>
        </item>
       </widget>

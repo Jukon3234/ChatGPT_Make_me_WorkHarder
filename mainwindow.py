@@ -42,4 +42,5 @@ class MainWindow(QWidget):
         if msg == 'Help':
             #self.Stack.setCurrentIndex(1)
             self.CallHelpUi.show()
-            print("Help")
+        if msg == 'Hide':
+            self.groupBox_2.Hide()
