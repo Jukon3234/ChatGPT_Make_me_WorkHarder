@@ -8,13 +8,13 @@ import systemdata.icon.ICON
 class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     
     chooseSignal = pyqtSignal(str)
-    
 
     def __init__(self,parent=None):
         super(MainPageWindow, self).__init__(parent)
         self.setupUi(self)
         self.initUiindex()
         self.initbuttonUI()
+        self.change_group1()
 
     def initUiindex(self):
         titleicon = QtGui.QIcon()
@@ -35,13 +35,34 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.actionEXIT.setIcon(Exiticon)#help
 
 
+
     def initbuttonUI(self):
         self.actionHelp.triggered.connect(self.showDialog)
-        #self.AddpushButton.clicked.connect(self.showDialog)
+        self.AddpushButton.clicked.connect(self.showDialog)
+        self.changebutton.clicked.connect(self.showDialog)
     
     def showDialog(self):
         sender = self.sender()
         if sender == self.actionHelp:
             self.chooseSignal.emit('Help')
-        #if sender == self.AddpushButton:
-        #    self.groupBox_2.hide()
+        if sender == self.AddpushButton:
+            self.change_group1()
+        if sender == self.changebutton:
+            self.change_group2()
+
+    def change_group1(self):
+        #horizontalLayout_7.replaceWidget(self.groupBox_2,self.groupBox_7,self.groupBox_16)
+        self.groupBox_2.setVisible(True) 
+        self.groupBox_7.setVisible(False)
+        self.groupBox_16.setVisible(False)
+
+    def change_group2(self):
+        #horizontalLayout_7.replaceWidget(self.groupBox_2,self.groupBox_7,self.groupBox_16)
+        self.groupBox_2.setVisible(False)
+        self.groupBox_7.setVisible(True) 
+        self.groupBox_16.setVisible(False)
+
+       
+
+
+    
