@@ -37,11 +37,11 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
     def initbuttonUI(self):
         self.actionHelp.triggered.connect(self.showDialog)
-        self.AddpushButton.clicked.connect(self.showDialog)
+        #self.AddpushButton.clicked.connect(self.showDialog)
     
     def showDialog(self):
         sender = self.sender()
         if sender == self.actionHelp:
             self.chooseSignal.emit('Help')
-        if sender == self.AddpushButton:
-            self.groupBox_2.hide()
+        #if sender == self.AddpushButton:
+        #    self.groupBox_2.hide()
