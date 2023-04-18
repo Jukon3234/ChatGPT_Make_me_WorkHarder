@@ -20,7 +20,7 @@ class MainWindow(QWidget):
         self.setWindowTitle('自動人 我的超人')
 
     def initMainUI(self):
-        self.resize(702, 423)
+        self.resize(702, 600)
         self.layout = QGridLayout()
         self.setLayout(self.layout)
         

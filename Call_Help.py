@@ -11,12 +11,7 @@ class HelpPageWindow(QWidget,Ui_Form):
     def __init__(self,parent=None):
         super(HelpPageWindow, self).__init__(parent)
         self.setupUi(self)
-        self.initUI()
         self.ButtonAction()
-
-    
-    def initUI(self):
-        print("Help")
     
     def ButtonAction(self):
         self.OKButton.clicked.connect(self.close)
