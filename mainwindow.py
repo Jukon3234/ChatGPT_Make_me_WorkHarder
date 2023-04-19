@@ -1,8 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 
-from Call_MainUi import MainPageWindow
-from Call_Help import HelpPageWindow
+from UI.Call_MainUi import MainPageWindow
+from UI.Call_Help import HelpPageWindow
 from PyQt5.QtGui import QPixmap
 import systemdata.icon.ICON
 
