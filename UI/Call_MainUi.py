@@ -5,6 +5,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import QPixmap
 import systemdata.icon.ICON
 from Funtion.Setfuntion import *
+import json
 
 from win32gui import *
 
@@ -53,6 +54,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.Screptrun_2.clicked.connect(self.showDialog)
         self.FuncStopButton.clicked.connect(self.showDialog)
         self.AllstopButton.clicked.connect(self.showDialog)
+        self.SetButton_2.clicked.connect(self.showDialog)
+        self.Times_spinBox_2.valueChanged.connect(self.showDialog)
         #self.changebutton.clicked.connect(self.showDialog)
     
     def showDialog(self):
@@ -68,6 +71,10 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             RunFGscrept()
         if sender == self.FuncStopButton or sender == self.AllstopButton:
             Stop()
+        if sender == self.SetButton_2:
+            self.SaveFile()
+        if sender == self.Times_spinBox_2:            
+            self.settingtext()
 
     def defaultPage(self):
         self.Page1.show() 
@@ -92,7 +99,27 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.Page3.show()
             self.Info_broswer.setText("方陣速刷")
 
-    #def SaveFile(self):
+    def settingtext(self):        
+        runtimes = self.Times_spinBox_2.value()
+        if runtimes == 0:
+            self.label_10.setText("Set 無上限")
+        else:
+            self.label_10.setText("Set :"+str(runtimes))
+
+    def SaveFile(self):
+        runtimes = self.Times_spinBox_2.value()
+
+        Savedata = {}
+        Savedata['funtion'] = {'IntFightCount': runtimes, 'TypeSelect': 0}
+
+        with open('systemdata/datasave/data.json', 'w') as datafile:
+            json.dump(Savedata,datafile)
+        self.label_10.setText("set成功")
+        print("set成功")
+        
+        
+        
+        
 
 
 

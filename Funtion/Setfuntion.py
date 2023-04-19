@@ -4,9 +4,8 @@ import os
 import sys
 import time
 
-FightCount = "0"
+
 IntFightCount = 0
-RunFlag = False
 TypeSelect = 0
 
 
@@ -39,20 +38,6 @@ def ScreptStopFlag():
     print("RunFlag：",RunFlag)
 
 #===================================資料存儲
-    
-def countset():
-    global FightCount    
-    
-    if CountEntry.get()== "" or CountEntry.get()== "0":
-        FightCount = 0
-        print("FightCount：",FightCount)
-    else:
-        FightCount = CountEntry.get()
-        print("FightCount：",FightCount)
-        fcset=("Set!! ")
-    msg=tk.Message(debugger,text=fcset,font=("Algerian",12,"bold"),padx=1,pady=1,width=100)
-    msg.grid(row=0,column=4)
-    
 def typeset(event):  
     global TypeSelect  
     TypeSelect = SelectBox.current()
@@ -64,7 +49,6 @@ def typeset(event):
 def debugLog():
     print("StopFuntion: ", StopFuntion)
     print("FightCount: ", FightCount)
-    print("IntFightCount: ", IntFightCount)
     print("TypeSelect: ", TypeSelect)
     print("RunFlag: ", RunFlag)
 
@@ -74,7 +58,6 @@ def RunFGscrept():
     if RunFlag==False:
         ScreptRunFlag()
         reset()
-        IntFightCount = int(FightCount)
         if IntFightCount == 0:
             #無限迴圈
             def GBFloop():
