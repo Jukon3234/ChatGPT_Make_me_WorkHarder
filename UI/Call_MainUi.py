@@ -16,13 +16,6 @@ import win32gui
 import os
 import pyautogui as pag
 
-StopFuntion = False
-FightCount = "0"
-IntFightCount = 0
-fcset=("不設限")
-RunFlag = False
-TypeSelect = 0
-
 class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     
     chooseSignal = pyqtSignal(str)    
@@ -57,8 +50,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.actionHelp.triggered.connect(self.showDialog)
         self.Funtionlist.clicked.connect(self.showDialog)
         self.DebugButton.clicked.connect(self.showDialog)
-        self.SetButton_2.clicked.connect(self.showDialog)
+        self.Screptrun_2.clicked.connect(self.showDialog)
         self.FuncStopButton.clicked.connect(self.showDialog)
+        self.AllstopButton.clicked.connect(self.showDialog)
         #self.changebutton.clicked.connect(self.showDialog)
     
     def showDialog(self):
@@ -70,9 +64,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         if sender == self.DebugButton:           
             self.AppDataCheck()
             debugLog()
-        if sender == self.SetButton_2:
+        if sender == self.Screptrun_2:
             RunFGscrept()
-        if sender == self.FuncStopButton:
+        if sender == self.FuncStopButton or sender == self.AllstopButton:
             Stop()
 
     def defaultPage(self):
@@ -98,17 +92,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.Page3.show()
             self.Info_broswer.setText("方陣速刷")
 
-    def change_Page2(self):
-        #horizontalLayout_7.replaceWidget(self.groupBox_2,self.groupBox_7,self.groupBox_16)
-        self.Page1.hide()
-        self.Page2.show() 
-        self.Page3.hide()
+    #def SaveFile(self):
 
-    def change_Page3(self):
-        #horizontalLayout_7.replaceWidget(self.groupBox_2,self.groupBox_7,self.groupBox_16)
-        self.Page1.hide()
-        self.Page2.hide() 
-        self.Page3.show()
+
 
     def AppDataCheck(self):        
         #debug_TXT=(f" L:"+ ScreenLeft +" ,T:"+ ScreenTop +" ,R:"+ ScreenRight +" ,B:" + ScreenBottom +" ,stopF:" + StopFuntion + " ,fightC:" + FightCount + " ,TypeS:" + TypeSelect + " ,RunF:" + RunFlag)
@@ -131,7 +117,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         except:
             def Mbox(title, text, style):
                 return windll.user32.MessageBoxW(0, text, title, style)
-            Mbox('No Windows get', 'Please select runtime Windows', 0)
+            Mbox('沒有找到視窗', '請選擇GBF的視窗標題', 0)
         
         print("#------------------------------------")
         print("windowsgetIndex: ", windowsgetIndex)
@@ -149,7 +135,11 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         lt.sort()
         print("#Sortting Windows-------------")
         for t in lt:
-            self.WindowsComboBox.addItem(t)
+            if t == "グランブルーファンタジー - Google Chrome":
+                self.WindowsComboBox.addItem(t)
+                self.WindowsComboBox.setCurrentText(t)
+            else:
+                self.WindowsComboBox.addItem(t)
             print (t)
         
 

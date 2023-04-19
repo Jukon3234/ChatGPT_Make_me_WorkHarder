@@ -290,10 +290,10 @@
                   <number>0</number>
                  </property>
                  <item row="6" column="2" colspan="2">
-                  <widget class="QPushButton" name="pushButton_6">
+                  <widget class="QPushButton" name="AllstopButton">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                     <horstretch>1</horstretch>
+                     <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
@@ -345,7 +345,7 @@
                   <widget class="QPushButton" name="DebugButton">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                     <horstretch>1</horstretch>
+                     <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
@@ -495,7 +495,7 @@
                     <enum>Qt::Horizontal</enum>
                    </property>
                    <property name="sizeType">
-                    <enum>QSizePolicy::Minimum</enum>
+                    <enum>QSizePolicy::Expanding</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -509,7 +509,7 @@
                   <widget class="QPushButton" name="pushButton_5">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                     <horstretch>1</horstretch>
+                     <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
@@ -1377,6 +1377,13 @@
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="3">
+                        <widget class="QCheckBox" name="checkBox_6">
+                         <property name="text">
+                          <string>紅玉怪</string>
                          </property>
                         </widget>
                        </item>

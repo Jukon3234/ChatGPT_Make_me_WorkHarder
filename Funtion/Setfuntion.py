@@ -4,13 +4,15 @@ import os
 import sys
 import time
 
-
-RunFlag = False
-StopFuntion = False
 FightCount = "0"
 IntFightCount = 0
 RunFlag = False
 TypeSelect = 0
+
+
+RunFlag = False
+StopFuntion = False
+
 
 def ScreptRunFlag():
     global RunFlag
@@ -35,9 +37,6 @@ def ScreptStopFlag():
     global RunFlag
     RunFlag = False
     print("RunFlag：",RunFlag)
-    
-def OptionHelp():
-    messagebox.showinfo('Help','Copy right BruceJH')
 
 #===================================資料存儲
     
