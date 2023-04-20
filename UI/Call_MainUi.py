@@ -4,7 +4,7 @@ from UI.Homepage.ui_MainUI import Ui_GBF_MAIN
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QPixmap
 import systemdata.icon.ICON
-from Funtion.Setfuntion import *
+from Funtion.Page1funtion import RunFunction
 import Funtion.Foundation
 import json
 
@@ -63,9 +63,12 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.AppDataCheck()
             debugLog()
         if sender == self.Screptrun_2:
-            RunFGscrept()
+            self.Info_broswer.setText("腳本執行中")
+            x=RunFunction()
+            x.RunFGscrept()
         if sender == self.FuncStopButton or sender == self.AllstopButton:
             Funtion.Foundation.StopFunction = True
+            self.Info_broswer.clear()
         if sender == self.SetButton_2:
             self.SaveFile()
         if sender == self.Times_spinBox_2:            
@@ -74,7 +77,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     def default(self):#框架預設
         SaveFile = open('systemdata/datasave/data.json')
         savedata= json.load(SaveFile)
-        self.Times_spinBox_2.setValue(savedata['function1']['IntFightCount'])
+        self.Times_spinBox_2.setValue(savedata['function1']['FightCount'])
+        self.Times_spinBox_3.setValue(savedata['function2']['FightCount'])
+        self.Times_spinBox_5.setValue(savedata['function3']['FightCount'])
         self.Page1.show() 
         self.Page2.hide()
         self.Page3.hide()
@@ -86,28 +91,28 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.Page3.hide()
         if text == "轉世":
             self.Page1.show()
-            self.Info_broswer.setText("轉世")
         if text == "方陣":            
             self.Page2.show()
-            self.Info_broswer.setText("方陣")
         if text == "方陣速刷":
             self.Page3.show()
-            self.Info_broswer.setText("方陣速刷")
 
 
     def settingtext(self):
-        Funtion.Foundation.IntFightCount = self.Times_spinBox_2.value()
-        if Funtion.Foundation.IntFightCount == 0:
+        Funtion.Foundation.Function1FightCount = self.Times_spinBox_2.value()
+        if Funtion.Foundation.Function1FightCount == 0:
             self.label_10.setText("Set 無上限")
         else:
-            self.label_10.setText("Set :"+str(Funtion.Foundation.IntFightCount))
+            self.label_10.setText("Set :"+str(Funtion.Foundation.Function1FightCount))
 
     def SaveFile(self):
-        Funtion.Foundation.IntFightCount = self.Times_spinBox_2.value()
+        
+        Funtion.Foundation.Function1FightCount = self.Times_spinBox_2.value()
+        Funtion.Foundation.Function2FightCount = self.Times_spinBox_3.value()
+        Funtion.Foundation.Function3FightCount = self.Times_spinBox_5.value()
         Savedata = {}
-        Savedata['function1'] = {'IntFightCount': Funtion.Foundation.IntFightCount, 'TypeSelect': 0}
-        Savedata['function2'] = {'IntFightCount': Funtion.Foundation.IntFightCount, 'TypeSelect': 0}
-        Savedata['function3'] = {'IntFightCount': Funtion.Foundation.IntFightCount, 'TypeSelect': 0}
+        Savedata['function1'] = {'FightCount': Funtion.Foundation.Function1FightCount, 'TypeSelect': 0}
+        Savedata['function2'] = {'FightCount': Funtion.Foundation.Function2FightCount, 'TypeSelect': 0}
+        Savedata['function3'] = {'FightCount': Funtion.Foundation.Function3FightCount, 'TypeSelect': 0}
 
         with open('systemdata/datasave/data.json', 'w') as datafile:
             json.dump(Savedata,datafile)
