@@ -3,7 +3,7 @@ from threading import Thread
 import os
 import sys
 import time
-import Funtion.Foundation
+import Function.Foundation
 
 class RunFunction:
     #===================================debug

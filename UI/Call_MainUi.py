@@ -4,8 +4,8 @@ from UI.Homepage.ui_MainUI import Ui_GBF_MAIN
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QPixmap
 import systemdata.icon.ICON
-from Funtion.Page1Function.py import RunFunction
-import Funtion.Foundation
+from Function.Page1Function import RunFunction
+import Function.Foundation
 import json
 
 from win32gui import *
