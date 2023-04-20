@@ -5,6 +5,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import QPixmap
 import systemdata.icon.ICON
 from Funtion.Setfuntion import *
+import Funtion.Foundation
 import json
 
 from win32gui import *
@@ -70,7 +71,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         if sender == self.Screptrun_2:
             RunFGscrept()
         if sender == self.FuncStopButton or sender == self.AllstopButton:
-            Stop()
+            Funtion.Foundation.StopFunction = True
         if sender == self.SetButton_2:
             self.SaveFile()
         if sender == self.Times_spinBox_2:            
@@ -100,33 +101,24 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.Info_broswer.setText("方陣速刷")
 
     def settingtext(self):        
-        runtimes = self.Times_spinBox_2.value()
-        if runtimes == 0:
+        Funtion.Foundation.IntFightCount = self.Times_spinBox_2.value()
+        if Funtion.Foundation.IntFightCount == 0:
             self.label_10.setText("Set 無上限")
         else:
-            self.label_10.setText("Set :"+str(runtimes))
+            self.label_10.setText("Set :"+str(Funtion.Foundation.IntFightCount))
 
     def SaveFile(self):
-        runtimes = self.Times_spinBox_2.value()
+        Funtion.Foundation.IntFightCount = self.Times_spinBox_2.value()
 
         Savedata = {}
-        Savedata['funtion'] = {'IntFightCount': runtimes, 'TypeSelect': 0}
+        Savedata['funtion'] = {'IntFightCount': Funtion.Foundation.IntFightCount, 'TypeSelect': 0}
 
         with open('systemdata/datasave/data.json', 'w') as datafile:
             json.dump(Savedata,datafile)
         self.label_10.setText("set成功")
         print("set成功")
-        
-        
-        
-        
-
-
 
     def AppDataCheck(self):        
-        #debug_TXT=(f" L:"+ ScreenLeft +" ,T:"+ ScreenTop +" ,R:"+ ScreenRight +" ,B:" + ScreenBottom +" ,stopF:" + StopFuntion + " ,fightC:" + FightCount + " ,TypeS:" + TypeSelect + " ,RunF:" + RunFlag)
-        #self.Info_broswer.setText(debug_TXT)
-        #HWNS = win32gui.FindWindow(None, "グランブルーファンタジー - Google Chrome")
         try:
             windowsgetIndex = self.WindowsComboBox.currentIndex()
             windowsgetstr = self.WindowsComboBox.currentText()

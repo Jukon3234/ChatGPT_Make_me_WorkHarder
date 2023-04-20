@@ -344,7 +344,7 @@
                    </attribute>
                   </widget>
                  </item>
-                 <item row="6" column="4">
+                 <item row="6" column="5">
                   <widget class="QPushButton" name="DebugButton">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
@@ -396,7 +396,7 @@
                    </attribute>
                   </widget>
                  </item>
-                 <item row="0" column="0" colspan="6">
+                 <item row="0" column="0" colspan="8">
                   <widget class="QListWidget" name="Funtionlist">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -492,7 +492,7 @@
                    </item>
                   </widget>
                  </item>
-                 <item row="6" column="5">
+                 <item row="6" column="7">
                   <spacer name="horizontalSpacer_4">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -558,6 +558,13 @@
                    <attribute name="buttonGroup">
                     <string notr="true">buttonGroup</string>
                    </attribute>
+                  </widget>
+                 </item>
+                 <item row="6" column="4">
+                  <widget class="QPushButton" name="pushButton">
+                   <property name="text">
+                    <string>需求設定</string>
+                   </property>
                   </widget>
                  </item>
                 </layout>
@@ -1387,6 +1394,13 @@
                         <widget class="QCheckBox" name="checkBox_6">
                          <property name="text">
                           <string>紅玉怪</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="3" column="2">
+                        <widget class="QCheckBox" name="checkBox_8">
+                         <property name="text">
+                          <string>大紅</string>
                          </property>
                         </widget>
                        </item>
