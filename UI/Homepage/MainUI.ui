@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1453</width>
-    <height>562</height>
+    <width>1612</width>
+    <height>885</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -46,8 +46,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1451</width>
-         <height>519</height>
+         <width>1610</width>
+         <height>842</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -111,7 +111,7 @@
           </property>
           <widget class="QWidget" name="tab_3">
            <attribute name="title">
-            <string>基本設定</string>
+            <string>設定</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_11">
             <property name="leftMargin">
@@ -141,77 +141,96 @@
                <number>6</number>
               </property>
               <item row="0" column="1">
-               <widget class="QComboBox" name="WindowsComboBox">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                  <horstretch>1</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+               <widget class="QGroupBox" name="groupBox_11">
+                <property name="title">
+                 <string>設定</string>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>500</width>
-                  <height>35</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>標楷體</family>
-                  <pointsize>13</pointsize>
-                 </font>
-                </property>
-                <property name="contextMenuPolicy">
-                 <enum>Qt::ActionsContextMenu</enum>
-                </property>
-                <property name="insertPolicy">
-                 <enum>QComboBox::NoInsert</enum>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>Default(グランブルーファンタジー - Google Chrome)</string>
-                 </property>
-                </item>
+                <layout class="QGridLayout" name="gridLayout_4">
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="label_9">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>102</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>12</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>執行視窗選擇</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="3">
+                  <spacer name="horizontalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QComboBox" name="WindowsComboBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>1</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>500</width>
+                     <height>35</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>標楷體</family>
+                     <pointsize>13</pointsize>
+                    </font>
+                   </property>
+                   <property name="contextMenuPolicy">
+                    <enum>Qt::ActionsContextMenu</enum>
+                   </property>
+                   <property name="insertPolicy">
+                    <enum>QComboBox::NoInsert</enum>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>Default(グランブルーファンタジー - Google Chrome)</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <spacer name="verticalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_9">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>102</width>
-                  <height>50</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>執行視窗選擇</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <spacer name="horizontalSpacer_5">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Expanding</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
               </item>
              </layout>
             </item>
@@ -563,7 +582,7 @@
                  <item row="6" column="4">
                   <widget class="QPushButton" name="pushButton">
                    <property name="text">
-                    <string>需求設定</string>
+                    <string>環境設定</string>
                    </property>
                   </widget>
                  </item>
@@ -709,7 +728,7 @@
                           <cursorShape>PointingHandCursor</cursorShape>
                          </property>
                          <property name="text">
-                          <string>SET</string>
+                          <string>SAVE</string>
                          </property>
                         </widget>
                        </item>
@@ -722,7 +741,7 @@
                           </sizepolicy>
                          </property>
                          <property name="text">
-                          <string>    需要先儲存 0為無上限</string>
+                          <string>     0為無上限</string>
                          </property>
                         </widget>
                        </item>
@@ -2193,6 +2212,9 @@
                   </widget>
                  </item>
                 </layout>
+                <zorder>Page2</zorder>
+                <zorder>Page1</zorder>
+                <zorder>Page3</zorder>
                </widget>
               </widget>
               <widget class="QGroupBox" name="groupBox_3">
@@ -2349,18 +2371,10 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1453</width>
+     <width>1612</width>
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionAdd"/>
-    <addaction name="actionOpen"/>
-    <addaction name="actionEXIT"/>
-   </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
@@ -2369,7 +2383,6 @@
     <addaction name="separator"/>
     <addaction name="actionHelp"/>
    </widget>
-   <addaction name="menuFile"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

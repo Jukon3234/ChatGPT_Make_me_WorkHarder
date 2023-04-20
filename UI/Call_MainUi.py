@@ -22,15 +22,15 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     
     chooseSignal = pyqtSignal(str)    
 
-    def __init__(self,parent=None):
+    def __init__(self,parent=None):#起始位置
         super(MainPageWindow, self).__init__(parent)        
         self.setupUi(self)
         self.initUiindex()
         self.initbuttonUI()
-        self.defaultPage()#預設為page1
+        self.default()
         self.GetScreenFunc()
 
-    def initUiindex(self):
+    def initUiindex(self):#UI框架基礎設定
         titleicon = QtGui.QIcon()
         titleicon.addPixmap(QtGui.QPixmap(":/ICON.ico"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         Helpicon = QtGui.QIcon()
@@ -38,17 +38,11 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Loadicon = QtGui.QIcon()
         Exiticon = QtGui.QIcon()
         self.setWindowIcon(titleicon)
-        self.setWindowTitle('自動人 我的超人')#title
+        self.setWindowTitle('自動人 我的超人 V0.0.1')#title
         Helpicon.addPixmap(QtGui.QPixmap(":/Heip.ico"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         self.actionHelp.setIcon(Helpicon)#help
-        Saveicon.addPixmap(QtGui.QPixmap(":/Save.ico"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        self.actionAdd.setIcon(Saveicon)#help
-        Loadicon.addPixmap(QtGui.QPixmap(":/Load.ico"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        self.actionOpen.setIcon(Loadicon)#help
-        Exiticon.addPixmap(QtGui.QPixmap(":/door.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        self.actionEXIT.setIcon(Exiticon)#help
 
-    def initbuttonUI(self):
+    def initbuttonUI(self):#按鈕設定
         self.actionHelp.triggered.connect(self.showDialog)
         self.Funtionlist.clicked.connect(self.showDialog)
         self.DebugButton.clicked.connect(self.showDialog)
@@ -59,7 +53,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.Times_spinBox_2.valueChanged.connect(self.showDialog)
         #self.changebutton.clicked.connect(self.showDialog)
     
-    def showDialog(self):
+    def showDialog(self):#按鈕function
         sender = self.sender()
         if sender == self.actionHelp:
             self.chooseSignal.emit('Help')        
@@ -77,30 +71,31 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         if sender == self.Times_spinBox_2:            
             self.settingtext()
 
-    def defaultPage(self):
+    def default(self):#框架預設
+        SaveFile = open('systemdata/datasave/data.json')
+        savedata= json.load(SaveFile)
+        self.Times_spinBox_2.setValue(savedata['function1']['IntFightCount'])
         self.Page1.show() 
         self.Page2.hide()
         self.Page3.hide()
 
     def change_Page(self):
         text = self.Funtionlist.currentItem().text()
+        self.Page1.hide()
+        self.Page2.hide()
+        self.Page3.hide()
         if text == "轉世":
-            self.Page1.show() 
-            self.Page2.hide()
-            self.Page3.hide()
+            self.Page1.show()
             self.Info_broswer.setText("轉世")
-        if text == "方陣":
-            self.Page1.hide()
-            self.Page2.show() 
-            self.Page3.hide()
+        if text == "方陣":            
+            self.Page2.show()
             self.Info_broswer.setText("方陣")
         if text == "方陣速刷":
-            self.Page1.hide()
-            self.Page2.hide() 
             self.Page3.show()
             self.Info_broswer.setText("方陣速刷")
 
-    def settingtext(self):        
+
+    def settingtext(self):
         Funtion.Foundation.IntFightCount = self.Times_spinBox_2.value()
         if Funtion.Foundation.IntFightCount == 0:
             self.label_10.setText("Set 無上限")
@@ -109,9 +104,10 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
     def SaveFile(self):
         Funtion.Foundation.IntFightCount = self.Times_spinBox_2.value()
-
         Savedata = {}
-        Savedata['funtion'] = {'IntFightCount': Funtion.Foundation.IntFightCount, 'TypeSelect': 0}
+        Savedata['function1'] = {'IntFightCount': Funtion.Foundation.IntFightCount, 'TypeSelect': 0}
+        Savedata['function2'] = {'IntFightCount': Funtion.Foundation.IntFightCount, 'TypeSelect': 0}
+        Savedata['function3'] = {'IntFightCount': Funtion.Foundation.IntFightCount, 'TypeSelect': 0}
 
         with open('systemdata/datasave/data.json', 'w') as datafile:
             json.dump(Savedata,datafile)
