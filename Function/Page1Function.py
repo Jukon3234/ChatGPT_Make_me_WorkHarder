@@ -27,7 +27,7 @@ class RunFunction:
                             print("stopfuntion=",Funtion.Foundation.StopFunction)
                             print("Function1FightCount=",Funtion.Foundation.Function1FightCount)
                             Funtion.Foundation.RunFlag = False
-                        except ValueError:
+                        except:
                             print("Function fail")
                             Funtion.Foundation.RunFlag = False
             else:

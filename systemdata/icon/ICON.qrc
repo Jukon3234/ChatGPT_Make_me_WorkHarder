@@ -8,6 +8,16 @@
     <file>ICON.ico</file>
 	<file>Load.ico</file>
 	<file>Save.ico</file>
-	<file>unnamed.png</file>
+	<file>icon_sort_wepon_03.png</file>
+	<file>icon_sort_wepon_05.png</file>
+	<file>icon_sort_wepon_07.png</file>
+	<file>icon_sort_wepon_08.png</file>
+	<file>icon_sort_wepon_09.png</file>
+	<file>icon_sort_wepon_21.png</file>
+	<file>icon_sort_wepon_25.png</file>
+	<file>icon_sort_wepon_29.png</file>
+	<file>icon_sort_wepon_30.png</file>
+	<file>icon_sort_wepon_33.png</file>
+	<file>icon_sort_wepon_34.png</file>
 </qresource>
 </RCC>
