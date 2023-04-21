@@ -14,5 +14,5 @@ README.md ver.0.0.1
 
 target:
 PYQT UI
-GBF funtion scrept
+GBF funcstion scrept
 gbf raid finder twitter api
