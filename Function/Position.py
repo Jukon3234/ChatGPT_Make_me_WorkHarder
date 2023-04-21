@@ -15,8 +15,7 @@ class GBFPosition:
     def postion(self):
         screen= QApplication.primaryScreen()
         windowsimage = screen.grabWindow(Function.Foundation.WindowsHandle).toImage()
-        windowsimage = windowsimage.convertToFormat(4)
-        
+        windowsimage = windowsimage.convertToFormat(4)        
         width = windowsimage.width()
         height = windowsimage.height()
         ptr = windowsimage.bits()
@@ -28,7 +27,7 @@ class GBFPosition:
         print("save success")
     
 
-    def grayphoto(self):#先保留
+    def MakeGrayPhoto(self):#先保留
         screen= QApplication.primaryScreen()
         windowsimage = screen.grabWindow(Function.Foundation.WindowsHandle).toImage()
         windowsimage = windowsimage.convertToFormat(4)
@@ -42,3 +41,6 @@ class GBFPosition:
         GrayImage = cv2.cvtColor(np.asarray(im),cv2.COLOR_BGR2GRAY)
         cv2.imwrite("./systemdata/img/printscreen/testscreen.png",GrayImage)
         print("save success")
+
+#http://13.231.129.69/2020/08/13/python-%E8%87%AA%E5%8B%95%E5%8C%96%E5%B7%A5%E5%85%B7-pyautogui-%E9%87%8B%E6%94%BE%E4%BD%A0%E7%9A%84%E9%9B%99%E6%89%8B/
+#https://blog.csdn.net/qq_42069296/article/details/121853190
