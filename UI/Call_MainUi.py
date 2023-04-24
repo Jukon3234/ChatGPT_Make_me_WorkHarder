@@ -77,9 +77,23 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.web = QWebEngineView(self.WEBWidgetContents)
         self.web.setGeometry(QtCore.QRect(0, 0, 500, 750)) # 設置小部件的大小和位置
         self.web.load(QUrl('https://game.granbluefantasy.jp/#top'))
-        self.web.urlChanged.connect(self.updateUrl)
-    def updateUrl(self,url):
-            self.WEBLineEdit.setText(url.toString())  
+        self.web.urlChanged.connect(self.UpdateUrl)
+        self.Back.clicked.connect(self.BackURL)
+        self.Reload.clicked.connect(self.ReloadURL)
+        self.Enter.clicked.connect(self.EnterURL)
+    def UpdateUrl(self,url):
+        sender = self.sender()
+        self.WEBLineEdit.setText(url.toString())
+        Function.Foundation.HTML_Text = url.toString()
+    def BackURL(self):
+        self.web.back()
+    def ReloadURL(self,url):
+        self.web.load(QUrl(Function.Foundation.HTML_Text))
+        self.WEBLineEdit.setText(Function.Foundation.HTML_Text)
+    def EnterURL(self,url):
+        url = self.WEBLineEdit.text()
+        self.web.load(QUrl(url))
+        Function.Foundation.HTML_Text = url
 
 
     def initbuttonUI(self):#按鈕設定
@@ -94,6 +108,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.Times_spinBox_2.valueChanged.connect(self.showDialog)
         self.WindowsComboBox.currentIndexChanged.connect(self.showDialog)
         self.PositionButton.clicked.connect(self.showDialog)
+        self.FRWidge.clicked.connect(self.showDialog)
+        
         #self.changebutton.clicked.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
@@ -122,6 +138,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         elif sender == self.PositionButton:
             x=GBFPosition()
             x.postion()
+        elif sender == self.FRWidge:
+            self.chooseSignal.emit('change') 
         #elif sender == self.WebButton:
         #    self.chooseSignal.emit('Web')
         
@@ -181,6 +199,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             left, top, right, bottom = win32gui.GetWindowRect(Function.Foundation.WindowsHandle)
             posStr1 = str(left).rjust(4)+','+str(top).rjust(4)+','+str(right).rjust(4)+','+str(bottom).rjust(4)
             print("AppPos: ", posStr1)
+            width = right - left
+            height = bottom - top
+            print(width, height)
         except:
             def Mbox(title, text, style):
                 return windll.user32.MessageBoxW(0, text, title, style)

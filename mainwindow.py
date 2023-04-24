@@ -21,7 +21,7 @@ class MainWindow(QWidget):
         self.setWindowTitle('自動人 我的超人')
 
     def initMainUI(self):
-        self.resize(702, 600)
+        self.resize(1170,840)
         self.layout = QGridLayout()
         self.setLayout(self.layout)
         
@@ -44,6 +44,8 @@ class MainWindow(QWidget):
         if msg == 'Help':
             #self.Stack.setCurrentIndex(1)
             self.CallHelpUi.show()
+        if msg == 'change':
+            self.resize(1170,840)
         #elif msg == 'Web':
         #    self.CallWebUi.show()
         #if msg == 'Hide':

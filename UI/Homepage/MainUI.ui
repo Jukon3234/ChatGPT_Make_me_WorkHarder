@@ -92,7 +92,7 @@
         </widget>
        </item>
        <item row="2" column="5">
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="Enter">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -744,6 +744,13 @@
                      <string>1T古戰場</string>
                     </property>
                    </item>
+                  </widget>
+                 </item>
+                 <item row="7" column="3">
+                  <widget class="QPushButton" name="FRWidge">
+                   <property name="text">
+                    <string>調整視窗大小</string>
+                   </property>
                   </widget>
                  </item>
                 </layout>
