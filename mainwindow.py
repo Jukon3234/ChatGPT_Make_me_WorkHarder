@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 
 from UI.Call_MainUi import MainPageWindow
 from UI.Call_Help import HelpPageWindow
+from UI.Call_WEB import WebPageWindow
 from PyQt5.QtGui import QPixmap
 import systemdata.icon.ICON
 
@@ -30,6 +31,7 @@ class MainWindow(QWidget):
         
         self.CallMainUi = MainPageWindow()
         self.CallHelpUi = HelpPageWindow()
+        self.CallWebUi = WebPageWindow()
         
         self.Stack.addWidget(self.CallMainUi)
         #self.Stack.addWidget(self.CallHelpUi)
@@ -42,5 +44,7 @@ class MainWindow(QWidget):
         if msg == 'Help':
             #self.Stack.setCurrentIndex(1)
             self.CallHelpUi.show()
+        #elif msg == 'Web':
+        #    self.CallWebUi.show()
         #if msg == 'Hide':
         #    self.groupBox_2.Hide()

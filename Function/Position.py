@@ -1,46 +1,40 @@
-from threading import Thread
 import os
 import sys
 import win32gui
 import time
 import cv2
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtGui import *
 import Function.Foundation
-import numpy as np
 from PIL import Image
 
 
+import pyautogui
+
+
+
 class GBFPosition:
-    def postion(self):
-        screen= QApplication.primaryScreen()
-        windowsimage = screen.grabWindow(Function.Foundation.WindowsHandle).toImage()
-        windowsimage = windowsimage.convertToFormat(4)        
-        width = windowsimage.width()
-        height = windowsimage.height()
-        ptr = windowsimage.bits()
-        ptr.setsize(windowsimage.byteCount())
-        arr = np.array(ptr).reshape(height,width,4)
-        im = Image.fromarray(arr) #組合
-        GrayImage = cv2.cvtColor(np.asarray(im),cv2.COLOR_BGR2GRAY)
-        cv2.imwrite("./systemdata/img/printscreen/testscreen.png",GrayImage)
-        print("save success")
-    
 
-    def MakeGrayPhoto(self):#先保留
-        screen= QApplication.primaryScreen()
-        windowsimage = screen.grabWindow(Function.Foundation.WindowsHandle).toImage()
-        windowsimage = windowsimage.convertToFormat(4)
-        
-        width = windowsimage.width()
-        height = windowsimage.height()
-        ptr = windowsimage.bits()
-        ptr.setsize(windowsimage.byteCount())
-        arr = np.array(ptr).reshape(height,width,4)
-        im = Image.fromarray(arr) #組合
-        GrayImage = cv2.cvtColor(np.asarray(im),cv2.COLOR_BGR2GRAY)
-        cv2.imwrite("./systemdata/img/printscreen/testscreen.png",GrayImage)
-        print("save success")
+    def getItem():
+        left, top, width, height = win32gui.GetWindowRect(Function.Foundation.WindowsHandle)
+        image_path = 'target_image.png'
+        scroll_distance = 50
 
-#http://13.231.129.69/2020/08/13/python-%E8%87%AA%E5%8B%95%E5%8C%96%E5%B7%A5%E5%85%B7-pyautogui-%E9%87%8B%E6%94%BE%E4%BD%A0%E7%9A%84%E9%9B%99%E6%89%8B/
-#https://blog.csdn.net/qq_42069296/article/details/121853190
+        pyautogui.click(left, top)
+
+        def locate_image():
+            screenshot = Image.grab()
+            location = pyautogui.locate(image_path, screenshot, region=(left, top, width, height))
+            return location
+
+        while True:
+            location = locate_image()
+            if location is not None:
+                break
+            pyautogui.scroll(scroll_distance)
+            time.sleep(0.5)
+            if pyautogui.position()[1] >= top + height - scroll_distance:
+                print("沒有這個物件")
+                break
+
+        if location is not None:
+            click_x, click_y = pyautogui.center(location)
+            pyautogui.click(click_x, click_y)

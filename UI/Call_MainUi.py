@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
+from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile
 from UI.Homepage.ui_MainUI import Ui_GBF_MAIN
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QPixmap
@@ -30,6 +31,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.initUiindex()
         self.initbuttonUI()
         self.default()
+        self.WEBBrowser()
         self.GetScreenFunc()
 
     def initUiindex(self):#UI框架基礎設定
@@ -70,12 +72,21 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                 item.setIcon(Icon_sort21)
             elif i == 7:#1T古戰場
                 item.setIcon(Icon_sort21)
+    
+    def WEBBrowser(self):
+        self.web = QWebEngineView(self.WEBWidgetContents)
+        self.web.setGeometry(QtCore.QRect(0, 0, 500, 750)) # 設置小部件的大小和位置
+        self.web.load(QUrl('https://game.granbluefantasy.jp/#top'))
+        self.web.urlChanged.connect(self.updateUrl)
+    def updateUrl(self,url):
+            self.WEBLineEdit.setText(url.toString())  
 
 
     def initbuttonUI(self):#按鈕設定
         self.actionHelp.triggered.connect(self.showDialog)
         self.Funtionlist.clicked.connect(self.showDialog)
         self.DebugButton.clicked.connect(self.showDialog)
+        #self.WebButton.clicked.connect(self.showDialog)
         self.Screptrun_2.clicked.connect(self.showDialog)
         self.FuncStopButton.clicked.connect(self.showDialog)
         self.AllstopButton.clicked.connect(self.showDialog)
@@ -111,7 +122,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         elif sender == self.PositionButton:
             x=GBFPosition()
             x.postion()
-            
+        #elif sender == self.WebButton:
+        #    self.chooseSignal.emit('Web')
         
 
     def default(self):#框架預設
@@ -189,8 +201,10 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                 self.WindowsComboBox.addItem(t)
                 self.WindowsComboBox.setCurrentText(t)
             else:
-                self.WindowsComboBox.addItem(t)
+                self.WindowsComboBox.addItem(t)            
             print (t)
+        self.WindowsComboBox.addItem("自動人 我的超人")
+        print ("自動人 我的超人")
         try:
             windowsgetstr = self.WindowsComboBox.currentText()
             Function.Foundation.WindowsHandle = win32gui.FindWindow(None, windowsgetstr)
