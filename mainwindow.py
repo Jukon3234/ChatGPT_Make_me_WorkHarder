@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import *
 
 from UI.Call_MainUi import MainPageWindow
 from UI.Call_Help import HelpPageWindow
-from UI.Call_WEB import WebPageWindow
 from PyQt5.QtGui import QPixmap
 import systemdata.icon.ICON
 
@@ -21,7 +20,7 @@ class MainWindow(QWidget):
         self.setWindowTitle('自動人 我的超人')
 
     def initMainUI(self):
-        self.resize(1170,840)
+        self.resize(1204,861)
         self.layout = QGridLayout()
         self.setLayout(self.layout)
         
@@ -31,7 +30,6 @@ class MainWindow(QWidget):
         
         self.CallMainUi = MainPageWindow()
         self.CallHelpUi = HelpPageWindow()
-        self.CallWebUi = WebPageWindow()
         
         self.Stack.addWidget(self.CallMainUi)
         #self.Stack.addWidget(self.CallHelpUi)
@@ -45,7 +43,7 @@ class MainWindow(QWidget):
             #self.Stack.setCurrentIndex(1)
             self.CallHelpUi.show()
         if msg == 'change':
-            self.resize(1170,840)
+            self.resize(1204,861)
         #elif msg == 'Web':
         #    self.CallWebUi.show()
         #if msg == 'Hide':

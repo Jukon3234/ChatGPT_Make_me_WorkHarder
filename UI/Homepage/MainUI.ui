@@ -36,140 +36,6 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <item row="0" column="1">
-     <widget class="QFrame" name="WEBFrame">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>500</width>
-        <height>800</height>
-       </size>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_8">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <property name="spacing">
-        <number>0</number>
-       </property>
-       <item row="2" column="2">
-        <widget class="QPushButton" name="Back">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>28</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>&lt;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="5">
-        <widget class="QPushButton" name="Enter">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>37</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Enter</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLineEdit" name="WEBLineEdit">
-         <property name="font">
-          <font>
-           <pointsize>14</pointsize>
-          </font>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="4">
-        <widget class="QPushButton" name="Reload">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>28</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Re</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="6">
-        <widget class="QScrollArea" name="scrollArea_2">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>500</width>
-           <height>800</height>
-          </size>
-         </property>
-         <property name="widgetResizable">
-          <bool>true</bool>
-         </property>
-         <widget class="QWidget" name="WEBWidgetContents">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>496</width>
-            <height>765</height>
-           </rect>
-          </property>
-         </widget>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
     <item row="0" column="0">
      <widget class="QScrollArea" name="scrollArea">
       <property name="sizePolicy">
@@ -229,7 +95,7 @@
            <enum>QTabWidget::Rounded</enum>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <property name="elideMode">
            <enum>Qt::ElideNone</enum>
@@ -249,128 +115,6 @@
           <property name="tabBarAutoHide">
            <bool>false</bool>
           </property>
-          <widget class="QWidget" name="tab_3">
-           <attribute name="title">
-            <string>設定</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_11">
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item row="0" column="0">
-             <layout class="QGridLayout" name="gridLayout_3">
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="horizontalSpacing">
-               <number>9</number>
-              </property>
-              <property name="verticalSpacing">
-               <number>6</number>
-              </property>
-              <item row="0" column="1">
-               <widget class="QGroupBox" name="groupBox_11">
-                <property name="title">
-                 <string>設定</string>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_4">
-                 <item row="0" column="1">
-                  <widget class="QLabel" name="label_9">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>102</width>
-                     <height>50</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <pointsize>12</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>執行視窗選擇</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="3">
-                  <spacer name="horizontalSpacer">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item row="0" column="2">
-                  <widget class="QComboBox" name="WindowsComboBox">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                     <horstretch>1</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>500</width>
-                     <height>35</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>標楷體</family>
-                     <pointsize>13</pointsize>
-                    </font>
-                   </property>
-                   <property name="contextMenuPolicy">
-                    <enum>Qt::ActionsContextMenu</enum>
-                   </property>
-                   <property name="insertPolicy">
-                    <enum>QComboBox::NoInsert</enum>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="2">
-                  <spacer name="verticalSpacer_2">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
           <widget class="QWidget" name="tab">
            <attribute name="title">
             <string>執行腳本</string>
@@ -393,6 +137,12 @@
             </property>
             <item>
              <widget class="QSplitter" name="splitter_2">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -427,7 +177,7 @@
                 <property name="title">
                  <string>配置</string>
                 </property>
-                <layout class="QGridLayout" name="gridLayout_5" rowstretch="0,0,0,0,0,0,0,0">
+                <layout class="QGridLayout" name="gridLayout_5" rowstretch="0,0,0,0,0,0,0,0,0,0">
                  <property name="sizeConstraint">
                   <enum>QLayout::SetDefaultConstraint</enum>
                  </property>
@@ -446,185 +196,6 @@
                  <property name="spacing">
                   <number>0</number>
                  </property>
-                 <item row="6" column="2">
-                  <widget class="QPushButton" name="AllstopButton">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>100</width>
-                     <height>23</height>
-                    </size>
-                   </property>
-                   <property name="sizeIncrement">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="baseSize">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <weight>50</weight>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="layoutDirection">
-                    <enum>Qt::LeftToRight</enum>
-                   </property>
-                   <property name="inputMethodHints">
-                    <set>Qt::ImhNone</set>
-                   </property>
-                   <property name="text">
-                    <string>全部終止</string>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>16</width>
-                     <height>16</height>
-                    </size>
-                   </property>
-                   <attribute name="buttonGroup">
-                    <string notr="true">buttonGroup</string>
-                   </attribute>
-                  </widget>
-                 </item>
-                 <item row="7" column="0">
-                  <widget class="QPushButton" name="PositionButton">
-                   <property name="text">
-                    <string>環境設定</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="7" column="2">
-                  <widget class="QPushButton" name="DebugButton">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>100</width>
-                     <height>23</height>
-                    </size>
-                   </property>
-                   <property name="sizeIncrement">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="baseSize">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <weight>50</weight>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="layoutDirection">
-                    <enum>Qt::LeftToRight</enum>
-                   </property>
-                   <property name="inputMethodHints">
-                    <set>Qt::ImhNone</set>
-                   </property>
-                   <property name="text">
-                    <string>Debug</string>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>16</width>
-                     <height>16</height>
-                    </size>
-                   </property>
-                   <attribute name="buttonGroup">
-                    <string notr="true">buttonGroup</string>
-                   </attribute>
-                  </widget>
-                 </item>
-                 <item row="6" column="0" colspan="2">
-                  <widget class="QPushButton" name="pushButton_5">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>100</width>
-                     <height>23</height>
-                    </size>
-                   </property>
-                   <property name="sizeIncrement">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="baseSize">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <weight>50</weight>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="layoutDirection">
-                    <enum>Qt::LeftToRight</enum>
-                   </property>
-                   <property name="inputMethodHints">
-                    <set>Qt::ImhNone</set>
-                   </property>
-                   <property name="text">
-                    <string>全部啟動</string>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>16</width>
-                     <height>16</height>
-                    </size>
-                   </property>
-                   <attribute name="buttonGroup">
-                    <string notr="true">buttonGroup</string>
-                   </attribute>
-                  </widget>
-                 </item>
-                 <item row="6" column="3">
-                  <spacer name="horizontalSpacer_4">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeType">
-                    <enum>QSizePolicy::Expanding</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
                  <item row="0" column="0" colspan="6">
                   <widget class="QListWidget" name="Funtionlist">
                    <property name="sizePolicy">
@@ -746,8 +317,244 @@
                    </item>
                   </widget>
                  </item>
+                 <item row="7" column="2">
+                  <widget class="QPushButton" name="AllstopButton">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>23</height>
+                    </size>
+                   </property>
+                   <property name="sizeIncrement">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="baseSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <weight>50</weight>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="layoutDirection">
+                    <enum>Qt::LeftToRight</enum>
+                   </property>
+                   <property name="inputMethodHints">
+                    <set>Qt::ImhNone</set>
+                   </property>
+                   <property name="text">
+                    <string>全部終止</string>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                   <attribute name="buttonGroup">
+                    <string notr="true">buttonGroup</string>
+                   </attribute>
+                  </widget>
+                 </item>
+                 <item row="8" column="0">
+                  <widget class="QPushButton" name="PositionButton">
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>23</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>環境設定</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="0" colspan="2">
+                  <widget class="QPushButton" name="pushButton_5">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>23</height>
+                    </size>
+                   </property>
+                   <property name="sizeIncrement">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="baseSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <weight>50</weight>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="layoutDirection">
+                    <enum>Qt::LeftToRight</enum>
+                   </property>
+                   <property name="inputMethodHints">
+                    <set>Qt::ImhNone</set>
+                   </property>
+                   <property name="text">
+                    <string>全部啟動</string>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                   <attribute name="buttonGroup">
+                    <string notr="true">buttonGroup</string>
+                   </attribute>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_17">
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>23</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>執行視窗選擇</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="8" column="3">
+                  <widget class="QPushButton" name="cleancatch">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                   <property name="text">
+                    <string>清除快取</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2" colspan="2">
+                  <widget class="QComboBox" name="WindowsComboBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>200</width>
+                     <height>23</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="9" column="3">
+                  <widget class="QPushButton" name="DebugButton">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>23</height>
+                    </size>
+                   </property>
+                   <property name="sizeIncrement">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="baseSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <weight>50</weight>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="layoutDirection">
+                    <enum>Qt::LeftToRight</enum>
+                   </property>
+                   <property name="inputMethodHints">
+                    <set>Qt::ImhNone</set>
+                   </property>
+                   <property name="text">
+                    <string>Debug</string>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                   <attribute name="buttonGroup">
+                    <string notr="true">buttonGroup</string>
+                   </attribute>
+                  </widget>
+                 </item>
                  <item row="7" column="3">
+                  <widget class="QCheckBox" name="ScreptBrowser">
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>23</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>腳本瀏覽器</string>
+                   </property>
+                   <property name="checked">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="8" column="2">
                   <widget class="QPushButton" name="FRWidge">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>23</height>
+                    </size>
+                   </property>
                    <property name="text">
                     <string>調整視窗大小</string>
                    </property>
@@ -2536,6 +2343,45 @@ p, li { white-space: pre-wrap; }
         </item>
        </layout>
       </widget>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QFrame" name="WEBFrame">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>500</width>
+        <height>800</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_11">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>0</number>
+       </property>
+      </layout>
      </widget>
     </item>
    </layout>

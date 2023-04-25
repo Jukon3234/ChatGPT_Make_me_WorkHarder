@@ -10,7 +10,7 @@ cd systemdata\icon
 pyrcc5.exe -o ICON.py .\ICON.qrc
 cd ..
 cd ..
-python.exe .\main.py
+python.exe -B .\main.py
 
 
 

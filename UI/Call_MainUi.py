@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
-from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile
+from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile, QWebEngineHistory
 from UI.Homepage.ui_MainUI import Ui_GBF_MAIN
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QPixmap
@@ -10,6 +10,9 @@ from Function.DebugFunction import Debugfunction
 from Function.Position import GBFPosition
 import Function.Foundation
 import json
+
+from http import cookies
+import datetime
 
 from win32gui import *
 
@@ -23,15 +26,14 @@ import pyautogui as pag
 
 class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     
-    chooseSignal = pyqtSignal(str)    
-
+    chooseSignal = pyqtSignal(str)
     def __init__(self,parent=None):#起始位置
         super(MainPageWindow, self).__init__(parent)        
         self.setupUi(self)
         self.initUiindex()
         self.initbuttonUI()
         self.default()
-        self.WEBBrowser()
+        #self.WEBBrowser()
         self.GetScreenFunc()
 
     def initUiindex(self):#UI框架基礎設定
@@ -51,6 +53,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Icon_sort8.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_08.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         Icon_sort7.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_07.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         Icon_sort21.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_21.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+
+        
         
         #set icon
         self.actionHelp.setIcon(Helpicon)#help
@@ -74,13 +78,86 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                 item.setIcon(Icon_sort21)
     
     def WEBBrowser(self):
-        self.web = QWebEngineView(self.WEBWidgetContents)
-        self.web.setGeometry(QtCore.QRect(0, 0, 500, 750)) # 設置小部件的大小和位置
-        self.web.load(QUrl('https://game.granbluefantasy.jp/#top'))
-        self.web.urlChanged.connect(self.UpdateUrl)
-        self.Back.clicked.connect(self.BackURL)
-        self.Reload.clicked.connect(self.ReloadURL)
-        self.Enter.clicked.connect(self.EnterURL)
+        #=======下下策 只能直接寫一個frame給瀏覽器頁面===
+        #Form直接產生 需修改Data成WebFrame
+        WEBFrame2 = QtWidgets.QFrame(self.WEBFrame)
+        WEBFrame2.setGeometry(QtCore.QRect(0, 0, 500, 800))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(WEBFrame2.sizePolicy().hasHeightForWidth())
+        WEBFrame2.setSizePolicy(sizePolicy)
+        WEBFrame2.setMaximumSize(QtCore.QSize(500, 800))
+        WEBFrame2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        WEBFrame2.setFrameShadow(QtWidgets.QFrame.Raised)
+        WEBFrame2.setObjectName("WEBFrame2")
+        gridLayout_8 = QtWidgets.QGridLayout(WEBFrame2)
+        gridLayout_8.setContentsMargins(0, 0, 0, 0)
+        gridLayout_8.setSpacing(0)
+        gridLayout_8.setObjectName("gridLayout_8")
+        Reload = QtWidgets.QPushButton(WEBFrame2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Reload.sizePolicy().hasHeightForWidth())
+        Reload.setSizePolicy(sizePolicy)
+        Reload.setMaximumSize(QtCore.QSize(28, 28))
+        Reload.setObjectName("Reload")
+        gridLayout_8.addWidget(Reload, 2, 4, 1, 1)
+        WEBLineEdit = QtWidgets.QLineEdit(WEBFrame2)
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        WEBLineEdit.setFont(font)
+        WEBLineEdit.setObjectName("WEBLineEdit")
+        gridLayout_8.addWidget(WEBLineEdit, 2, 0, 1, 1)
+        Back = QtWidgets.QPushButton(WEBFrame2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Back.sizePolicy().hasHeightForWidth())
+        Back.setSizePolicy(sizePolicy)
+        Back.setMaximumSize(QtCore.QSize(28, 28))
+        Back.setObjectName("Back")
+        gridLayout_8.addWidget(Back, 2, 2, 1, 1)
+        Enter = QtWidgets.QPushButton(WEBFrame2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Enter.sizePolicy().hasHeightForWidth())
+        Enter.setSizePolicy(sizePolicy)
+        Enter.setMaximumSize(QtCore.QSize(50, 28))
+        Enter.setObjectName("Enter")
+        gridLayout_8.addWidget(Enter, 2, 5, 1, 1)
+        scrollArea_2 = QtWidgets.QScrollArea(WEBFrame2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(scrollArea_2.sizePolicy().hasHeightForWidth())
+        scrollArea_2.setSizePolicy(sizePolicy)
+        scrollArea_2.setMaximumSize(QtCore.QSize(500, 770))
+        scrollArea_2.setWidgetResizable(True)
+        scrollArea_2.setObjectName("scrollArea_2")
+        WEBWidgetContents = QtWidgets.QWidget()
+        WEBWidgetContents.setGeometry(QtCore.QRect(0, 0, 500, 770))
+        WEBWidgetContents.setObjectName("WEBWidgetContents")
+        scrollArea_2.setWidget(WEBWidgetContents)
+        gridLayout_8.addWidget(scrollArea_2, 1, 0, 1, 6)
+
+        Reload.setText("Re")
+        Back.setText("<")
+        Enter.setText("Enter")
+        #=================================================
+
+        #self.web = QWebEngineView(self.WEBWidgetContents)
+        #self.web.setGeometry(QtCore.QRect(0, 0, 500, 770)) # 設置小部件的大小和位置
+        #self.web.load(QUrl('https://game.granbluefantasy.jp/#top'))
+        #self.web.urlChanged.connect(self.UpdateUrl)
+        #self.Back.clicked.connect(self.BackURL)
+        #self.Reload.clicked.connect(self.ReloadURL)
+        #self.Enter.clicked.connect(self.EnterURL)
+        #self.cleancatch.clicked.connect(self.CleanCatch)
+
+    #=================WEB專用    
     def UpdateUrl(self,url):
         sender = self.sender()
         self.WEBLineEdit.setText(url.toString())
@@ -94,6 +171,10 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         url = self.WEBLineEdit.text()
         self.web.load(QUrl(url))
         Function.Foundation.HTML_Text = url
+    def CleanCatch(self):
+        profile = self.web.page().profile()
+        profile.clearAllVisitedLinks()
+    #=================WEB專用  
 
 
     def initbuttonUI(self):#按鈕設定
@@ -109,6 +190,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.WindowsComboBox.currentIndexChanged.connect(self.showDialog)
         self.PositionButton.clicked.connect(self.showDialog)
         self.FRWidge.clicked.connect(self.showDialog)
+        self.ScreptBrowser.stateChanged.connect(self.BroswerOpen)
         
         #self.changebutton.clicked.connect(self.showDialog)
     
@@ -139,9 +221,16 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             x=GBFPosition()
             x.postion()
         elif sender == self.FRWidge:
-            self.chooseSignal.emit('change') 
-        #elif sender == self.WebButton:
-        #    self.chooseSignal.emit('Web')
+            self.chooseSignal.emit('change')
+    def BroswerOpen(self,state):
+        if state == 0:
+            #self.WEBFrame2.deleteLater()  
+            self.WEBFrame.hide()         
+        else:
+            self.WEBFrame.show()
+            self.WEBBrowser()
+            
+
         
 
     def default(self):#框架預設
@@ -153,6 +242,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.Page1.show() 
         self.Page2.hide()
         self.Page3.hide()
+        #self.WEBFrame.hide()
 
     def change_Page(self):
         text = self.Funtionlist.currentItem().text()
