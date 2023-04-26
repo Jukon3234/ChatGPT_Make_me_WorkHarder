@@ -1,0 +1,13 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>diskette.png</file>
+    <file>door.png</file>
+    <file>folder_open.png</file>
+    <file>Heip.ico</file>
+    <file>help.png</file>
+    <file>ICON.ico</file>
+	<file>Load.ico</file>
+	<file>Save.ico</file>
+	<file>unnamed.png</file>
+</qresource>
+</RCC>

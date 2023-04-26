@@ -1,6 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
-from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile, QWebEngineHistory
 from UI.Homepage.ui_MainUI import Ui_GBF_MAIN
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QPixmap
@@ -8,7 +7,7 @@ import systemdata.icon.ICON
 from Function.Page1Function import RunFunction
 from Function.DebugFunction import Debugfunction
 from Function.Position import GBFPosition
-import Function.Foundation
+import Function.Foundation as Fun
 import json
 
 from http import cookies
@@ -25,15 +24,14 @@ import os
 import pyautogui as pag
 
 class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
-    
     chooseSignal = pyqtSignal(str)
+
     def __init__(self,parent=None):#起始位置
         super(MainPageWindow, self).__init__(parent)        
         self.setupUi(self)
         self.initUiindex()
         self.initbuttonUI()
-        self.default()
-        #self.WEBBrowser()
+        self.default()        
         self.GetScreenFunc()
 
     def initUiindex(self):#UI框架基礎設定
@@ -76,105 +74,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                 item.setIcon(Icon_sort21)
             elif i == 7:#1T古戰場
                 item.setIcon(Icon_sort21)
-    
-    def WEBBrowser(self):
-        #=======下下策 只能直接寫一個frame給瀏覽器頁面===
-        #Form直接產生 需修改Data成WebFrame
-        WEBFrame2 = QtWidgets.QFrame(self.WEBFrame)
-        WEBFrame2.setGeometry(QtCore.QRect(0, 0, 500, 800))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(WEBFrame2.sizePolicy().hasHeightForWidth())
-        WEBFrame2.setSizePolicy(sizePolicy)
-        WEBFrame2.setMaximumSize(QtCore.QSize(500, 800))
-        WEBFrame2.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        WEBFrame2.setFrameShadow(QtWidgets.QFrame.Raised)
-        WEBFrame2.setObjectName("WEBFrame2")
-        gridLayout_8 = QtWidgets.QGridLayout(WEBFrame2)
-        gridLayout_8.setContentsMargins(0, 0, 0, 0)
-        gridLayout_8.setSpacing(0)
-        gridLayout_8.setObjectName("gridLayout_8")
-        Reload = QtWidgets.QPushButton(WEBFrame2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(Reload.sizePolicy().hasHeightForWidth())
-        Reload.setSizePolicy(sizePolicy)
-        Reload.setMaximumSize(QtCore.QSize(28, 28))
-        Reload.setObjectName("Reload")
-        gridLayout_8.addWidget(Reload, 2, 4, 1, 1)
-        WEBLineEdit = QtWidgets.QLineEdit(WEBFrame2)
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        WEBLineEdit.setFont(font)
-        WEBLineEdit.setObjectName("WEBLineEdit")
-        gridLayout_8.addWidget(WEBLineEdit, 2, 0, 1, 1)
-        Back = QtWidgets.QPushButton(WEBFrame2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(Back.sizePolicy().hasHeightForWidth())
-        Back.setSizePolicy(sizePolicy)
-        Back.setMaximumSize(QtCore.QSize(28, 28))
-        Back.setObjectName("Back")
-        gridLayout_8.addWidget(Back, 2, 2, 1, 1)
-        Enter = QtWidgets.QPushButton(WEBFrame2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(Enter.sizePolicy().hasHeightForWidth())
-        Enter.setSizePolicy(sizePolicy)
-        Enter.setMaximumSize(QtCore.QSize(50, 28))
-        Enter.setObjectName("Enter")
-        gridLayout_8.addWidget(Enter, 2, 5, 1, 1)
-        scrollArea_2 = QtWidgets.QScrollArea(WEBFrame2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(scrollArea_2.sizePolicy().hasHeightForWidth())
-        scrollArea_2.setSizePolicy(sizePolicy)
-        scrollArea_2.setMaximumSize(QtCore.QSize(500, 770))
-        scrollArea_2.setWidgetResizable(True)
-        scrollArea_2.setObjectName("scrollArea_2")
-        WEBWidgetContents = QtWidgets.QWidget()
-        WEBWidgetContents.setGeometry(QtCore.QRect(0, 0, 500, 770))
-        WEBWidgetContents.setObjectName("WEBWidgetContents")
-        scrollArea_2.setWidget(WEBWidgetContents)
-        gridLayout_8.addWidget(scrollArea_2, 1, 0, 1, 6)
-
-        Reload.setText("Re")
-        Back.setText("<")
-        Enter.setText("Enter")
-        #=================================================
-
-        #self.web = QWebEngineView(self.WEBWidgetContents)
-        #self.web.setGeometry(QtCore.QRect(0, 0, 500, 770)) # 設置小部件的大小和位置
-        #self.web.load(QUrl('https://game.granbluefantasy.jp/#top'))
-        #self.web.urlChanged.connect(self.UpdateUrl)
-        #self.Back.clicked.connect(self.BackURL)
-        #self.Reload.clicked.connect(self.ReloadURL)
-        #self.Enter.clicked.connect(self.EnterURL)
-        #self.cleancatch.clicked.connect(self.CleanCatch)
-
-    #=================WEB專用    
-    def UpdateUrl(self,url):
-        sender = self.sender()
-        self.WEBLineEdit.setText(url.toString())
-        Function.Foundation.HTML_Text = url.toString()
-    def BackURL(self):
-        self.web.back()
-    def ReloadURL(self,url):
-        self.web.load(QUrl(Function.Foundation.HTML_Text))
-        self.WEBLineEdit.setText(Function.Foundation.HTML_Text)
-    def EnterURL(self,url):
-        url = self.WEBLineEdit.text()
-        self.web.load(QUrl(url))
-        Function.Foundation.HTML_Text = url
-    def CleanCatch(self):
-        profile = self.web.page().profile()
-        profile.clearAllVisitedLinks()
-    #=================WEB專用  
 
 
     def initbuttonUI(self):#按鈕設定
@@ -190,7 +89,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.WindowsComboBox.currentIndexChanged.connect(self.showDialog)
         self.PositionButton.clicked.connect(self.showDialog)
         self.FRWidge.clicked.connect(self.showDialog)
-        self.ScreptBrowser.stateChanged.connect(self.BroswerOpen)
+        #self.Broswers.clicked.connect(self.showDialog)        
         
         #self.changebutton.clicked.connect(self.showDialog)
     
@@ -209,7 +108,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             x=RunFunction()
             x.RunFGscrept()
         elif sender == self.FuncStopButton or sender == self.AllstopButton:
-            Function.Foundation.StopFunction = True
+            Fun.StopFunction = True
             self.Info_broswer.clear()
         elif sender == self.SetButton_2:
             self.SaveFile()
@@ -221,17 +120,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             x=GBFPosition()
             x.postion()
         elif sender == self.FRWidge:
-            self.chooseSignal.emit('change')
-    def BroswerOpen(self,state):
-        if state == 0:
-            #self.WEBFrame2.deleteLater()  
-            self.WEBFrame.hide()         
-        else:
-            self.WEBFrame.show()
-            self.WEBBrowser()
-            
-
-        
+            self.Broswers_signal.emit('change')
+        elif sender == self.Broswers:
+            self.chooseSignal.emit('Web')
 
     def default(self):#框架預設
         SaveFile = open('systemdata/datasave/data.json')
@@ -242,7 +133,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.Page1.show() 
         self.Page2.hide()
         self.Page3.hide()
-        #self.WEBFrame.hide()
 
     def change_Page(self):
         text = self.Funtionlist.currentItem().text()
@@ -258,21 +148,21 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
 
     def settingtext(self):
-        Function.Foundation.Function1FightCount = self.Times_spinBox_2.value()
-        if Function.Foundation.Function1FightCount == 0:
+        Fun.Function1FightCount = self.Times_spinBox_2.value()
+        if Fun.Function1FightCount == 0:
             self.label_10.setText("Set 無上限")
         else:
-            self.label_10.setText("Set :"+str(Function.Foundation.Function1FightCount))
+            self.label_10.setText("Set :"+str(Fun.Function1FightCount))
 
     def SaveFile(self):
         
-        Function.Foundation.Function1FightCount = self.Times_spinBox_2.value()
-        Function.Foundation.Function2FightCount = self.Times_spinBox_3.value()
-        Function.Foundation.Function3FightCount = self.Times_spinBox_5.value()
+        Fun.Function1FightCount = self.Times_spinBox_2.value()
+        Fun.Function2FightCount = self.Times_spinBox_3.value()
+        Fun.Function3FightCount = self.Times_spinBox_5.value()
         Savedata = {}
-        Savedata['function1'] = {'FightCount': Function.Foundation.Function1FightCount, 'TypeSelect': 0}
-        Savedata['function2'] = {'FightCount': Function.Foundation.Function2FightCount, 'TypeSelect': 0}
-        Savedata['function3'] = {'FightCount': Function.Foundation.Function3FightCount, 'TypeSelect': 0}
+        Savedata['function1'] = {'FightCount': Fun.Function1FightCount, 'TypeSelect': 0}
+        Savedata['function2'] = {'FightCount': Fun.Function2FightCount, 'TypeSelect': 0}
+        Savedata['function3'] = {'FightCount': Fun.Function3FightCount, 'TypeSelect': 0}
 
         with open('systemdata/datasave/data.json', 'w') as datafile:
             json.dump(Savedata,datafile)
@@ -285,8 +175,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         try:
             windowsgetIndex = self.WindowsComboBox.currentIndex()
             windowsgetstr = self.WindowsComboBox.currentText()
-            Function.Foundation.WindowsHandle = win32gui.FindWindow(None, windowsgetstr)
-            left, top, right, bottom = win32gui.GetWindowRect(Function.Foundation.WindowsHandle)
+            Fun.WindowsHandle = win32gui.FindWindow(None, windowsgetstr)
+            left, top, right, bottom = win32gui.GetWindowRect(Fun.WindowsHandle)
             posStr1 = str(left).rjust(4)+','+str(top).rjust(4)+','+str(right).rjust(4)+','+str(bottom).rjust(4)
             print("AppPos: ", posStr1)
             width = right - left
@@ -318,8 +208,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         print ("自動人 我的超人")
         try:
             windowsgetstr = self.WindowsComboBox.currentText()
-            Function.Foundation.WindowsHandle = win32gui.FindWindow(None, windowsgetstr)
-            left, top, right, bottom = win32gui.GetWindowRect(Function.Foundation.WindowsHandle)
+            Fun.WindowsHandle = win32gui.FindWindow(None, windowsgetstr)
+            left, top, right, bottom = win32gui.GetWindowRect(Fun.WindowsHandle)
         except:
             print("沒有找到視窗")
         
