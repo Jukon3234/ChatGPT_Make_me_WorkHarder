@@ -14,6 +14,8 @@ class SettingPageWindow(QWidget,Ui_SettingForm):
         self.setupUi(self)
 
         self.ScreenWH.clicked.connect(self.showDialog)
+        cache_size = Fun.profile
+        self.CatchBrowser.setText(str(cache_size))
 
     def showDialog(self):
         sender = self.sender()

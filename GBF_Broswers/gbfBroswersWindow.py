@@ -28,9 +28,10 @@ class WebPageWindow(QtWidgets.QMainWindow,Ui_GBFBroswers):
         self.CallsettingUi.returnSignal.connect(self.showDialog)
 
     def WEBBrowser(self):
-        self.web = QWebEngineView(self.WebBroswerFrame)
+        self.web = QWebEngineView(self.WebBroswerFrame)        
         self.web.setGeometry(QtCore.QRect(0, 0, 500, 770)) # 設置小部件的大小和位置
         self.web.load(QUrl('https://game.granbluefantasy.jp/#top'))
+        Fun.profile = QWebEngineProfile.defaultProfile()
     
     def WebButton(self):
         self.Back.clicked.connect(self.BackURL)
