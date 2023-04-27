@@ -1,13 +1,12 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
-    <file>diskette.png</file>
-    <file>door.png</file>
-    <file>folder_open.png</file>
-    <file>Heip.ico</file>
     <file>help.png</file>
     <file>ICON.ico</file>
-	<file>Load.ico</file>
-	<file>Save.ico</file>
 	<file>unnamed.png</file>
+	<file>refresh.png</file>
+	<file>tools.png</file>
+	<file>gear.png</file>
+	<file>arrowhead_left.png</file>
+	<file>arrow_right.png</file>
 </qresource>
 </RCC>

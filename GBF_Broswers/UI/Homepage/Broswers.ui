@@ -76,7 +76,7 @@
        </size>
       </property>
       <property name="text">
-       <string>&lt;</string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -95,7 +95,7 @@
        </size>
       </property>
       <property name="text">
-       <string>Re</string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -114,7 +114,7 @@
        </size>
       </property>
       <property name="text">
-       <string>Enter</string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -134,6 +134,8 @@
      <string>Help</string>
     </property>
     <addaction name="actionHelp"/>
+    <addaction name="separator"/>
+    <addaction name="actionLOG_2"/>
    </widget>
    <widget class="QMenu" name="settingmenu">
     <property name="title">
@@ -153,6 +155,16 @@
   <action name="actionsetting">
    <property name="text">
     <string>設定</string>
+   </property>
+  </action>
+  <action name="actionLOG">
+   <property name="text">
+    <string>LOG</string>
+   </property>
+  </action>
+  <action name="actionLOG_2">
+   <property name="text">
+    <string>日誌</string>
    </property>
   </action>
  </widget>
