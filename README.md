@@ -1,7 +1,7 @@
 
 Copyright (c) 2023 Jukon3234 All rights reserved.<BR>
 
-# GBF_scrept_lerning
+# GBF_scrept
 GBF scrept lerning with python UI
 
 
