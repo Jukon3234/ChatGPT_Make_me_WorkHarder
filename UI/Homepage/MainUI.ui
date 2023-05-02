@@ -334,17 +334,7 @@
                    </item>
                    <item>
                     <property name="text">
-                     <string>1T轉世</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>方陣</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>方陣速刷</string>
+                     <string>舔關</string>
                     </property>
                    </item>
                    <item>
@@ -362,11 +352,6 @@
                      <string>古戰場</string>
                     </property>
                    </item>
-                   <item>
-                    <property name="text">
-                     <string>1T古戰場</string>
-                    </property>
-                   </item>
                   </widget>
                  </item>
                  <item row="8" column="0">
@@ -380,74 +365,6 @@
                    <property name="text">
                     <string>環境設定</string>
                    </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="2" colspan="2">
-                  <widget class="QComboBox" name="WindowsComboBox">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>200</width>
-                     <height>23</height>
-                    </size>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="9" column="3">
-                  <widget class="QPushButton" name="DebugButton">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>100</width>
-                     <height>23</height>
-                    </size>
-                   </property>
-                   <property name="sizeIncrement">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="baseSize">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <weight>50</weight>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="layoutDirection">
-                    <enum>Qt::LeftToRight</enum>
-                   </property>
-                   <property name="inputMethodHints">
-                    <set>Qt::ImhNone</set>
-                   </property>
-                   <property name="text">
-                    <string>Debug</string>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>16</width>
-                     <height>16</height>
-                    </size>
-                   </property>
-                   <attribute name="buttonGroup">
-                    <string notr="true">buttonGroup</string>
-                   </attribute>
                   </widget>
                  </item>
                  <item row="7" column="0" colspan="2">
@@ -534,20 +451,71 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="0">
-                  <widget class="QPushButton" name="Broswers">
-                   <property name="text">
-                    <string>測試視窗</string>
+                 <item row="8" column="4">
+                  <widget class="QPushButton" name="DebugButton">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
                    </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>23</height>
+                    </size>
+                   </property>
+                   <property name="sizeIncrement">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="baseSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <weight>50</weight>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="layoutDirection">
+                    <enum>Qt::LeftToRight</enum>
+                   </property>
+                   <property name="inputMethodHints">
+                    <set>Qt::ImhNone</set>
+                   </property>
+                   <property name="text">
+                    <string>Debug</string>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                   <attribute name="buttonGroup">
+                    <string notr="true">buttonGroup</string>
+                   </attribute>
                   </widget>
                  </item>
-                 <item row="9" column="2">
-                  <widget class="QPushButton" name="cleancatch">
-                   <property name="enabled">
-                    <bool>true</bool>
+                 <item row="1" column="2" colspan="3">
+                  <widget class="QComboBox" name="WindowsComboBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
                    </property>
-                   <property name="text">
-                    <string>清除快取</string>
+                   <property name="maximumSize">
+                    <size>
+                     <width>200</width>
+                     <height>23</height>
+                    </size>
                    </property>
                   </widget>
                  </item>
@@ -765,10 +733,86 @@
                           </sizepolicy>
                          </property>
                          <property name="title">
-                          <string>手動技能(如勾選auto 則只執行第一次)</string>
+                          <string>需手動技能(如勾選auto 則只執行第一次)</string>
                          </property>
-                         <layout class="QVBoxLayout" name="verticalLayout_5">
-                          <item>
+                         <layout class="QGridLayout" name="gridLayout_4">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="horizontalSpacing">
+                           <number>7</number>
+                          </property>
+                          <property name="verticalSpacing">
+                           <number>3</number>
+                          </property>
+                          <item row="1" column="0">
+                           <widget class="QGroupBox" name="groupBox_10">
+                            <property name="maximumSize">
+                             <size>
+                              <width>253</width>
+                              <height>50</height>
+                             </size>
+                            </property>
+                            <property name="title">
+                             <string>指定技能要給予的角色</string>
+                            </property>
+                            <layout class="QGridLayout" name="gridLayout_2">
+                             <property name="leftMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="topMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="rightMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="bottomMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="spacing">
+                              <number>0</number>
+                             </property>
+                             <item row="0" column="3">
+                              <widget class="QRadioButton" name="radioButton_4">
+                               <property name="text">
+                                <string>角色4</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="0" column="2">
+                              <widget class="QRadioButton" name="radioButton_3">
+                               <property name="text">
+                                <string>角色3</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="0" column="1">
+                              <widget class="QRadioButton" name="radioButton_2">
+                               <property name="text">
+                                <string>角色2</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="0" column="0">
+                              <widget class="QRadioButton" name="radioButton">
+                               <property name="text">
+                                <string>角色1</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                          <item row="0" column="0">
                            <widget class="QTableWidget" name="tableWidget">
                             <property name="sizePolicy">
                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1012,43 +1056,99 @@
                             </item>
                            </widget>
                           </item>
-                          <item>
-                           <widget class="QGroupBox" name="groupBox_10">
-                            <property name="maximumSize">
-                             <size>
-                              <width>253</width>
-                              <height>50</height>
-                             </size>
-                            </property>
+                          <item row="0" column="1">
+                           <widget class="QGroupBox" name="groupBox_11">
                             <property name="title">
-                             <string>指定技能要給予的角色</string>
+                             <string>參數</string>
                             </property>
-                            <layout class="QGridLayout" name="gridLayout_2">
-                             <item row="0" column="2">
-                              <widget class="QRadioButton" name="radioButton_3">
+                            <layout class="QGridLayout" name="gridLayout_3">
+                             <property name="leftMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="topMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="rightMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="bottomMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="spacing">
+                              <number>0</number>
+                             </property>
+                             <item row="0" column="0">
+                              <widget class="QCheckBox" name="checkBox_9">
                                <property name="text">
-                                <string>角色3</string>
+                                <string>1T</string>
                                </property>
                               </widget>
                              </item>
                              <item row="0" column="1">
-                              <widget class="QRadioButton" name="radioButton_2">
+                              <widget class="QCheckBox" name="checkBox_3">
+                               <property name="sizePolicy">
+                                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                                 <horstretch>0</horstretch>
+                                 <verstretch>0</verstretch>
+                                </sizepolicy>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>25</height>
+                                </size>
+                               </property>
+                               <property name="contextMenuPolicy">
+                                <enum>Qt::DefaultContextMenu</enum>
+                               </property>
+                               <property name="layoutDirection">
+                                <enum>Qt::LeftToRight</enum>
+                               </property>
                                <property name="text">
-                                <string>角色2</string>
+                                <string>Auto</string>
+                               </property>
+                               <property name="tristate">
+                                <bool>false</bool>
                                </property>
                               </widget>
                              </item>
-                             <item row="0" column="0">
-                              <widget class="QRadioButton" name="radioButton">
+                             <item row="0" column="2">
+                              <widget class="QCheckBox" name="checkBox_7">
                                <property name="text">
-                                <string>角色1</string>
+                                <string>需事前手動</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="0" column="3">
-                              <widget class="QRadioButton" name="radioButton_4">
+                             <item row="1" column="0">
+                              <widget class="QCheckBox" name="checkBox_5">
+                               <property name="sizePolicy">
+                                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                                 <horstretch>0</horstretch>
+                                 <verstretch>0</verstretch>
+                                </sizepolicy>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>25</height>
+                                </size>
+                               </property>
                                <property name="text">
-                                <string>角色4</string>
+                                <string>金箱怪</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="1">
+                              <widget class="QCheckBox" name="checkBox_6">
+                               <property name="text">
+                                <string>紅玉怪</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="2" column="1">
+                              <widget class="QCheckBox" name="checkBox_8">
+                               <property name="text">
+                                <string>使用大紅</string>
                                </property>
                               </widget>
                              </item>
@@ -1056,34 +1156,6 @@
                            </widget>
                           </item>
                          </layout>
-                        </widget>
-                       </item>
-                       <item row="1" column="0">
-                        <widget class="QLabel" name="label_4">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                           <horstretch>1</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>57</width>
-                           <height>40</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string>地區</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
-                         </property>
                         </widget>
                        </item>
                        <item row="3" column="1">
@@ -1097,7 +1169,7 @@
                          <property name="maximumSize">
                           <size>
                            <width>64</width>
-                           <height>25</height>
+                           <height>30</height>
                           </size>
                          </property>
                          <property name="maximum">
@@ -1105,93 +1177,13 @@
                          </property>
                         </widget>
                        </item>
-                       <item row="2" column="1">
-                        <widget class="QComboBox" name="FightcomboBox_4">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-                           <horstretch>0</horstretch>
-                           <verstretch>1</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>0</height>
-                          </size>
-                         </property>
+                       <item row="1" column="3" rowspan="3">
+                        <widget class="QGraphicsView" name="graphicsView_2">
                          <property name="maximumSize">
                           <size>
-                           <width>57</width>
-                           <height>25</height>
+                           <width>200</width>
+                           <height>94</height>
                           </size>
-                         </property>
-                         <item>
-                          <property name="text">
-                           <string>1</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>2</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>3</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>4</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>5</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>6</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>7</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>8</string>
-                          </property>
-                         </item>
-                        </widget>
-                       </item>
-                       <item row="1" column="2">
-                        <widget class="QCheckBox" name="checkBox_3">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>16777215</width>
-                           <height>25</height>
-                          </size>
-                         </property>
-                         <property name="contextMenuPolicy">
-                          <enum>Qt::DefaultContextMenu</enum>
-                         </property>
-                         <property name="layoutDirection">
-                          <enum>Qt::LeftToRight</enum>
-                         </property>
-                         <property name="text">
-                          <string>Auto</string>
-                         </property>
-                         <property name="tristate">
-                          <bool>false</bool>
                          </property>
                         </widget>
                        </item>
@@ -1234,7 +1226,7 @@
                          <property name="maximumSize">
                           <size>
                            <width>57</width>
-                           <height>25</height>
+                           <height>30</height>
                           </size>
                          </property>
                          <item>
@@ -1284,6 +1276,106 @@
                          </item>
                         </widget>
                        </item>
+                       <item row="5" column="5">
+                        <widget class="QLabel" name="label_14">
+                         <property name="text">
+                          <string>-轉世</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="1">
+                        <widget class="QComboBox" name="FightcomboBox_4">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                           <horstretch>0</horstretch>
+                           <verstretch>1</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>57</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <item>
+                          <property name="text">
+                           <string>1</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>2</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>3</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>4</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>5</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>6</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>7</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>8</string>
+                          </property>
+                         </item>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="label_4">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                           <horstretch>1</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>57</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>地區</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
                        <item row="2" column="0">
                         <widget class="QLabel" name="label_8">
                          <property name="sizePolicy">
@@ -1312,79 +1404,19 @@
                          </property>
                         </widget>
                        </item>
-                       <item row="5" column="2">
-                        <spacer name="verticalSpacer">
-                         <property name="orientation">
-                          <enum>Qt::Vertical</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>20</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                       <item row="4" column="6">
-                        <spacer name="horizontalSpacer_3">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>0</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                       <item row="1" column="3">
-                        <widget class="QCheckBox" name="checkBox_7">
-                         <property name="text">
-                          <string>手動</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="2" column="2">
-                        <widget class="QCheckBox" name="checkBox_5">
+                       <item row="1" column="2" rowspan="3">
+                        <widget class="QGraphicsView" name="graphicsView">
                          <property name="sizePolicy">
-                          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                            <horstretch>0</horstretch>
                            <verstretch>0</verstretch>
                           </sizepolicy>
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>16777215</width>
-                           <height>25</height>
+                           <width>200</width>
+                           <height>94</height>
                           </size>
-                         </property>
-                         <property name="text">
-                          <string>金箱怪</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="5" column="6">
-                        <widget class="QLabel" name="label_14">
-                         <property name="text">
-                          <string>-轉世</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="2" column="3">
-                        <widget class="QCheckBox" name="checkBox_6">
-                         <property name="text">
-                          <string>紅玉怪</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="3" column="2">
-                        <widget class="QCheckBox" name="checkBox_8">
-                         <property name="text">
-                          <string>大紅</string>
                          </property>
                         </widget>
                        </item>

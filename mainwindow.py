@@ -19,7 +19,7 @@ class MainWindow(QWidget):
         self.setWindowTitle('自動人 我的超人')
 
     def initMainUI(self):
-        self.resize(681,672)
+        self.resize(950,630)
         self.layout = QGridLayout()
         self.setLayout(self.layout)
         
@@ -41,7 +41,7 @@ class MainWindow(QWidget):
         if msg == 'Help':
             #self.Stack.setCurrentIndex(1)
             self.CallHelpUi.show()
-        #elif msg == 'change':
-        #    self.resize(681,672)
+        elif msg == 'change':
+            self.resize(950,630)
         #if msg == 'Hide':
         #    self.groupBox_2.Hide()

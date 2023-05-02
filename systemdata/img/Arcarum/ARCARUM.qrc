@@ -1,0 +1,14 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>area_2_cleared.png</file>
+    <file>area_3_cleared.png</file>
+    <file>area_4_cleared.png</file>
+	<file>area_5_cleared.png</file>
+	<file>area_6_cleared.png</file>
+	<file>area_7_cleared.png</file>
+	<file>area_8_cleared.png</file>
+	<file>area_9_cleared.png</file>
+	<file>area_10_cleared.png</file>
+	<file>banner_new_on.png</file>
+</qresource>
+</RCC>

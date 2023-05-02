@@ -4,6 +4,7 @@ from UI.Homepage.ui_MainUI import Ui_GBF_MAIN
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QPixmap
 import systemdata.icon.ICON
+import systemdata.img.Arcarum.ARCARUM
 from Function.Page1Function import RunFunction
 from Function.DebugFunction import Debugfunction
 from Function.Position import GBFPosition
@@ -33,6 +34,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.initbuttonUI()
         self.default()        
         self.GetScreenFunc()
+        self.SetPIC()
 
     def initUiindex(self):#UI框架基礎設定
         titleicon = QtGui.QIcon()
@@ -60,20 +62,24 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             item = self.Funtionlist.item(i)
             if i == 0:#轉世
                 item.setIcon(Icon_sort30)
-            elif i == 1:#1T轉世
-                item.setIcon(Icon_sort30)
-            elif i == 2:#方陣
-                item.setIcon(Icon_sort8)    
-            elif i == 3:#方陣速刷
-                item.setIcon(Icon_sort8)
-            elif i == 4:#1T天使關
+            elif i == 1:#舔關
+                item.setIcon(Icon_sort8) 
+            elif i == 2:#1T天使關
                 item.setIcon(Icon_sort25)
-            elif i == 5:#十天眾天使關
+            elif i == 3:#十天眾天使關
                 item.setIcon(Icon_sort21)
-            elif i == 6:#古戰場
+            elif i == 4:#古戰場
                 item.setIcon(Icon_sort21)
-            elif i == 7:#1T古戰場
-                item.setIcon(Icon_sort21)
+
+    def SetPIC(self):
+        Img_area_2_scene = QtWidgets.QGraphicsScene()
+        Img_area_2_scene.setSceneRect(0 , 0, 194, 80)
+        img = QtGui.QPixmap(":/area_2_cleared.png")
+        img = img.scaled(200,100)
+        Img_area_2_scene.addPixmap(img)
+
+        self.graphicsView.set(img)
+
 
 
     def initbuttonUI(self):#按鈕設定
@@ -88,8 +94,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.Times_spinBox_2.valueChanged.connect(self.showDialog)
         self.WindowsComboBox.currentIndexChanged.connect(self.showDialog)
         self.PositionButton.clicked.connect(self.showDialog)
-        self.FRWidge.clicked.connect(self.showDialog)
-        #self.Broswers.clicked.connect(self.showDialog)        
+        self.FRWidge.clicked.connect(self.showDialog)   
         
         #self.changebutton.clicked.connect(self.showDialog)
     
@@ -120,9 +125,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             x=GBFPosition()
             x.postion()
         elif sender == self.FRWidge:
-            self.Broswers_signal.emit('change')
-        elif sender == self.Broswers:
-            self.chooseSignal.emit('Web')
+            self.chooseSignal.emit('change')
 
     def default(self):#框架預設
         SaveFile = open('systemdata/datasave/data.json')
