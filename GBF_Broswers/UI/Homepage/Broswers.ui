@@ -135,7 +135,6 @@
     </property>
     <addaction name="actionHelp"/>
     <addaction name="separator"/>
-    <addaction name="actionLOG_2"/>
    </widget>
    <widget class="QMenu" name="settingmenu">
     <property name="title">
