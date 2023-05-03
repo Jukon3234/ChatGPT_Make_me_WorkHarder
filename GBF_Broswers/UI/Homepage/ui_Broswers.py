@@ -90,7 +90,6 @@ class Ui_GBFBroswers(object):
         self.actionLOG_2.setObjectName("actionLOG_2")
         self.Helpmenu.addAction(self.actionHelp)
         self.Helpmenu.addSeparator()
-        self.Helpmenu.addAction(self.actionLOG_2)
         self.settingmenu.addAction(self.actionsetting)
         self.menubar.addAction(self.settingmenu.menuAction())
         self.menubar.addAction(self.Helpmenu.menuAction())
