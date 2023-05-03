@@ -75,46 +75,77 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Img_areascene.setSceneRect(5 , 0, 140, 75)
         Img_areascene2 = QtWidgets.QGraphicsScene()
         Img_areascene2.setSceneRect(0 , 0, 400, 100)
+        item_count = self.FightcomboBox_4.count()
+        print("item_count",item_count)
+        def SetComboBox1():
+            print("item_count",item_count)
+            if item_count == 0:
+                for i in range(1,11):
+                    self.FightcomboBox_4.addItem(str(i))
+            else:
+                for i in range(0,item_count):
+                    self.FightcomboBox_4.removeItem(0)
+                for j in range(1,11):
+                    self.FightcomboBox_4.addItem(str(j))
+        
+        def SetComboBox2():
+            print("item_count",item_count)
+            if item_count == 0:
+                for i in range(1,8):
+                    self.FightcomboBox_4.addItem(str(i))
+            else:
+                for i in range(0,item_count):
+                    self.FightcomboBox_4.removeItem(0)
+                for j in range(1,8):
+                    self.FightcomboBox_4.addItem(str(j))
         if PicGetIndex == 0:
             img = QtGui.QPixmap(":/area_2_cleared.png")
             img2 = QtGui.QPixmap(":/area2.jpg")
             img2H = 229*0.4
             img2W = 1024*0.4
+            SetComboBox1()
         elif PicGetIndex == 1:
             img = QtGui.QPixmap(":/area_3_cleared.png")
             img2 = QtGui.QPixmap(":/area3.jpg")
             img2H = 229*0.4
             img2W = 1024*0.4
+            SetComboBox1()
         elif PicGetIndex == 2:
             img = QtGui.QPixmap(":/area_4_cleared.png")
             img2 = QtGui.QPixmap(":/area4.jpg")
             img2H = 229*0.4
             img2W = 1024*0.4
+            SetComboBox1()
         elif PicGetIndex == 3:
             img = QtGui.QPixmap(":/area_5_cleared.png")
             img2 = QtGui.QPixmap(":/area5.jpg")
             img2H = 229*0.4
             img2W = 1024*0.4
+            SetComboBox1()
         elif PicGetIndex == 4:
             img = QtGui.QPixmap(":/area_6_cleared.png")
             img2 = QtGui.QPixmap(":/area6.jpg")
             img2H = 430*0.25
             img2W = 1280*0.25
+            SetComboBox2()
         elif PicGetIndex == 5:
             img = QtGui.QPixmap(":/area_7_cleared.png")
             img2 = QtGui.QPixmap(":/area7.jpg")
             img2H = 430*0.25
             img2W = 1280*0.25
+            SetComboBox2()
         elif PicGetIndex == 6:
             img = QtGui.QPixmap(":/area_8_cleared.png")
             img2 = QtGui.QPixmap(":/area8.jpg")
             img2H = 430*0.25
             img2W = 1280*0.25
+            SetComboBox2()
         elif PicGetIndex == 7:
             img = QtGui.QPixmap(":/area_9_cleared.png")
             img2 = QtGui.QPixmap(":/area9.jpg")
             img2H = 430*0.25
             img2W = 1280*0.25
+            SetComboBox2()
         elif PicGetIndex == 8:
             img = QtGui.QPixmap(":/area_10_cleared.png")
         img = img.scaled(150,80)
@@ -123,6 +154,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         img2 = img2.scaled(img2W,img2H)
         Img_areascene2.addPixmap(img2)
         self.graphicsView_2.setScene(Img_areascene2)
+
+        
+        
 
     def initbuttonUI(self):#按鈕設定
         self.actionHelp.triggered.connect(self.showDialog)
