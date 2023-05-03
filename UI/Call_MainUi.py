@@ -34,7 +34,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.initbuttonUI()
         self.default()        
         self.GetScreenFunc()
-        self.SetPIC()
+        self.SetArcarumPIC()
 
     def initUiindex(self):#UI框架基礎設定
         titleicon = QtGui.QIcon()
@@ -53,8 +53,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Icon_sort8.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_08.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         Icon_sort7.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_07.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         Icon_sort21.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_21.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-
-        
         
         #set icon
         self.actionHelp.setIcon(Helpicon)#help
@@ -71,22 +69,65 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             elif i == 4:#古戰場
                 item.setIcon(Icon_sort21)
 
-    def SetPIC(self):
-        Img_area_2_scene = QtWidgets.QGraphicsScene()
-        Img_area_2_scene.setSceneRect(0 , 0, 194, 80)
-        img = QtGui.QPixmap(":/area_2_cleared.png")
-        img = img.scaled(200,100)
-        Img_area_2_scene.addPixmap(img)
-
-        self.graphicsView.set(img)
-
-
+    def SetArcarumPIC(self):
+        PicGetIndex = self.FightcomboBox_2.currentIndex()
+        Img_areascene = QtWidgets.QGraphicsScene()
+        Img_areascene.setSceneRect(5 , 0, 140, 75)
+        Img_areascene2 = QtWidgets.QGraphicsScene()
+        Img_areascene2.setSceneRect(0 , 0, 400, 100)
+        if PicGetIndex == 0:
+            img = QtGui.QPixmap(":/area_2_cleared.png")
+            img2 = QtGui.QPixmap(":/area2.jpg")
+            img2H = 229*0.4
+            img2W = 1024*0.4
+        elif PicGetIndex == 1:
+            img = QtGui.QPixmap(":/area_3_cleared.png")
+            img2 = QtGui.QPixmap(":/area3.jpg")
+            img2H = 229*0.4
+            img2W = 1024*0.4
+        elif PicGetIndex == 2:
+            img = QtGui.QPixmap(":/area_4_cleared.png")
+            img2 = QtGui.QPixmap(":/area4.jpg")
+            img2H = 229*0.4
+            img2W = 1024*0.4
+        elif PicGetIndex == 3:
+            img = QtGui.QPixmap(":/area_5_cleared.png")
+            img2 = QtGui.QPixmap(":/area5.jpg")
+            img2H = 229*0.4
+            img2W = 1024*0.4
+        elif PicGetIndex == 4:
+            img = QtGui.QPixmap(":/area_6_cleared.png")
+            img2 = QtGui.QPixmap(":/area6.jpg")
+            img2H = 430*0.25
+            img2W = 1280*0.25
+        elif PicGetIndex == 5:
+            img = QtGui.QPixmap(":/area_7_cleared.png")
+            img2 = QtGui.QPixmap(":/area7.jpg")
+            img2H = 430*0.25
+            img2W = 1280*0.25
+        elif PicGetIndex == 6:
+            img = QtGui.QPixmap(":/area_8_cleared.png")
+            img2 = QtGui.QPixmap(":/area8.jpg")
+            img2H = 430*0.25
+            img2W = 1280*0.25
+        elif PicGetIndex == 7:
+            img = QtGui.QPixmap(":/area_9_cleared.png")
+            img2 = QtGui.QPixmap(":/area9.jpg")
+            img2H = 430*0.25
+            img2W = 1280*0.25
+        elif PicGetIndex == 8:
+            img = QtGui.QPixmap(":/area_10_cleared.png")
+        img = img.scaled(150,80)
+        Img_areascene.addPixmap(img)
+        self.graphicsView.setScene(Img_areascene)
+        img2 = img2.scaled(img2W,img2H)
+        Img_areascene2.addPixmap(img2)
+        self.graphicsView_2.setScene(Img_areascene2)
 
     def initbuttonUI(self):#按鈕設定
         self.actionHelp.triggered.connect(self.showDialog)
         self.Funtionlist.clicked.connect(self.showDialog)
         self.DebugButton.clicked.connect(self.showDialog)
-        #self.WebButton.clicked.connect(self.showDialog)
         self.Screptrun_2.clicked.connect(self.showDialog)
         self.FuncStopButton.clicked.connect(self.showDialog)
         self.AllstopButton.clicked.connect(self.showDialog)
@@ -94,9 +135,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.Times_spinBox_2.valueChanged.connect(self.showDialog)
         self.WindowsComboBox.currentIndexChanged.connect(self.showDialog)
         self.PositionButton.clicked.connect(self.showDialog)
-        self.FRWidge.clicked.connect(self.showDialog)   
-        
-        #self.changebutton.clicked.connect(self.showDialog)
+        self.FRWidge.clicked.connect(self.showDialog)
+        self.FightcomboBox_2.currentIndexChanged.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
@@ -126,6 +166,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             x.postion()
         elif sender == self.FRWidge:
             self.chooseSignal.emit('change')
+        elif sender == self.FightcomboBox_2:
+            self.SetArcarumPIC()
 
     def default(self):#框架預設
         SaveFile = open('systemdata/datasave/data.json')
@@ -149,7 +191,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         if text == "方陣速刷":
             self.Page3.show()
 
-
     def settingtext(self):
         Fun.Function1FightCount = self.Times_spinBox_2.value()
         if Fun.Function1FightCount == 0:
@@ -157,8 +198,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         else:
             self.label_10.setText("Set :"+str(Fun.Function1FightCount))
 
-    def SaveFile(self):
-        
+    def SaveFile(self):        
         Fun.Function1FightCount = self.Times_spinBox_2.value()
         Fun.Function2FightCount = self.Times_spinBox_3.value()
         Fun.Function3FightCount = self.Times_spinBox_5.value()
