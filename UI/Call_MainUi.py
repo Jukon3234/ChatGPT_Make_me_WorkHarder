@@ -98,6 +98,16 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                     self.FightcomboBox_4.removeItem(0)
                 for j in range(1,8):
                     self.FightcomboBox_4.addItem(str(j))
+        def SetComboBox3():
+            print("item_count",item_count)
+            if item_count == 0:
+                for i in range(1,14):
+                    self.FightcomboBox_4.addItem(str(i))
+            else:
+                for i in range(0,item_count):
+                    self.FightcomboBox_4.removeItem(0)
+                for j in range(1,14):
+                    self.FightcomboBox_4.addItem(str(j))
         if PicGetIndex == 0:
             img = QtGui.QPixmap(":/area_2_cleared.png")
             img2 = QtGui.QPixmap(":/area2.jpg")
@@ -148,6 +158,11 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             SetComboBox2()
         elif PicGetIndex == 8:
             img = QtGui.QPixmap(":/area_10_cleared.png")
+            img2 = QtGui.QPixmap(":/area10.png")
+            img2H = 319*0.3
+            img2W = 1326*0.3
+            SetComboBox3()
+
         img = img.scaled(150,80)
         Img_areascene.addPixmap(img)
         self.graphicsView.setScene(Img_areascene)
