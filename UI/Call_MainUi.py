@@ -24,6 +24,9 @@ import win32gui
 import os
 import pyautogui as pag
 
+import discord
+import asyncio
+
 class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     chooseSignal = pyqtSignal(str)
 
@@ -35,6 +38,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.default()        
         self.GetScreenFunc()
         self.SetArcarumPIC()
+        self.DC_TEST()
 
     def initUiindex(self):#UI框架基礎設定
         titleicon = QtGui.QIcon()
@@ -187,6 +191,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.FRWidge.clicked.connect(self.showDialog)
         self.FightcomboBox_2.currentIndexChanged.connect(self.showDialog)
         self.pushButton.clicked.connect(self.showDialog)
+        self.pushButton_2.clicked.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
@@ -220,6 +225,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.SetArcarumPIC()
         elif sender == self.pushButton:
             self.getpicpos()
+        elif sender == self.pushButton_2:
+            self.DC_TEST_BUT()
 
     def default(self):#框架預設
         SaveFile = open('systemdata/datasave/data.json')
@@ -238,7 +245,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.Page3.hide()
         if text == "轉世":
             self.Page1.show()
-        if text == "古戰場":            
+        if text == "十天眾天使關":            
             self.Page2.show()
         if text == "方陣速刷":
             self.Page3.show()
@@ -313,6 +320,27 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     def getpicpos(self):
         print("test")
 
+    def DC_TEST(self):
+        intents = discord.Intents.default()
+        intents.message_content = True
+        client = discord.Client(intents = intents )
+
+        # 定义事件处理函数
+        @client.event
+        async def on_ready():
+            print(f"We have logged in as {client.user}")        
+        
+        # 运行 Bot
+        client.run('MTEwNTA1MjA1MzA1MjYwMDM4MQ.G-KOVk.6Tww5GFM1tjcUGXAaRJJb3aI3mnjkekZz_wRXc')  # 替换为你的 Bot 令牌
+
+        channel_id = 1105055346592055336 # 替换为目标频道的 ID
+        message = "出現阻饒"  # 替换为你要发送的消息内容
+        send_message(channel_id, message)
+
+    def DC_TEST_BUT(self):
+        channel_id = 1105055346592055336 # 替换为目标频道的 ID
+        message = "出現阻饒"  # 替换为你要发送的消息内容
+        send_message(channel_id, message)
 
        
 
