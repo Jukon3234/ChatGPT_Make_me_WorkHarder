@@ -166,7 +166,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         img = img.scaled(150,80)
         Img_areascene.addPixmap(img)
         self.graphicsView.setScene(Img_areascene)
-        img2 = img2.scaled(img2W,img2H)
+        img2 = img2.scaled(int(img2W),int(img2H))
         Img_areascene2.addPixmap(img2)
         self.graphicsView_2.setScene(Img_areascene2)
 
@@ -186,6 +186,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.PositionButton.clicked.connect(self.showDialog)
         self.FRWidge.clicked.connect(self.showDialog)
         self.FightcomboBox_2.currentIndexChanged.connect(self.showDialog)
+        self.pushButton.clicked.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
@@ -217,6 +218,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.chooseSignal.emit('change')
         elif sender == self.FightcomboBox_2:
             self.SetArcarumPIC()
+        elif sender == self.pushButton:
+            self.getpicpos()
 
     def default(self):#框架預設
         SaveFile = open('systemdata/datasave/data.json')
@@ -304,7 +307,12 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             left, top, right, bottom = win32gui.GetWindowRect(Fun.WindowsHandle)
         except:
             print("沒有找到視窗")
-        
+    
+
+
+    def getpicpos(self):
+        print("test")
+
 
        
 
