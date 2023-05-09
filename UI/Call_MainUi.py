@@ -11,6 +11,9 @@ from Function.Position import GBFPosition
 import Function.Foundation as Fun
 import json
 
+import cv2
+import numpy as np
+
 from http import cookies
 import datetime
 
@@ -38,7 +41,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.default()        
         self.GetScreenFunc()
         self.SetArcarumPIC()
-        self.DC_TEST()
+        
 
     def initUiindex(self):#UI框架基礎設定
         titleicon = QtGui.QIcon()
@@ -226,7 +229,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         elif sender == self.pushButton:
             self.getpicpos()
         elif sender == self.pushButton_2:
-            self.DC_TEST_BUT()
+            self.FuncBlockPicDet()
 
     def default(self):#框架預設
         SaveFile = open('systemdata/datasave/data.json')
@@ -321,26 +324,81 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         print("test")
 
     def DC_TEST(self):
-        intents = discord.Intents.default()
+        token = 'MTEwNTA1MjA1MzA1MjYwMDM4MQ.G9zvzZ.z3Iye2SrCbji4z4AmyAK6lAt1rS0Chjk_4EE3g'
+        intents = discord.Intents.all()
         intents.message_content = True
-        client = discord.Client(intents = intents )
-
-        # 定义事件处理函数
+        client = discord.Client(intents = intents)
         @client.event
         async def on_ready():
-            print(f"We have logged in as {client.user}")        
+            print('目前登入身份：', client.user)
+            channel_id = 1105055346592055336  # 替换为目标频道的 ID
+            channel = client.get_channel(channel_id)
+            message = "系統測試"
+            Imgfile = discord.File('./systemdata/img/BLOCK.PNG')
+            await channel.send(message)
+            await channel.send(file=Imgfile)
+            await channel.send("驗證碼:")
+            print("Block:",Fun.BlockFlag)
+
+        @client.event
+        async def on_message(message):
+            if message.author == client.user:
+                return
+            Fun.systemUnlock = message.content
+            print("message: ",systemUnlock)
+            #self.FuncForunlock()
+            if Fun.BlockFlag == False:
+                await message.channel.send('解鎖成功')
+                await client.close()
+            else:
+                await message.channel.send('解鎖失敗')
+                await client.close()
+        client.run(token)
+
+
+    def FuncBlockPicDet(self):
+        window_rect = win32gui.GetWindowRect(Fun.WindowsHandle)
+        x, y, width, height = window_rect
+        print("Fun.WindowsHandle: ",Fun.WindowsHandle)
+        screen = QApplication.primaryScreen()
+        Fun.capture = screen.grabWindow(Fun.WindowsHandle)
+        Fun.capture.save("./systemdata/img/screenshot.png")
+        PicCapture = cv2.imread("./systemdata/img/screenshot.png")
+        template = cv2.imread('./systemdata/img/Test.PNG')        
+
+        result = cv2.matchTemplate(PicCapture, template, cv2.TM_CCOEFF_NORMED)
+        threshold = 0.8
+        locations = np.where(result >= threshold)
+        match_locations = []
+        for pt in zip(*locations[::-1]):
+            match_locations.append((pt[0] + x, pt[1] + y))
+
+        print("Match locations:", match_locations)
+
+        #cv2.imwrite("./systemdata/img/cropped_image.jpg", frame)
+        #if ret:
+        #    print("Success")
+        #    result = cv2.matchTemplate(frame, template, cv2.TM_CCOEFF_NORMED)
+        #    print("result: ", result)
+        #else:
+        #    print("Fail")
+    
+    def FuncUnlock(self):
+        # 使用模板匹配进行图像匹配
+        result = cv2.matchTemplate(frame, template, cv2.TM_CCOEFF_NORMED)
+        threshold = 0.8
+        locations = np.where(result >= threshold)
+        match_locations = []
+        for pt in zip(*locations[::-1]):
+            match_locations.append((pt[0] + x, pt[1] + y))
+        # 打印匹配到的位置
+        print("Match locations:", match_locations)
+
         
-        # 运行 Bot
-        client.run('MTEwNTA1MjA1MzA1MjYwMDM4MQ.G-KOVk.6Tww5GFM1tjcUGXAaRJJb3aI3mnjkekZz_wRXc')  # 替换为你的 Bot 令牌
+        
 
-        channel_id = 1105055346592055336 # 替换为目标频道的 ID
-        message = "出現阻饒"  # 替换为你要发送的消息内容
-        send_message(channel_id, message)
 
-    def DC_TEST_BUT(self):
-        channel_id = 1105055346592055336 # 替换为目标频道的 ID
-        message = "出現阻饒"  # 替换为你要发送的消息内容
-        send_message(channel_id, message)
+
 
        
 
