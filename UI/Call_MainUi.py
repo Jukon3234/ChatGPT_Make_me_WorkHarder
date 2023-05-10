@@ -334,7 +334,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             channel_id = 1105055346592055336  # 替换为目标频道的 ID
             channel = client.get_channel(channel_id)
             message = "系統測試"
-            Imgfile = discord.File('./systemdata/img/BLOCK.PNG')
             await channel.send(message)
             await channel.send(file=Imgfile)
             await channel.send("驗證碼:")
@@ -364,35 +363,26 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Fun.capture = screen.grabWindow(Fun.WindowsHandle)
         Fun.capture.save("./systemdata/img/screenshot.png")
         PicCapture = cv2.imread("./systemdata/img/screenshot.png")
-        template = cv2.imread('./systemdata/img/Test.PNG')        
+        template = cv2.imread('./systemdata/img/BLOCK.PNG')
 
         result = cv2.matchTemplate(PicCapture, template, cv2.TM_CCOEFF_NORMED)
-        threshold = 0.8
+        threshold = 0.9
         locations = np.where(result >= threshold)
+        print("locations:", locations)
+
         match_locations = []
         for pt in zip(*locations[::-1]):
             match_locations.append((pt[0] + x, pt[1] + y))
 
-        print("Match locations:", match_locations)
-
-        #cv2.imwrite("./systemdata/img/cropped_image.jpg", frame)
-        #if ret:
-        #    print("Success")
-        #    result = cv2.matchTemplate(frame, template, cv2.TM_CCOEFF_NORMED)
-        #    print("result: ", result)
-        #else:
-        #    print("Fail")
+        if any(locations[0]):
+            Fun.BlockLocation = match_locations[0]
+            print("match_locations:", match_locations[0])
+        else:            
+            print("模板图像不存在于待匹配图像中")
     
     def FuncUnlock(self):
-        # 使用模板匹配进行图像匹配
-        result = cv2.matchTemplate(frame, template, cv2.TM_CCOEFF_NORMED)
-        threshold = 0.8
-        locations = np.where(result >= threshold)
-        match_locations = []
-        for pt in zip(*locations[::-1]):
-            match_locations.append((pt[0] + x, pt[1] + y))
-        # 打印匹配到的位置
-        print("Match locations:", match_locations)
+        Cutcapture = screen.grabWindow(Fun.WindowsHandle, 92, 380, 300, 150)
+        Cutcapture.save("./systemdata/img/CUTPIC.png")
 
         
         

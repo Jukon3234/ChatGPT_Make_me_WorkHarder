@@ -5,6 +5,7 @@ TypeSelect = 0
 systemUnlock = " "
 BlockFlag = False
 capture = None
+BlockLocation = 0
 
 HTML_Text = "https://game.granbluefantasy.jp/#top"
 WindowsHandle = 0
