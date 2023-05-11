@@ -8,11 +8,9 @@ import systemdata.img.Arcarum.ARCARUM
 from Function.Page1Function import RunFunction
 from Function.DebugFunction import Debugfunction
 from Function.Position import GBFPosition
+from Function.DiscordBlockDet import GetBlockDET
 import Function.Foundation as Fun
 import json
-
-import cv2
-import numpy as np
 
 from http import cookies
 import datetime
@@ -26,9 +24,6 @@ import sys
 import win32gui
 import os
 import pyautogui as pag
-
-import discord
-import asyncio
 
 class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     chooseSignal = pyqtSignal(str)
@@ -182,6 +177,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
     def initbuttonUI(self):#按鈕設定
         self.actionHelp.triggered.connect(self.showDialog)
+        self.actionsetting.triggered.connect(self.showDialog)
         self.Funtionlist.clicked.connect(self.showDialog)
         self.DebugButton.clicked.connect(self.showDialog)
         self.Screptrun_2.clicked.connect(self.showDialog)
@@ -193,14 +189,16 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.PositionButton.clicked.connect(self.showDialog)
         self.FRWidge.clicked.connect(self.showDialog)
         self.FightcomboBox_2.currentIndexChanged.connect(self.showDialog)
-        self.pushButton.clicked.connect(self.showDialog)
+        #self.pushButton.clicked.connect(self.showDialog)
         self.pushButton_2.clicked.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
         if sender == self.actionHelp:
-            self.chooseSignal.emit('Help')        
-        elif  sender == self.Funtionlist:
+            self.chooseSignal.emit('Help')
+        elif sender == self.actionsetting:
+            self.chooseSignal.emit('setting')
+        elif sender == self.Funtionlist:
             self.change_Page()
         elif sender == self.DebugButton:           
             self.SetScreenfuntion()
@@ -226,10 +224,13 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.chooseSignal.emit('change')
         elif sender == self.FightcomboBox_2:
             self.SetArcarumPIC()
-        elif sender == self.pushButton:
-            self.getpicpos()
         elif sender == self.pushButton_2:
-            self.FuncBlockPicDet()
+            if Fun.DCBOT_EN == True:
+                DET = DisBlockDet()
+                if DET.FuncBlockPicDet() == False:
+                    DET.sysFuncBlockPicDet()
+            else:
+                print("no Function")           
 
     def default(self):#框架預設
         SaveFile = open('systemdata/datasave/data.json')
@@ -317,72 +318,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             left, top, right, bottom = win32gui.GetWindowRect(Fun.WindowsHandle)
         except:
             print("沒有找到視窗")
-    
 
 
-    def getpicpos(self):
-        print("test")
-
-    def DC_TEST(self):
-        token = 'MTEwNTA1MjA1MzA1MjYwMDM4MQ.G9zvzZ.z3Iye2SrCbji4z4AmyAK6lAt1rS0Chjk_4EE3g'
-        intents = discord.Intents.all()
-        intents.message_content = True
-        client = discord.Client(intents = intents)
-        @client.event
-        async def on_ready():
-            print('目前登入身份：', client.user)
-            channel_id = 1105055346592055336  # 替换为目标频道的 ID
-            channel = client.get_channel(channel_id)
-            message = "系統測試"
-            await channel.send(message)
-            await channel.send(file=Imgfile)
-            await channel.send("驗證碼:")
-            print("Block:",Fun.BlockFlag)
-
-        @client.event
-        async def on_message(message):
-            if message.author == client.user:
-                return
-            Fun.systemUnlock = message.content
-            print("message: ",systemUnlock)
-            #self.FuncForunlock()
-            if Fun.BlockFlag == False:
-                await message.channel.send('解鎖成功')
-                await client.close()
-            else:
-                await message.channel.send('解鎖失敗')
-                await client.close()
-        client.run(token)
-
-
-    def FuncBlockPicDet(self):
-        window_rect = win32gui.GetWindowRect(Fun.WindowsHandle)
-        x, y, width, height = window_rect
-        print("Fun.WindowsHandle: ",Fun.WindowsHandle)
-        screen = QApplication.primaryScreen()
-        Fun.capture = screen.grabWindow(Fun.WindowsHandle)
-        Fun.capture.save("./systemdata/img/screenshot.png")
-        PicCapture = cv2.imread("./systemdata/img/screenshot.png")
-        template = cv2.imread('./systemdata/img/BLOCK.PNG')
-
-        result = cv2.matchTemplate(PicCapture, template, cv2.TM_CCOEFF_NORMED)
-        threshold = 0.9
-        locations = np.where(result >= threshold)
-        print("locations:", locations)
-
-        match_locations = []
-        for pt in zip(*locations[::-1]):
-            match_locations.append((pt[0] + x, pt[1] + y))
-
-        if any(locations[0]):
-            Fun.BlockLocation = match_locations[0]
-            print("match_locations:", match_locations[0])
-        else:            
-            print("模板图像不存在于待匹配图像中")
-    
-    def FuncUnlock(self):
-        Cutcapture = screen.grabWindow(Fun.WindowsHandle, 92, 380, 300, 150)
-        Cutcapture.save("./systemdata/img/CUTPIC.png")
 
         
         

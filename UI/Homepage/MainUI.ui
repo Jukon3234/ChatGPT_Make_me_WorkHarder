@@ -519,13 +519,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="4">
-                  <widget class="QPushButton" name="pushButton">
-                   <property name="text">
-                    <string>測試圖標</string>
-                   </property>
-                  </widget>
-                 </item>
                 </layout>
                </widget>
                <widget class="QGroupBox" name="groupBox_2">

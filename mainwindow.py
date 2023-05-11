@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from UI.Call_MainUi import MainPageWindow
 from UI.Call_Help import HelpPageWindow
+from UI.Call_Setting import SettingPageWindow
 from PyQt5.QtGui import QPixmap
 import systemdata.icon.ICON
 
@@ -29,9 +30,9 @@ class MainWindow(QWidget):
         
         self.CallMainUi = MainPageWindow()
         self.CallHelpUi = HelpPageWindow()
+        self.CallSettingUI = SettingPageWindow()
         
         self.Stack.addWidget(self.CallMainUi)
-        #self.Stack.addWidget(self.CallHelpUi)
 
         self.CallMainUi.chooseSignal.connect(self.showDialog)
 
@@ -43,5 +44,7 @@ class MainWindow(QWidget):
             self.CallHelpUi.show()
         elif msg == 'change':
             self.resize(950,630)
+        elif msg == 'setting':
+            self.CallSettingUI.show()
         #if msg == 'Hide':
         #    self.groupBox_2.Hide()
