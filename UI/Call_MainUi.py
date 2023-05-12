@@ -170,9 +170,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.graphicsView.setScene(Img_areascene)
         img2 = img2.scaled(int(img2W),int(img2H))
         Img_areascene2.addPixmap(img2)
-        self.graphicsView_2.setScene(Img_areascene2)
-
-        
+        self.graphicsView_2.setScene(Img_areascene2)       
         
 
     def initbuttonUI(self):#按鈕設定
@@ -189,7 +187,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.PositionButton.clicked.connect(self.showDialog)
         self.FRWidge.clicked.connect(self.showDialog)
         self.FightcomboBox_2.currentIndexChanged.connect(self.showDialog)
-        #self.pushButton.clicked.connect(self.showDialog)
         self.pushButton_2.clicked.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
@@ -226,9 +223,10 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.SetArcarumPIC()
         elif sender == self.pushButton_2:
             if Fun.DCBOT_EN == True:
-                DET = DisBlockDet()
-                if DET.FuncBlockPicDet() == False:
-                    DET.sysFuncBlockPicDet()
+                DET = GetBlockDET()
+                if DET.FuncBlockPicDet() == True:
+                    DET.SysGetPic()
+                    DET.DC_Get_Verify()
             else:
                 print("no Function")           
 
@@ -269,6 +267,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Savedata['function1'] = {'FightCount': Fun.Function1FightCount, 'TypeSelect': 0}
         Savedata['function2'] = {'FightCount': Fun.Function2FightCount, 'TypeSelect': 0}
         Savedata['function3'] = {'FightCount': Fun.Function3FightCount, 'TypeSelect': 0}
+        Savedata['Bot'] = {'TOKEN': Fun.DCBOT_Token,'Channal_ID': Fun.DCBOT_ChannalID,'Enabled' : Fun.DCBOT_EN}
+
 
         with open('systemdata/datasave/data.json', 'w') as datafile:
             json.dump(Savedata,datafile)
@@ -304,7 +304,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         lt.sort()
         print("#Sortting Windows-------------")
         for t in lt:
-            if t == "グランブルーファンタジー - Google Chrome":
+            if t == "GBF Broswers":
                 self.WindowsComboBox.addItem(t)
                 self.WindowsComboBox.setCurrentText(t)
             else:

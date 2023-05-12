@@ -1,8 +1,11 @@
-import Function.Foundation as Fun
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import *
 import cv2
 import numpy as np
 import discord
 import asyncio
+import win32gui
+import Function.Foundation as Fun
 
 class GetBlockDET:
     def FuncBlockPicDet(self):#檢測是否有阻擋圖
@@ -17,10 +20,10 @@ class GetBlockDET:
 
         result = cv2.matchTemplate(PicCapture, template, cv2.TM_CCOEFF_NORMED)
         threshold = 0.9
-        locations = np.where(result >= threshold)
-        print("locations:", locations)
+        Fun.locations = np.where(result >= threshold)
+        print("locations:", Fun.locations)
 
-        if any(locations[0]):
+        if any(Fun.locations[0]):
             return True
         else: 
             return False
@@ -36,10 +39,10 @@ class GetBlockDET:
         template = cv2.imread('./systemdata/img/BLOCK.PNG')        
 
         match_locations = []
-        for pt in zip(*locations[::-1]):
+        for pt in zip(*Fun.locations[::-1]):
             match_locations.append((pt[0] + x, pt[1] + y))
 
-        if any(locations[0]):
+        if any(Fun.locations[0]):
             Fun.BlockLocation = match_locations[0]
             print("match_locations:", match_locations[0])
             Cutcapture = screen.grabWindow(Fun.WindowsHandle, 92, 380, 300, 150)
@@ -49,7 +52,9 @@ class GetBlockDET:
         if Fun.DCBOT_Token == None:
             print("未設定token")
             return
-        else:    
+        else:
+            print("Token: ", Fun.DCBOT_Token)
+            print("Channel_ID: ", Fun.DCBOT_ChannalID)
             token = Fun.DCBOT_Token
             intents = discord.Intents.all()
             intents.message_content = True

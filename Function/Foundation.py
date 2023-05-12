@@ -6,9 +6,10 @@ systemUnlock = " "
 BlockFlag = False
 capture = None
 BlockLocation = 0
-DCBOT_Token = 'MTEwNTA1MjA1MzA1MjYwMDM4MQ.Gkxzg4.ytDYIAXJC7BpLWwl-ZNvD__SEF4CvhgBI-F1YY'
-DCBOT_ChannalID=1105055346592055336
+DCBOT_Token = '0000 '
+DCBOT_ChannalID = 0
 DCBOT_EN = False
+locations = []
 
 HTML_Text = "https://game.granbluefantasy.jp/#top"
 WindowsHandle = 0
