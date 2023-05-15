@@ -35,6 +35,10 @@ class MainWindow(QWidget):
         self.Stack.addWidget(self.CallMainUi)
 
         self.CallMainUi.chooseSignal.connect(self.showDialog)
+    
+    def closeEvent(self, event):
+        self.CallHelpUi.close()
+        self.CallSettingUI.close()
 
         
 

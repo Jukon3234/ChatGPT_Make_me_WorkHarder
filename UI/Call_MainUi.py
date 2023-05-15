@@ -170,8 +170,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.graphicsView.setScene(Img_areascene)
         img2 = img2.scaled(int(img2W),int(img2H))
         Img_areascene2.addPixmap(img2)
-        self.graphicsView_2.setScene(Img_areascene2)       
-        
+        self.graphicsView_2.setScene(Img_areascene2)
+
 
     def initbuttonUI(self):#按鈕設定
         self.actionHelp.triggered.connect(self.showDialog)
@@ -187,7 +187,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.PositionButton.clicked.connect(self.showDialog)
         self.FRWidge.clicked.connect(self.showDialog)
         self.FightcomboBox_2.currentIndexChanged.connect(self.showDialog)
-        self.pushButton_2.clicked.connect(self.showDialog)
+        #self.pushButton_2.clicked.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
@@ -221,18 +221,25 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.chooseSignal.emit('change')
         elif sender == self.FightcomboBox_2:
             self.SetArcarumPIC()
-        elif sender == self.pushButton_2:
-            if Fun.DCBOT_EN == True:
-                DET = GetBlockDET()
-                if DET.FuncBlockPicDet() == True:
-                    DET.SysGetPic()
-                    DET.DC_Get_Verify()
-            else:
-                print("no Function")           
+        #elif sender == self.pushButton_2:
+            #if Fun.DCBOT_EN == True:
+            #    DET = GetBlockDET()
+            #    if DET.FuncBlockPicDet() == True:
+            #        DET.SysGetPic()
+            #        DET.DC_Get_Verify()
+            #else:
+            #    print("no Function")
+                       
 
-    def default(self):#框架預設
-        SaveFile = open('systemdata/datasave/data.json')
+    def default(self):#框架預設#最初全域變數歸檔
+        if os.path.exists('./systemdata/datasave/data.json'):
+            SaveFile = open('systemdata/datasave/data.json')
+        else:
+            SaveFile = open('systemdata/datasave/Default.json')
         savedata= json.load(SaveFile)
+        Fun.DCBOT_Token = savedata['Bot']['TOKEN']
+        Fun.DCBOT_ChannalID = savedata['Bot']['Channal_ID']
+
         self.Times_spinBox_2.setValue(savedata['function1']['FightCount'])
         self.Times_spinBox_3.setValue(savedata['function2']['FightCount'])
         self.Times_spinBox_5.setValue(savedata['function3']['FightCount'])
@@ -318,7 +325,15 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             left, top, right, bottom = win32gui.GetWindowRect(Fun.WindowsHandle)
         except:
             print("沒有找到視窗")
-
+    
+    def Blockdet(slef):
+        if Fun.DCBOT_EN == True:
+            DET = GetBlockDET()
+            if DET.FuncBlockPicDet() == True:
+                DET.SysGetPic()
+                DET.DC_Get_Verify()
+        else:
+            print("no Function")
 
 
         

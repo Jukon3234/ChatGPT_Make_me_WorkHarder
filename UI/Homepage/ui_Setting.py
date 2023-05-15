@@ -103,7 +103,7 @@ class Ui_Setting(object):
 
     def retranslateUi(self, Setting):
         _translate = QtCore.QCoreApplication.translate
-        Setting.setWindowTitle(_translate("Setting", "Form"))
+        Setting.setWindowTitle(_translate("Setting", "Setting"))
         self.groupBox.setTitle(_translate("Setting", "Discord BOT 通風報信"))
         self.label_3.setText(_translate("Setting", "建立自己的DC機器人之後，提供機器人的Token以及房號ID填入對應欄位。"))
         self.label.setText(_translate("Setting", "Token"))
