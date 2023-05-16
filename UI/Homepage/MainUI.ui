@@ -248,19 +248,6 @@
                    </attribute>
                   </widget>
                  </item>
-                 <item row="8" column="0">
-                  <widget class="QPushButton" name="PositionButton">
-                   <property name="maximumSize">
-                    <size>
-                     <width>100</width>
-                     <height>23</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>環境設定</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="0" column="0" colspan="6">
                   <widget class="QListWidget" name="Funtionlist">
                    <property name="sizePolicy">
@@ -484,6 +471,22 @@
                    </attribute>
                   </widget>
                  </item>
+                 <item row="1" column="2" colspan="3">
+                  <widget class="QComboBox" name="WindowsComboBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>200</width>
+                     <height>23</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="8" column="2">
                   <widget class="QPushButton" name="FRWidge">
                    <property name="sizePolicy">
@@ -503,19 +506,16 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="2" colspan="3">
-                  <widget class="QComboBox" name="WindowsComboBox">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
+                 <item row="8" column="0">
+                  <widget class="QPushButton" name="PositionButton">
                    <property name="maximumSize">
                     <size>
-                     <width>200</width>
+                     <width>100</width>
                      <height>23</height>
                     </size>
+                   </property>
+                   <property name="text">
+                    <string>環境設定</string>
                    </property>
                   </widget>
                  </item>
@@ -2315,7 +2315,7 @@ p, li { white-space: pre-wrap; }
    </property>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>設定</string>
     </property>
     <addaction name="actionsetting"/>
     <addaction name="separator"/>
@@ -2358,7 +2358,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionsetting">
    <property name="text">
-    <string>設定</string>
+    <string>系統設定</string>
    </property>
    <property name="shortcut">
     <string/>

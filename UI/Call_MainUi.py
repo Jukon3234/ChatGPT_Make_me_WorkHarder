@@ -34,8 +34,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.initUiindex()
         self.initbuttonUI()
         self.default()
-        self.GetScreenFunc()
         self.SetArcarumPIC()
+        self.GetScreenFunc()
         
 
     def initUiindex(self):#UI框架基礎設定
@@ -187,6 +187,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.PositionButton.clicked.connect(self.showDialog)
         self.FRWidge.clicked.connect(self.showDialog)
         self.FightcomboBox_2.currentIndexChanged.connect(self.showDialog)
+        self.FightcomboBox_4.currentIndexChanged.connect(self.showDialog)
         #self.pushButton_2.clicked.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
@@ -221,6 +222,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.chooseSignal.emit('change')
         elif sender == self.FightcomboBox_2:
             self.SetArcarumPIC()
+            Fun.Map = self.FightcomboBox_2.currentText()
+        elif sender == self.FightcomboBox_4:
+            Fun.challenge = self.FightcomboBox_4.currentText()
         #elif sender == self.pushButton_2:
             #if Fun.DCBOT_EN == True:
                 #DET = GetBlockDET()
@@ -239,7 +243,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         savedata= json.load(SaveFile)
         Fun.DCBOT_Token = savedata['Bot']['TOKEN']
         Fun.DCBOT_ChannalID = savedata['Bot']['Channal_ID']
-
         self.Times_spinBox_2.setValue(savedata['function1']['FightCount'])
         self.Times_spinBox_3.setValue(savedata['function2']['FightCount'])
         self.Times_spinBox_5.setValue(savedata['function3']['FightCount'])
@@ -313,8 +316,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             else:
                 self.WindowsComboBox.addItem(t)
             print (t)
-        self.WindowsComboBox.addItem("自動人 我的超人")
-        print ("自動人 我的超人")
         try:
             windowsgetstr = self.WindowsComboBox.currentText()
             Fun.WindowsHandle = win32gui.FindWindow(None, windowsgetstr)

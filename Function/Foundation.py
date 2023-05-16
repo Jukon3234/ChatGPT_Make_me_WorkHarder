@@ -1,6 +1,8 @@
 Function1FightCount = 0
 Function2FightCount = 0
 Function3FightCount = 0
+Map = "1"
+challenge = "1"
 TypeSelect = 0
 systemUnlock = " "
 BlockFlag = False
