@@ -223,12 +223,12 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.SetArcarumPIC()
         #elif sender == self.pushButton_2:
             #if Fun.DCBOT_EN == True:
-            #    DET = GetBlockDET()
-            #    if DET.FuncBlockPicDet() == True:
-            #        DET.SysGetPic()
-            #        DET.DC_Get_Verify()
+                #DET = GetBlockDET()
+                #if DET.FuncBlockPicDet() == True:
+                #    DET.SysGetPic()
+                #    DET.DC_Get_Verify()
             #else:
-            #    print("no Function")
+                #print("no Function")
                        
 
     def default(self):#框架預設#最初全域變數歸檔
@@ -332,8 +332,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             if DET.FuncBlockPicDet() == True:
                 DET.SysGetPic()
                 DET.DC_Get_Verify()
+                time.sleep(3)                
         else:
-            print("no Function")
+            print("Function not enabled")
 
 
         

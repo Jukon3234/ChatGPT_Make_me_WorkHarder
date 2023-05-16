@@ -33,7 +33,7 @@ class GetBlockDET:
         else: 
             return False
     
-    def PicDet(self):#檢測圖位置
+    def PicDet(self,Picture):#檢測圖位置
         window_rect = win32gui.GetWindowRect(Fun.WindowsHandle)
         x, y, width, height = window_rect
         print("Fun.WindowsHandle: ",Fun.WindowsHandle)
@@ -41,9 +41,8 @@ class GetBlockDET:
         Fun.capture = screen.grabWindow(Fun.WindowsHandle)
         Fun.capture.save("./systemdata/img/screenshot.png")
         PicCapture = cv2.imread("./systemdata/img/screenshot.png")
-        template = cv2.imread('./systemdata/img/InsertForm.PNG')
 
-        result = cv2.matchTemplate(PicCapture, template, cv2.TM_CCOEFF_NORMED)
+        result = cv2.matchTemplate(PicCapture, Picture, cv2.TM_CCOEFF_NORMED)
         threshold = 0.9
         locations = np.where(result >= threshold)
         Xmatch_locations = []
@@ -129,13 +128,17 @@ class GetBlockDET:
 
     def FuncForunlock(self, systemUnlock):
         mouse_pos = QCursor.pos()
-        lox,loy = self.PicDet()
+        Picture = cv2.imread('./systemdata/img/InsertForm.PNG')
+        lox,loy = self.PicDet(Picture)
         click_pos = QPoint(lox+50,loy+55)
         text = str(systemUnlock)
         pyperclip.copy(text)
-        QCursor.setPos(click_pos)
         pyautogui.click(lox+50,loy+55)        
         pyautogui.hotkey('ctrl', 'v')
+        Picture = cv2.imread('./systemdata/img/Send.PNG')
+        lox,loy = self.PicDet(Picture)
+        click_pos = QPoint(lox+50,loy+55)
+        pyautogui.click(lox+50,loy+55)
         QCursor.setPos(mouse_pos)
 
 
