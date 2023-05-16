@@ -29,11 +29,11 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     chooseSignal = pyqtSignal(str)
 
     def __init__(self,parent=None):#起始位置
-        super(MainPageWindow, self).__init__(parent)        
+        super(MainPageWindow, self).__init__(parent)
         self.setupUi(self)
         self.initUiindex()
         self.initbuttonUI()
-        self.default()        
+        self.default()
         self.GetScreenFunc()
         self.SetArcarumPIC()
         
@@ -55,7 +55,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Icon_sort8.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_08.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         Icon_sort7.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_07.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         Icon_sort21.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_21.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        
+
         #set icon
         self.actionHelp.setIcon(Helpicon)#help
         for i in range(0, 8):
@@ -89,7 +89,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                     self.FightcomboBox_4.removeItem(0)
                 for j in range(1,11):
                     self.FightcomboBox_4.addItem(str(j))
-        
+
         def SetComboBox2():
             print("item_count",item_count)
             if item_count == 0:
@@ -197,7 +197,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.chooseSignal.emit('setting')
         elif sender == self.Funtionlist:
             self.change_Page()
-        elif sender == self.DebugButton:           
+        elif sender == self.DebugButton:
             self.SetScreenfuntion()
             x=Debugfunction()
             x.debugLog()
@@ -210,9 +210,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.Info_broswer.clear()
         elif sender == self.SetButton_2:
             self.SaveFile()
-        elif sender == self.Times_spinBox_2:            
+        elif sender == self.Times_spinBox_2:
             self.settingtext()
-        elif sender == self.WindowsComboBox:            
+        elif sender == self.WindowsComboBox:
             self.SetScreenfuntion()
         elif sender == self.PositionButton:
             x=GBFPosition()
@@ -254,7 +254,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.Page3.hide()
         if text == "轉世":
             self.Page1.show()
-        if text == "十天眾天使關":            
+        if text == "十天眾天使關":
             self.Page2.show()
         if text == "方陣速刷":
             self.Page3.show()
@@ -266,7 +266,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         else:
             self.label_10.setText("Set :"+str(Fun.Function1FightCount))
 
-    def SaveFile(self):        
+    def SaveFile(self):
         Fun.Function1FightCount = self.Times_spinBox_2.value()
         Fun.Function2FightCount = self.Times_spinBox_3.value()
         Fun.Function3FightCount = self.Times_spinBox_5.value()
@@ -276,15 +276,12 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Savedata['function3'] = {'FightCount': Fun.Function3FightCount, 'TypeSelect': 0}
         Savedata['Bot'] = {'TOKEN': Fun.DCBOT_Token,'Channal_ID': Fun.DCBOT_ChannalID,'Enabled' : Fun.DCBOT_EN}
 
-
         with open('systemdata/datasave/data.json', 'w') as datafile:
             json.dump(Savedata,datafile)
         self.label_10.setText("set成功")
         print("set成功")
 
-    
-
-    def SetScreenfuntion(self):       
+    def SetScreenfuntion(self):
         try:
             windowsgetIndex = self.WindowsComboBox.currentIndex()
             windowsgetstr = self.WindowsComboBox.currentText()
@@ -298,8 +295,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         except:
             def Mbox(title, text, style):
                 return windll.user32.MessageBoxW(0, text, title, style)
-            Mbox('沒有找到視窗', '請選擇GBF的視窗標題', 0)        
-
+            Mbox('沒有找到視窗', '請選擇GBF的視窗標題', 0)
 
     def GetScreenFunc(self):
         titles = set()
@@ -315,7 +311,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                 self.WindowsComboBox.addItem(t)
                 self.WindowsComboBox.setCurrentText(t)
             else:
-                self.WindowsComboBox.addItem(t)            
+                self.WindowsComboBox.addItem(t)
             print (t)
         self.WindowsComboBox.addItem("自動人 我的超人")
         print ("自動人 我的超人")
@@ -325,16 +321,12 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             left, top, right, bottom = win32gui.GetWindowRect(Fun.WindowsHandle)
         except:
             print("沒有找到視窗")
-    
     def Blockdet(slef):
-        if Fun.DCBOT_EN == True:
-            DET = GetBlockDET()
-            if DET.FuncBlockPicDet() == True:
-                DET.SysGetPic()
-                DET.DC_Get_Verify()
-                time.sleep(3)                
-        else:
-            print("Function not enabled")
+        DET = GetBlockDET()
+        if DET.FuncBlockPicDet() == True:
+            DET.SysGetPic()
+            DET.DC_Get_Verify()
+            time.sleep(3)
 
 
         
