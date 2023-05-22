@@ -352,6 +352,11 @@
                      <string>古戰場</string>
                     </property>
                    </item>
+                   <item>
+                    <property name="text">
+                     <string>刷巴哈角</string>
+                    </property>
+                   </item>
                   </widget>
                  </item>
                  <item row="7" column="0" colspan="2">
@@ -1631,25 +1636,6 @@
                          </property>
                         </spacer>
                        </item>
-                       <item row="4" column="2">
-                        <widget class="QSpinBox" name="Times_spinBox_3">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>64</width>
-                           <height>25</height>
-                          </size>
-                         </property>
-                         <property name="maximum">
-                          <number>999</number>
-                         </property>
-                        </widget>
-                       </item>
                        <item row="1" column="4">
                         <spacer name="horizontalSpacer_8">
                          <property name="orientation">
@@ -1662,28 +1648,6 @@
                           </size>
                          </property>
                         </spacer>
-                       </item>
-                       <item row="4" column="1">
-                        <widget class="QLabel" name="label_7">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-                           <horstretch>1</horstretch>
-                           <verstretch>1</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>70</width>
-                           <height>40</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string>次數</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
-                         </property>
-                        </widget>
                        </item>
                        <item row="5" column="4">
                         <widget class="QLabel" name="label_16">
@@ -1714,35 +1678,69 @@
                           <string>戰鬥方式</string>
                          </property>
                          <layout class="QGridLayout" name="gridLayout_8">
-                          <item row="0" column="0">
+                          <item row="1" column="0">
                            <widget class="QRadioButton" name="radioButton_5">
                             <property name="text">
                              <string>技能1T</string>
                             </property>
                            </widget>
                           </item>
-                          <item row="0" column="1">
+                          <item row="1" column="1">
                            <widget class="QRadioButton" name="radioButton_6">
                             <property name="text">
                              <string>普攻1T</string>
                             </property>
                            </widget>
                           </item>
-                          <item row="0" column="2">
+                          <item row="1" column="2">
                            <widget class="QRadioButton" name="radioButton_7">
                             <property name="text">
                              <string>AUTO</string>
                             </property>
                            </widget>
                           </item>
+                          <item row="0" column="0">
+                           <widget class="QLabel" name="label_7">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                              <horstretch>1</horstretch>
+                              <verstretch>1</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>70</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>次數</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="1" colspan="2">
+                           <widget class="QSpinBox" name="Times_spinBox_3">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>64</width>
+                              <height>25</height>
+                             </size>
+                            </property>
+                            <property name="maximum">
+                             <number>999</number>
+                            </property>
+                           </widget>
+                          </item>
                          </layout>
-                        </widget>
-                       </item>
-                       <item row="1" column="2">
-                        <widget class="QPushButton" name="pushButton_2">
-                         <property name="text">
-                          <string>DC test</string>
-                         </property>
                         </widget>
                        </item>
                       </layout>
@@ -1809,6 +1807,44 @@
                        <property name="spacing">
                         <number>0</number>
                        </property>
+                       <item row="0" column="0">
+                        <spacer name="horizontalSpacer_17">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeType">
+                          <enum>QSizePolicy::Expanding</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>31</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item row="0" column="1">
+                        <widget class="QPushButton" name="SetButton_5">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                           <horstretch>1</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>75</width>
+                           <height>23</height>
+                          </size>
+                         </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
+                         <property name="text">
+                          <string>SET</string>
+                         </property>
+                        </widget>
+                       </item>
                        <item row="0" column="3">
                         <spacer name="horizontalSpacer_16">
                          <property name="orientation">
@@ -1835,22 +1871,6 @@
                          </property>
                         </widget>
                        </item>
-                       <item row="0" column="0">
-                        <spacer name="horizontalSpacer_17">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeType">
-                          <enum>QSizePolicy::Expanding</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>31</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
                        <item row="1" column="1">
                         <widget class="QPushButton" name="Screptrun_5">
                          <property name="sizePolicy">
@@ -1870,28 +1890,6 @@
                          </property>
                          <property name="text">
                           <string>Run</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="1">
-                        <widget class="QPushButton" name="SetButton_5">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                           <horstretch>1</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>75</width>
-                           <height>23</height>
-                          </size>
-                         </property>
-                         <property name="cursor">
-                          <cursorShape>PointingHandCursor</cursorShape>
-                         </property>
-                         <property name="text">
-                          <string>SET</string>
                          </property>
                         </widget>
                        </item>
@@ -1915,36 +1913,8 @@
                       <property name="title">
                        <string>執行設定</string>
                       </property>
-                      <layout class="QGridLayout" name="gridLayout_16" rowstretch="0,0,0,0,0">
-                       <property name="leftMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>3</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="spacing">
-                        <number>0</number>
-                       </property>
-                       <item row="1" column="3">
-                        <spacer name="horizontalSpacer_18">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>41</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                       <item row="0" column="1">
+                      <layout class="QGridLayout" name="gridLayout_13">
+                       <item row="0" column="2">
                         <spacer name="verticalSpacer_12">
                          <property name="orientation">
                           <enum>Qt::Vertical</enum>
@@ -1960,7 +1930,7 @@
                          </property>
                         </spacer>
                        </item>
-                       <item row="2" column="1">
+                       <item row="3" column="2">
                         <spacer name="verticalSpacer_13">
                          <property name="orientation">
                           <enum>Qt::Vertical</enum>
@@ -1976,7 +1946,7 @@
                          </property>
                         </spacer>
                        </item>
-                       <item row="1" column="0">
+                       <item row="3" column="0">
                         <spacer name="horizontalSpacer_19">
                          <property name="orientation">
                           <enum>Qt::Horizontal</enum>
@@ -1992,54 +1962,17 @@
                          </property>
                         </spacer>
                        </item>
-                       <item row="3" column="2">
-                        <widget class="QSpinBox" name="Times_spinBox_5">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>64</width>
-                           <height>25</height>
-                          </size>
-                         </property>
-                         <property name="maximum">
-                          <number>999</number>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="1">
-                        <widget class="QLabel" name="label_12">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                           <horstretch>1</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>57</width>
-                           <height>40</height>
-                          </size>
-                         </property>
+                       <item row="4" column="3">
+                        <widget class="QLabel" name="label_15">
                          <property name="text">
-                          <string>戰鬥</string>
+                          <string>-刷巴哈角</string>
                          </property>
                          <property name="alignment">
-                          <set>Qt::AlignCenter</set>
+                          <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
                          </property>
                         </widget>
                        </item>
-                       <item row="4" column="1">
+                       <item row="4" column="2">
                         <spacer name="verticalSpacer_14">
                          <property name="orientation">
                           <enum>Qt::Vertical</enum>
@@ -2052,88 +1985,542 @@
                          </property>
                         </spacer>
                        </item>
-                       <item row="1" column="2">
-                        <widget class="QComboBox" name="FightcomboBox_5">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-                           <horstretch>0</horstretch>
-                           <verstretch>1</verstretch>
-                          </sizepolicy>
+                       <item row="1" column="0">
+                        <widget class="QGroupBox" name="groupBox_15">
+                         <property name="title">
+                          <string>召喚石選擇</string>
                          </property>
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>57</width>
-                           <height>25</height>
-                          </size>
-                         </property>
-                         <item>
-                          <property name="text">
-                           <string>火</string>
+                         <layout class="QGridLayout" name="gridLayout_14">
+                          <property name="leftMargin">
+                           <number>0</number>
                           </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>水</string>
+                          <property name="topMargin">
+                           <number>0</number>
                           </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>風</string>
+                          <property name="rightMargin">
+                           <number>0</number>
                           </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>土</string>
+                          <property name="bottomMargin">
+                           <number>0</number>
                           </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>光</string>
+                          <property name="spacing">
+                           <number>0</number>
                           </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>暗</string>
-                          </property>
-                         </item>
+                          <item row="0" column="1">
+                           <widget class="QComboBox" name="FightcomboBox_5">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                              <horstretch>0</horstretch>
+                              <verstretch>1</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                             <size>
+                              <width>0</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>57</width>
+                              <height>25</height>
+                             </size>
+                            </property>
+                            <item>
+                             <property name="text">
+                              <string>火</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>水</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>風</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>土</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>光</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>暗</string>
+                             </property>
+                            </item>
+                           </widget>
+                          </item>
+                          <item row="0" column="0">
+                           <widget class="QLabel" name="label_12">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                              <horstretch>1</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                             <size>
+                              <width>0</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>57</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>召喚石</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="1">
+                           <widget class="QSpinBox" name="Times_spinBox_5">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>64</width>
+                              <height>25</height>
+                             </size>
+                            </property>
+                            <property name="maximum">
+                             <number>999</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="0">
+                           <widget class="QLabel" name="label_13">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                              <horstretch>1</horstretch>
+                              <verstretch>1</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>70</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>次數</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
                         </widget>
                        </item>
-                       <item row="3" column="1">
-                        <widget class="QLabel" name="label_13">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-                           <horstretch>1</horstretch>
-                           <verstretch>1</verstretch>
-                          </sizepolicy>
+                       <item row="0" column="0">
+                        <widget class="QGroupBox" name="groupBox_14">
+                         <property name="title">
+                          <string>戰鬥方式</string>
                          </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>70</width>
-                           <height>40</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string>次數</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
-                         </property>
+                         <layout class="QGridLayout" name="gridLayout_11">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <item row="2" column="0">
+                           <widget class="QRadioButton" name="radioButton_11">
+                            <property name="text">
+                             <string>召喚石1T</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="2">
+                           <widget class="QRadioButton" name="radioButton_10">
+                            <property name="text">
+                             <string>貢獻</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="0">
+                           <widget class="QRadioButton" name="radioButton_8">
+                            <property name="text">
+                             <string>指定技能1T</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="3">
+                           <widget class="QSpinBox" name="Times_spinBox_6">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>64</width>
+                              <height>25</height>
+                             </size>
+                            </property>
+                            <property name="maximum">
+                             <number>999</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="5" column="0">
+                           <widget class="QRadioButton" name="radioButton_13">
+                            <property name="text">
+                             <string>AUTO</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="4" column="0">
+                           <widget class="QRadioButton" name="radioButton_12">
+                            <property name="text">
+                             <string>普攻1T</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="3" column="0">
+                           <widget class="QRadioButton" name="radioButton_9">
+                            <property name="text">
+                             <string>奧義1T</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="2" column="1">
+                           <widget class="QComboBox" name="comboBox">
+                            <item>
+                             <property name="text">
+                              <string>1號位</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>2號位</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>3號位</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>4號位</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>5號位</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>6號位</string>
+                             </property>
+                            </item>
+                           </widget>
+                          </item>
+                         </layout>
                         </widget>
                        </item>
-                       <item row="4" column="3">
-                        <widget class="QLabel" name="label_15">
-                         <property name="text">
-                          <string>-方陣速刷</string>
+                       <item row="2" column="0">
+                        <widget class="QGroupBox" name="groupBox_16">
+                         <property name="title">
+                          <string>GroupBox</string>
                          </property>
-                         <property name="alignment">
-                          <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
-                         </property>
+                         <layout class="QGridLayout" name="gridLayout_15">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <item row="0" column="0">
+                           <widget class="QTableWidget" name="tableWidget_2">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>200</width>
+                              <height>127</height>
+                             </size>
+                            </property>
+                            <property name="layoutDirection">
+                             <enum>Qt::LeftToRight</enum>
+                            </property>
+                            <property name="inputMethodHints">
+                             <set>Qt::ImhNone</set>
+                            </property>
+                            <property name="verticalScrollBarPolicy">
+                             <enum>Qt::ScrollBarAlwaysOff</enum>
+                            </property>
+                            <property name="horizontalScrollBarPolicy">
+                             <enum>Qt::ScrollBarAlwaysOff</enum>
+                            </property>
+                            <property name="editTriggers">
+                             <set>QAbstractItemView::NoEditTriggers</set>
+                            </property>
+                            <property name="tabKeyNavigation">
+                             <bool>true</bool>
+                            </property>
+                            <property name="showDropIndicator" stdset="0">
+                             <bool>true</bool>
+                            </property>
+                            <property name="dragDropOverwriteMode">
+                             <bool>false</bool>
+                            </property>
+                            <property name="showGrid">
+                             <bool>true</bool>
+                            </property>
+                            <property name="gridStyle">
+                             <enum>Qt::SolidLine</enum>
+                            </property>
+                            <property name="sortingEnabled">
+                             <bool>false</bool>
+                            </property>
+                            <attribute name="horizontalHeaderCascadingSectionResizes">
+                             <bool>false</bool>
+                            </attribute>
+                            <attribute name="horizontalHeaderDefaultSectionSize">
+                             <number>39</number>
+                            </attribute>
+                            <attribute name="horizontalHeaderMinimumSectionSize">
+                             <number>25</number>
+                            </attribute>
+                            <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                             <bool>false</bool>
+                            </attribute>
+                            <attribute name="horizontalHeaderStretchLastSection">
+                             <bool>false</bool>
+                            </attribute>
+                            <attribute name="verticalHeaderCascadingSectionResizes">
+                             <bool>false</bool>
+                            </attribute>
+                            <attribute name="verticalHeaderDefaultSectionSize">
+                             <number>23</number>
+                            </attribute>
+                            <attribute name="verticalHeaderMinimumSectionSize">
+                             <number>21</number>
+                            </attribute>
+                            <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+                             <bool>false</bool>
+                            </attribute>
+                            <attribute name="verticalHeaderStretchLastSection">
+                             <bool>false</bool>
+                            </attribute>
+                            <row>
+                             <property name="text">
+                              <string>技能1</string>
+                             </property>
+                            </row>
+                            <row>
+                             <property name="text">
+                              <string>技能2</string>
+                             </property>
+                            </row>
+                            <row>
+                             <property name="text">
+                              <string>技能3</string>
+                             </property>
+                            </row>
+                            <row>
+                             <property name="text">
+                              <string>技能4</string>
+                             </property>
+                            </row>
+                            <column>
+                             <property name="text">
+                              <string>角色1</string>
+                             </property>
+                            </column>
+                            <column>
+                             <property name="text">
+                              <string>角色2</string>
+                             </property>
+                            </column>
+                            <column>
+                             <property name="text">
+                              <string>角色3</string>
+                             </property>
+                            </column>
+                            <column>
+                             <property name="text">
+                              <string>角色4</string>
+                             </property>
+                            </column>
+                            <item row="0" column="0">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="textAlignment">
+                              <set>AlignLeading|AlignVCenter</set>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="0" column="1">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="0" column="2">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="0" column="3">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="1" column="0">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="1" column="1">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="1" column="2">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="1" column="3">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="2" column="0">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="2" column="1">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="2" column="2">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="2" column="3">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="3" column="0">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="3" column="1">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="3" column="2">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                            <item row="3" column="3">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Unchecked</enum>
+                             </property>
+                            </item>
+                           </widget>
+                          </item>
+                         </layout>
                         </widget>
                        </item>
                       </layout>

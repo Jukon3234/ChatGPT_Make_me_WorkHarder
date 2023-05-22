@@ -11,12 +11,8 @@ from Function.Position import GBFPosition
 from Function.DiscordBlockDet import GetBlockDET
 import Function.Foundation as Fun
 import json
-
-from http import cookies
 import datetime
-
 from win32gui import *
-
 from ctypes import windll, byref
 from ctypes.wintypes import HWND, POINT
 import time
@@ -24,6 +20,7 @@ import sys
 import win32gui
 import os
 import pyautogui as pag
+import cv2
 
 class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     chooseSignal = pyqtSignal(str)
@@ -89,7 +86,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                     self.FightcomboBox_4.removeItem(0)
                 for j in range(1,11):
                     self.FightcomboBox_4.addItem(str(j))
-
         def SetComboBox2():
             print("item_count",item_count)
             if item_count == 0:
@@ -113,54 +109,63 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         if PicGetIndex == 0:
             img = QtGui.QPixmap(":/area_2_cleared.png")
             img2 = QtGui.QPixmap(":/area2.jpg")
+            Fun.ReadArcarumPIC = cv2.imread("./systemdata/img/systemimg/Area2.PNG")
             img2H = 229*0.4
             img2W = 1024*0.4
             SetComboBox1()
         elif PicGetIndex == 1:
             img = QtGui.QPixmap(":/area_3_cleared.png")
-            img2 = QtGui.QPixmap(":/area3.jpg")
+            img2 = QtGui.QPixmap(":/area3.jpg")            
+            Fun.ReadArcarumPIC = cv2.imread("./systemdata/img/systemimg/Area3.PNG")
             img2H = 229*0.4
             img2W = 1024*0.4
             SetComboBox1()
         elif PicGetIndex == 2:
             img = QtGui.QPixmap(":/area_4_cleared.png")
             img2 = QtGui.QPixmap(":/area4.jpg")
+            Fun.ReadArcarumPIC = cv2.imread("./systemdata/img/systemimg/Area4.PNG")
             img2H = 229*0.4
             img2W = 1024*0.4
             SetComboBox1()
         elif PicGetIndex == 3:
             img = QtGui.QPixmap(":/area_5_cleared.png")
             img2 = QtGui.QPixmap(":/area5.jpg")
+            Fun.ReadArcarumPIC = cv2.imread("./systemdata/img/systemimg/Area5.PNG")
             img2H = 229*0.4
             img2W = 1024*0.4
             SetComboBox1()
         elif PicGetIndex == 4:
             img = QtGui.QPixmap(":/area_6_cleared.png")
             img2 = QtGui.QPixmap(":/area6.jpg")
+            Fun.ReadArcarumPIC = cv2.imread("./systemdata/img/systemimg/Area6.PNG")
             img2H = 430*0.25
             img2W = 1280*0.25
             SetComboBox2()
         elif PicGetIndex == 5:
             img = QtGui.QPixmap(":/area_7_cleared.png")
             img2 = QtGui.QPixmap(":/area7.jpg")
+            Fun.ReadArcarumPIC = cv2.imread("./systemdata/img/systemimg/Area7.PNG")
             img2H = 430*0.25
             img2W = 1280*0.25
             SetComboBox2()
         elif PicGetIndex == 6:
             img = QtGui.QPixmap(":/area_8_cleared.png")
             img2 = QtGui.QPixmap(":/area8.jpg")
+            Fun.ReadArcarumPIC = cv2.imread("./systemdata/img/systemimg/Area8.PNG")
             img2H = 430*0.25
             img2W = 1280*0.25
             SetComboBox2()
         elif PicGetIndex == 7:
             img = QtGui.QPixmap(":/area_9_cleared.png")
             img2 = QtGui.QPixmap(":/area9.jpg")
+            Fun.ReadArcarumPIC = cv2.imread("./systemdata/img/systemimg/Area9.PNG")
             img2H = 430*0.25
             img2W = 1280*0.25
             SetComboBox2()
         elif PicGetIndex == 8:
             img = QtGui.QPixmap(":/area_10_cleared.png")
             img2 = QtGui.QPixmap(":/area10.png")
+            Fun.ReadArcarumPIC = cv2.imread("./systemdata/img/systemimg/Area10.PNG")
             img2H = 319*0.3
             img2W = 1326*0.3
             SetComboBox3()
@@ -223,8 +228,10 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         elif sender == self.FightcomboBox_2:
             self.SetArcarumPIC()
             Fun.Map = self.FightcomboBox_2.currentText()
+            self.ReadMap()
         elif sender == self.FightcomboBox_4:
             Fun.challenge = self.FightcomboBox_4.currentText()
+            self.ReadMap()
         #elif sender == self.pushButton_2:
             #if Fun.DCBOT_EN == True:
                 #DET = GetBlockDET()
@@ -259,7 +266,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.Page1.show()
         if text == "十天眾天使關":
             self.Page2.show()
-        if text == "方陣速刷":
+        if text == "刷巴哈角":
             self.Page3.show()
 
     def settingtext(self):
@@ -329,14 +336,179 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             DET.DC_Get_Verify()
             time.sleep(3)
 
-
-        
-        
-
-
-
-
-       
-
-
-    
+    def ReadMap(self):
+        if Fun.Map == "1":
+            if Fun.challenge == "1":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "2":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "3":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "4":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "5":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "6":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "7":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "8":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "9":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "10":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+        elif Fun.Map == "2":
+            if Fun.challenge == "1":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "2":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "3":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "4":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "5":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "6":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "7":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "8":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "9":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "10":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+        elif Fun.Map == "3":
+            if Fun.challenge == "1":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "2":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "3":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "4":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "5":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "6":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "7":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "8":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "9":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "10":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+        elif Fun.Map == "4":
+            if Fun.challenge == "1":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "2":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "3":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "4":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "5":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "6":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "7":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "8":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "9":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "10":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+        elif Fun.Map == "5":
+            if Fun.challenge == "1":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "2":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "3":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "4":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "5":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "6":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "7":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+        elif Fun.Map == "6":
+            if Fun.challenge == "1":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "2":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "3":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "4":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "5":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "6":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "7":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+        elif Fun.Map == "7":
+            if Fun.challenge == "1":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "2":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "3":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "4":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "5":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "6":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "7":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+        elif Fun.Map == "8":
+            if Fun.challenge == "1":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "2":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "3":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "4":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "5":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "6":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "7":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+        elif Fun.Map == "9":
+            if Fun.challenge == "1":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "2":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "3":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "4":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "5":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "6":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "7":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "8":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "9":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "10":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "11":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "12":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "13":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+            elif Fun.challenge == "14":
+                print(f"Map:{Fun.Map}-{Fun.challenge}")
+        else:
+            print("Error")
