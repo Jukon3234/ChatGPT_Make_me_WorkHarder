@@ -1,5 +1,4 @@
 from threading import Thread
-from Function.DiscordBlockDet import GetBlockDET
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
@@ -21,7 +20,6 @@ class GetPicFunction:
     def PicDet(self,Picture):#檢測圖位置
         window_rect = win32gui.GetWindowRect(Fun.WindowsHandle)
         x, y, width, height = window_rect
-        print("Fun.WindowsHandle: ",Fun.WindowsHandle)
         screen = QApplication.primaryScreen()
         Fun.capture = screen.grabWindow(Fun.WindowsHandle)
         Fun.capture.save("./systemdata/img/systemimg/screenshot.png")
@@ -59,7 +57,7 @@ class GetPicFunction:
                 time.sleep(0.5)  # 等待0.5秒后再次检测
 
 
-    def PicDetTF(self,Picture):#檢測圖位置
+    def PicDetTF(self,Picture):#檢測圖是否存在
         window_rect = win32gui.GetWindowRect(Fun.WindowsHandle)
         x, y, width, height = window_rect
         print("Fun.WindowsHandle: ",Fun.WindowsHandle)
@@ -70,11 +68,6 @@ class GetPicFunction:
         result = cv2.matchTemplate(PicCapture, Picture, cv2.TM_CCOEFF_NORMED)
         threshold = 0.9
         locations = np.where(result >= threshold)
-        Xmatch_locations = []
-        Ymatch_locations = []
-        for pt in zip(*locations[::-1]):
-            Xmatch_locations.append(pt[0] + x)
-            Ymatch_locations.append(pt[1] + y)
         if any(locations[0]):
             return True            
         else: 
@@ -96,5 +89,3 @@ class GetPicFunction:
                     break
                 else:
                     time.sleep(0.5)  # 等待0.5秒后再次检测
-        else:
-            print("不做事")

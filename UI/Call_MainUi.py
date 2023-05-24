@@ -9,6 +9,7 @@ from Function.Page1Function import RunFunction
 from Function.DebugFunction import Debugfunction
 from Function.Position import GBFPosition
 from Function.DiscordBlockDet import GetBlockDET
+from Function.Picture import GetPicFunction
 import Function.Foundation as Fun
 import json
 import datetime
@@ -182,7 +183,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.actionHelp.triggered.connect(self.showDialog)
         self.actionsetting.triggered.connect(self.showDialog)
         self.Funtionlist.clicked.connect(self.showDialog)
-        self.DebugButton.clicked.connect(self.showDialog)
         self.Screptrun_2.clicked.connect(self.showDialog)
         self.FuncStopButton.clicked.connect(self.showDialog)
         self.AllstopButton.clicked.connect(self.showDialog)
@@ -193,7 +193,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.FRWidge.clicked.connect(self.showDialog)
         self.FightcomboBox_2.currentIndexChanged.connect(self.showDialog)
         self.FightcomboBox_4.currentIndexChanged.connect(self.showDialog)
-        #self.pushButton_2.clicked.connect(self.showDialog)
+        #self.DebugButton.clicked.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
@@ -203,10 +203,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.chooseSignal.emit('setting')
         elif sender == self.Funtionlist:
             self.change_Page()
-        elif sender == self.DebugButton:
-            self.SetScreenfuntion()
-            x=Debugfunction()
-            x.debugLog()
         elif sender == self.Screptrun_2:
             self.Info_broswer.setText("腳本執行中")
             x=RunFunction()
@@ -232,14 +228,20 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         elif sender == self.FightcomboBox_4:
             Fun.challenge = self.FightcomboBox_4.currentText()
             self.ReadMap()
-        #elif sender == self.pushButton_2:
-            #if Fun.DCBOT_EN == True:
-                #DET = GetBlockDET()
-                #if DET.FuncBlockPicDet() == True:
-                #    DET.SysGetPic()
-                #    DET.DC_Get_Verify()
-            #else:
-                #print("no Function")
+        #elif sender == self.DebugButton:
+        #   if Fun.DCBOT_EN == True:
+        #       DET = GetPicFunction()
+        #       DET2 = GetBlockDET()
+        #       Picture = cv2.imread('./systemdata/img/systemimg/BLOCK.PNG')
+        #       if DET.PicDetTF(Picture) == True:
+        #           DET2.SysGetPic()
+        #           DET2.DC_Get_Verify()
+        #    else:
+        #       print("no Function")
+        #elif sender == self.DebugButton:
+        #    self.SetScreenfuntion()
+        #    x=Debugfunction()
+        #    x.debugLog()
                        
 
     def default(self):#框架預設#最初全域變數歸檔
@@ -251,23 +253,25 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Fun.DCBOT_Token = savedata['Bot']['TOKEN']
         Fun.DCBOT_ChannalID = savedata['Bot']['Channal_ID']
         self.Times_spinBox_2.setValue(savedata['function1']['FightCount'])
-        self.Times_spinBox_3.setValue(savedata['function2']['FightCount'])
-        self.Times_spinBox_5.setValue(savedata['function3']['FightCount'])
         self.Page1.show() 
         self.Page2.hide()
         self.Page3.hide()
+        self.Page4.hide()
 
     def change_Page(self):
         text = self.Funtionlist.currentItem().text()
         self.Page1.hide()
         self.Page2.hide()
         self.Page3.hide()
+        self.Page4.hide()
         if text == "轉世":
             self.Page1.show()
         if text == "十天眾天使關":
             self.Page2.show()
         if text == "刷巴哈角":
             self.Page3.show()
+        if text == "古戰場":
+            self.Page4.show()
 
     def settingtext(self):
         Fun.Function1FightCount = self.Times_spinBox_2.value()
@@ -278,8 +282,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
     def SaveFile(self):
         Fun.Function1FightCount = self.Times_spinBox_2.value()
-        Fun.Function2FightCount = self.Times_spinBox_3.value()
-        Fun.Function3FightCount = self.Times_spinBox_5.value()
+        Fun.Function2FightCount = self.Times_spinBox_2.value()
+        Fun.Function3FightCount = self.Times_spinBox_2.value()
         Savedata = {}
         Savedata['function1'] = {'FightCount': Fun.Function1FightCount, 'TypeSelect': 0}
         Savedata['function2'] = {'FightCount': Fun.Function2FightCount, 'TypeSelect': 0}
@@ -323,6 +327,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             else:
                 self.WindowsComboBox.addItem(t)
             print (t)
+        self.WindowsComboBox.addItem("自動人 我的超人")
         try:
             windowsgetstr = self.WindowsComboBox.currentText()
             Fun.WindowsHandle = win32gui.FindWindow(None, windowsgetstr)

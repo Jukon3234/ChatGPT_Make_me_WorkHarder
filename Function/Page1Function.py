@@ -68,7 +68,6 @@ class RunFunction:
                         #等畫面看到title
                         Picture = cv2.imread("./systemdata/img/systemimg/Title.PNG")
                         x.LoopWait(Picture)
-
                         #找到關卡
                         Picture = Fun.ReadArcarumPIC
                         x.ClickPIC(Picture)
