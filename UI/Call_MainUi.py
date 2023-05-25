@@ -34,6 +34,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.default()
         self.SetArcarumPIC()
         self.GetScreenFunc()
+        self.initTable()
         
 
     def initUiindex(self):#UI框架基礎設定
@@ -172,21 +173,19 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             SetComboBox3()
 
         img = img.scaled(150,80)
-        Img_areascene.addPixmap(img)
-        self.graphicsView.setScene(Img_areascene)
+        self.PicLable.setPixmap(img)
         img2 = img2.scaled(int(img2W),int(img2H))
-        Img_areascene2.addPixmap(img2)
-        self.graphicsView_2.setScene(Img_areascene2)
+        self.PicLable_2.setPixmap(img2)
 
 
     def initbuttonUI(self):#按鈕設定
         self.actionHelp.triggered.connect(self.showDialog)
         self.actionsetting.triggered.connect(self.showDialog)
         self.Funtionlist.clicked.connect(self.showDialog)
-        self.Screptrun_2.clicked.connect(self.showDialog)
+        self.Screptrun.clicked.connect(self.showDialog)
         self.FuncStopButton.clicked.connect(self.showDialog)
         self.AllstopButton.clicked.connect(self.showDialog)
-        self.SetButton_2.clicked.connect(self.showDialog)
+        self.SetButton.clicked.connect(self.showDialog)
         self.Times_spinBox_2.valueChanged.connect(self.showDialog)
         self.WindowsComboBox.currentIndexChanged.connect(self.showDialog)
         self.PositionButton.clicked.connect(self.showDialog)
@@ -194,6 +193,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.FightcomboBox_2.currentIndexChanged.connect(self.showDialog)
         self.FightcomboBox_4.currentIndexChanged.connect(self.showDialog)
         #self.DebugButton.clicked.connect(self.showDialog)
+        self.AddButton.clicked.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
@@ -203,14 +203,14 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.chooseSignal.emit('setting')
         elif sender == self.Funtionlist:
             self.change_Page()
-        elif sender == self.Screptrun_2:
+        elif sender == self.Screptrun:
             self.Info_broswer.setText("腳本執行中")
             x=RunFunction()
             x.RunFGscrept()
         elif sender == self.FuncStopButton or sender == self.AllstopButton:
             Fun.StopFunction = True
             self.Info_broswer.clear()
-        elif sender == self.SetButton_2:
+        elif sender == self.SetButton:
             self.SaveFile()
         elif sender == self.Times_spinBox_2:
             self.settingtext()
@@ -228,6 +228,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         elif sender == self.FightcomboBox_4:
             Fun.challenge = self.FightcomboBox_4.currentText()
             self.ReadMap()
+        elif sender == self.AddButton:
+            self.addRow()
         #elif sender == self.DebugButton:
         #   if Fun.DCBOT_EN == True:
         #       DET = GetPicFunction()
@@ -253,25 +255,26 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Fun.DCBOT_Token = savedata['Bot']['TOKEN']
         Fun.DCBOT_ChannalID = savedata['Bot']['Channal_ID']
         self.Times_spinBox_2.setValue(savedata['function1']['FightCount'])
+        self.PageTitle.setText("轉世")
         self.Page1.show() 
         self.Page2.hide()
-        self.Page3.hide()
-        self.Page4.hide()
 
     def change_Page(self):
         text = self.Funtionlist.currentItem().text()
         self.Page1.hide()
         self.Page2.hide()
-        self.Page3.hide()
-        self.Page4.hide()
         if text == "轉世":
+            self.PageTitle.setText("轉世")
             self.Page1.show()
         if text == "十天眾天使關":
+            self.PageTitle.setText("十天眾天使關")
             self.Page2.show()
         if text == "刷巴哈角":
-            self.Page3.show()
+            self.PageTitle.setText("刷巴哈角")
+            self.Page2.show()
         if text == "古戰場":
-            self.Page4.show()
+            self.PageTitle.setText("古戰場")
+            self.Page2.show()
 
     def settingtext(self):
         Fun.Function1FightCount = self.Times_spinBox_2.value()
@@ -282,12 +285,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
     def SaveFile(self):
         Fun.Function1FightCount = self.Times_spinBox_2.value()
-        Fun.Function2FightCount = self.Times_spinBox_2.value()
-        Fun.Function3FightCount = self.Times_spinBox_2.value()
         Savedata = {}
         Savedata['function1'] = {'FightCount': Fun.Function1FightCount, 'TypeSelect': 0}
-        Savedata['function2'] = {'FightCount': Fun.Function2FightCount, 'TypeSelect': 0}
-        Savedata['function3'] = {'FightCount': Fun.Function3FightCount, 'TypeSelect': 0}
         Savedata['Bot'] = {'TOKEN': Fun.DCBOT_Token,'Channal_ID': Fun.DCBOT_ChannalID,'Enabled' : Fun.DCBOT_EN}
 
         with open('systemdata/datasave/data.json', 'w') as datafile:
@@ -517,3 +516,25 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                 print(f"Map:{Fun.Map}-{Fun.challenge}")
         else:
             print("Error")
+
+    def initTable(self):
+
+        self.tableWidget.setColumnCount(6)
+        self.tableWidget.setRowCount(0)
+           # 添加下拉选项列 
+        for i in range(6):
+            for j in range(3):
+                combo_box = QComboBox()
+                combo_box.addItems(["Option 1", "Option 2", "Option 3"])
+                self.tableWidget.setCellWidget(j, i, combo_box)
+
+    def addRow(self):
+        # 在表格中新增一行
+        row_count = self.tableWidget.rowCount()
+        self.tableWidget.setRowCount(row_count + 1)
+
+        # 添加下拉选项列
+        for col in range(5):
+            combo_box = QComboBox()
+            combo_box.addItems(["Option 1", "Option 2", "Option 3"])
+            self.tableWidget.setCellWidget(row_count, col, combo_box)

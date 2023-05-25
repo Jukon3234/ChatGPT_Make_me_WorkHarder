@@ -51,8 +51,6 @@ class SettingPageWindow(QWidget,Ui_Setting):
         Fun.DCBOT_ChannalID = self.DC_CHID.text()
         Savedata = {}
         Savedata['function1'] = {'FightCount': Fun.Function1FightCount, 'TypeSelect': 0}
-        Savedata['function2'] = {'FightCount': Fun.Function2FightCount, 'TypeSelect': 0}
-        Savedata['function3'] = {'FightCount': Fun.Function3FightCount, 'TypeSelect': 0}
         Savedata['Bot'] = {'TOKEN': Fun.DCBOT_Token,'Channal_ID': Fun.DCBOT_ChannalID,'Enabled' : Fun.DCBOT_EN}
         with open('systemdata/datasave/data.json', 'w') as datafile:
             json.dump(Savedata,datafile)
