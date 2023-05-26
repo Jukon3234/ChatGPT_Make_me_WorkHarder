@@ -194,6 +194,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.FightcomboBox_4.currentIndexChanged.connect(self.showDialog)
         #self.DebugButton.clicked.connect(self.showDialog)
         self.AddButton.clicked.connect(self.showDialog)
+        self.DelButton.clicked.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
@@ -230,6 +231,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.ReadMap()
         elif sender == self.AddButton:
             self.addRow()
+        elif sender == self.DelButton:
+            self.delRow()
         #elif sender == self.DebugButton:
         #   if Fun.DCBOT_EN == True:
         #       DET = GetPicFunction()
@@ -538,3 +541,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             combo_box = QComboBox()
             combo_box.addItems(["Option 1", "Option 2", "Option 3"])
             self.tableWidget.setCellWidget(row_count, col, combo_box)
+
+    def delRow(self):
+        # 删除所选行
+        current_row = self.tableWidget.currentRow()
+        if current_row >= 0:
+            self.tableWidget.removeRow(current_row)
