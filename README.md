@@ -29,9 +29,7 @@ README.md ver.0.1.0
 - [ ] 古戰場<BR>
 - [ ] 1T古戰場<BR>
 	
-3.外放 twitter api <- 還沒想法...<BR>
-	
-4.GBF的腳本專用瀏覽器<BR>
+3.GBF的腳本專用瀏覽器<BR>
 - [X] UI架構<BR>
 - [X] UI系統<BR>
 - [X] 初版釋出<BR>
