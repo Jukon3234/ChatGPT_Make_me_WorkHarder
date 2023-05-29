@@ -99,7 +99,7 @@
          </font>
         </property>
         <property name="text">
-         <string>建立自己的DC機器人之後，提供機器人的Token以及房號ID填入對應欄位。</string>
+         <string>建立自己的DC機器人之後，提供機器人的Token以及房號ID填入對應欄位，並按下OK。</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>

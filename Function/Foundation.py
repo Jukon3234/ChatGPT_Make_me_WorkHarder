@@ -12,6 +12,7 @@ DCBOT_EN = False
 locations = []
 ReadArcarumPIC = None#地區圖片
 ReadArcarumLPIC= None#小關圖片
+SommonPic= None#召喚石圖片
 
 HTML_Text = "https://game.granbluefantasy.jp/#top"
 WindowsHandle = 0

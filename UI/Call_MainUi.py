@@ -33,8 +33,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.initbuttonUI()
         self.default()
         self.SetArcarumPIC()
+        self.SetSommonValue()
         self.GetScreenFunc()
-        self.initTable()
         
 
     def initUiindex(self):#UI框架基礎設定
@@ -195,6 +195,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         #self.DebugButton.clicked.connect(self.showDialog)
         self.AddButton.clicked.connect(self.showDialog)
         self.DelButton.clicked.connect(self.showDialog)
+        self.FightcomboBox.currentIndexChanged.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
@@ -233,6 +234,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.addRow()
         elif sender == self.DelButton:
             self.delRow()
+        elif sender == self.FightcomboBox:
+            self.SetSommonValue()
         #elif sender == self.DebugButton:
         #   if Fun.DCBOT_EN == True:
         #       DET = GetPicFunction()
@@ -257,7 +260,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         savedata= json.load(SaveFile)
         Fun.DCBOT_Token = savedata['Bot']['TOKEN']
         Fun.DCBOT_ChannalID = savedata['Bot']['Channal_ID']
-        self.Times_spinBox_2.setValue(savedata['function1']['FightCount'])
+        self.Times_spinBox_2.setValue(savedata['function']['FightCount'])
         self.PageTitle.setText("轉世")
         self.Page1.show() 
         self.Page2.hide()
@@ -289,7 +292,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     def SaveFile(self):
         Fun.Function1FightCount = self.Times_spinBox_2.value()
         Savedata = {}
-        Savedata['function1'] = {'FightCount': Fun.Function1FightCount, 'TypeSelect': 0}
+        Savedata['function'] = {'FightCount': Fun.Function1FightCount, 'TypeSelect': 0}
         Savedata['Bot'] = {'TOKEN': Fun.DCBOT_Token,'Channal_ID': Fun.DCBOT_ChannalID,'Enabled' : Fun.DCBOT_EN}
 
         with open('systemdata/datasave/data.json', 'w') as datafile:
@@ -336,6 +339,54 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             left, top, right, bottom = win32gui.GetWindowRect(Fun.WindowsHandle)
         except:
             print("沒有找到視窗")
+
+    def SetSommonValue(self):
+        Index = self.FightcomboBox.currentIndex()
+        item_count = self.sommonCombox.count()
+        print("Item_Count",item_count)
+        def insertindex():
+            if Index == 6:#特殊
+                self.sommonCombox.addItem("黃龍")
+                self.sommonCombox.addItem("天照")
+                self.sommonCombox.addItem("黑麒麟")
+            else:        
+                self.sommonCombox.addItem("方陣80%")
+                self.sommonCombox.addItem("方陣100%")
+                self.sommonCombox.addItem("方陣120%")
+                self.sommonCombox.addItem("方陣140%")
+                self.sommonCombox.addItem("主神80%")
+                self.sommonCombox.addItem("主神100%")
+                self.sommonCombox.addItem("主神120%")
+                self.sommonCombox.addItem("主神150%")
+                if Index == 0:#火
+                    self.sommonCombox.addItem("濕婆100%")
+                    self.sommonCombox.addItem("濕婆120%")
+                    self.sommonCombox.addItem("濕婆140%")
+                if Index == 1:#水
+                    self.sommonCombox.addItem("歐羅巴100%")
+                    self.sommonCombox.addItem("歐羅巴120%")
+                    self.sommonCombox.addItem("歐羅巴140%")
+                if Index == 2:#風
+                    self.sommonCombox.addItem("軍神120%")
+                    self.sommonCombox.addItem("軍神140%")
+                if Index == 3:#土
+                    self.sommonCombox.addItem("猩猩110%")
+                if Index == 4:#光
+                    self.sommonCombox.addItem("路西法100%")
+                    self.sommonCombox.addItem("路西法150%")
+                    self.sommonCombox.addItem("路西法200UP")
+                if Index == 5:#暗
+                    self.sommonCombox.addItem("巴哈姆特100%")
+                    self.sommonCombox.addItem("巴哈姆特120%")
+                    self.sommonCombox.addItem("巴哈姆特150%")
+                    self.sommonCombox.addItem("巴哈姆特200UP")
+        if item_count == 0:
+            insertindex()
+        else:
+            for i in range(0,item_count):
+                self.sommonCombox.removeItem(0)
+            insertindex()
+
     def Blockdet(slef):
         DET = GetBlockDET()
         if DET.FuncBlockPicDet() == True:
@@ -520,30 +571,17 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         else:
             print("Error")
 
-    def initTable(self):
-
-        self.tableWidget.setColumnCount(6)
-        self.tableWidget.setRowCount(0)
-           # 添加下拉选项列 
-        for i in range(6):
-            for j in range(3):
-                combo_box = QComboBox()
-                combo_box.addItems(["Option 1", "Option 2", "Option 3"])
-                self.tableWidget.setCellWidget(j, i, combo_box)
-
     def addRow(self):
         # 在表格中新增一行
         row_count = self.tableWidget.rowCount()
         self.tableWidget.setRowCount(row_count + 1)
 
-        # 添加下拉选项列
-        for col in range(5):
-            combo_box = QComboBox()
-            combo_box.addItems(["Option 1", "Option 2", "Option 3"])
-            self.tableWidget.setCellWidget(row_count, col, combo_box)
+        # 添加下拉選項列
+        for col in range(6):
+            self.tableWidget.setCellWidget(row_count, col, None)
 
     def delRow(self):
-        # 删除所选行
+        # 删除所選行
         current_row = self.tableWidget.currentRow()
         if current_row >= 0:
             self.tableWidget.removeRow(current_row)
