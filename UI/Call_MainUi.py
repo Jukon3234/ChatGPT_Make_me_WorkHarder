@@ -35,7 +35,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.SetArcarumPIC()
         self.SetSommonValue()
         self.SRadio()
-        self.GetScreenFunc()
+        self.CloseRadio()
         
 
     def initUiindex(self):#UI框架基礎設定
@@ -58,18 +58,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
         #set icon
         self.actionHelp.setIcon(Helpicon)#help
-        for i in range(0, 8):
-            item = self.Funtionlist.item(i)
-            if i == 0:#轉世
-                item.setIcon(Icon_sort30)
-            elif i == 1:#舔關
-                item.setIcon(Icon_sort8) 
-            elif i == 2:#1T天使關
-                item.setIcon(Icon_sort25)
-            elif i == 3:#十天眾天使關
-                item.setIcon(Icon_sort21)
-            elif i == 4:#古戰場
-                item.setIcon(Icon_sort21)
 
     def default(self):#框架預設#最初全域變數歸檔
         if os.path.exists('./systemdata/datasave/data.json'):
@@ -80,6 +68,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Fun.DCBOT_Token = savedata['Bot']['TOKEN']
         Fun.DCBOT_ChannalID = savedata['Bot']['Channal_ID']
         self.Times_spinBox_2.setValue(savedata['function']['FightCount'])
+        self.SaveText.setText("")
         self.PageTitle.setText("轉世")
         self.Arcarum_1.show()
         self.Arcarum_2.show() 
@@ -196,15 +185,15 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     def initbuttonUI(self):#按鈕設定
         self.actionHelp.triggered.connect(self.showDialog)
         self.actionsetting.triggered.connect(self.showDialog)
-        self.Funtionlist.clicked.connect(self.showDialog)
         self.Screptrun.clicked.connect(self.showDialog)
         self.FuncStopButton.clicked.connect(self.showDialog)
         self.AllstopButton.clicked.connect(self.showDialog)
         self.SetButton.clicked.connect(self.showDialog)
         self.Times_spinBox_2.valueChanged.connect(self.showDialog)
-        self.WindowsComboBox.currentIndexChanged.connect(self.showDialog)
+
         self.PositionButton.clicked.connect(self.showDialog)
         self.FRWidge.clicked.connect(self.showDialog)
+        self.FunctionBox.currentIndexChanged.connect(self.showDialog)
         #地區及關卡
         self.FightcomboBox_2.currentIndexChanged.connect(self.showDialog)
         self.FightcomboBox_4.currentIndexChanged.connect(self.showDialog)
@@ -219,6 +208,10 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.HandRadio.toggled.connect(self.showDialog)
         self.TSommonRadio.toggled.connect(self.showDialog)
         self.AutoRadio.toggled.connect(self.showDialog)
+        #結束判定
+        self.OneTradio.toggled.connect(self.showDialog)
+        self.QuestClearradio.toggled.connect(self.showDialog)
+        self.Scoreradio.toggled.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
@@ -226,7 +219,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.chooseSignal.emit('Help')
         elif sender == self.actionsetting:
             self.chooseSignal.emit('setting')
-        elif sender == self.Funtionlist:
+        elif sender == self.FunctionBox:
             self.change_Page()
         elif sender == self.Screptrun:
             self.Info_broswer.setText("腳本執行中")
@@ -238,9 +231,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         elif sender == self.SetButton:
             self.SaveFile()
         elif sender == self.Times_spinBox_2:
-            self.settingtext()
-        elif sender == self.WindowsComboBox:
-            self.SetScreenfuntion()
+            self.settingtext()        
         elif sender == self.PositionButton:
             x=GBFPosition()
             x.postion()
@@ -264,6 +255,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.DelButton.setEnabled(True)
         elif sender == self.ScreptRadio or sender == self.HandRadio or sender == self.TSommonRadio or sender == self.AutoRadio:
             self.SRadio()
+        elif sender == self.Scoreradio or sender == self.OneTradio or sender == self.QuestClearradio:
+            self.CloseRadio()
         #elif sender == self.DebugButton:
         #   if Fun.DCBOT_EN == True:
         #       DET = GetPicFunction()
@@ -280,30 +273,33 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         #    x.debugLog()
 
     def change_Page(self):
-        text = self.Funtionlist.currentItem().text()
+        Type = self.FunctionBox.currentIndex()
         self.Arcarum_1.hide()
         self.Arcarum_2.hide()
         self.Sommon.hide()
-        if text == "轉世":
-            self.PageTitle.setText("轉世")
+        if Type == 0:
+            self.PageTitle.setText("轉世沙盒")
             self.Arcarum_1.show()
             self.Arcarum_2.show()
-        if text == "十天眾天使關":
-            self.PageTitle.setText("十天眾天使關")
+        elif Type == 1:
+            self.PageTitle.setText("外放舔關")
             self.Sommon.show()
-        if text == "刷巴哈角":
-            self.PageTitle.setText("刷巴哈角")
+        elif Type == 2:
+            self.PageTitle.setText("1T天使關")
             self.Sommon.show()
-        if text == "古戰場":
-            self.PageTitle.setText("古戰場")
+        elif Type == 3:
+            self.PageTitle.setText("大天使關")
+            self.Sommon.show()
+        elif Type == 4:
+            self.PageTitle.setText("星之古戰場")
             self.Sommon.show()
 
     def settingtext(self):
         Fun.Function1FightCount = self.Times_spinBox_2.value()
         if Fun.Function1FightCount == 0:
-            self.label_10.setText("Set 無上限")
+            self.label_1.setText("Set 無上限")
         else:
-            self.label_10.setText("Set :"+str(Fun.Function1FightCount))
+            self.label_1.setText("Set :"+str(Fun.Function1FightCount))
 
     def SaveFile(self):
         Fun.Function1FightCount = self.Times_spinBox_2.value()
@@ -313,48 +309,12 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
         with open('systemdata/datasave/data.json', 'w') as datafile:
             json.dump(Savedata,datafile)
-        self.label_10.setText("set成功")
+        self.SaveText.setText("set成功")
         print("set成功")
 
-    def SetScreenfuntion(self):
-        try:
-            windowsgetIndex = self.WindowsComboBox.currentIndex()
-            windowsgetstr = self.WindowsComboBox.currentText()
-            Fun.WindowsHandle = win32gui.FindWindow(None, windowsgetstr)
-            left, top, right, bottom = win32gui.GetWindowRect(Fun.WindowsHandle)
-            posStr1 = str(left).rjust(4)+','+str(top).rjust(4)+','+str(right).rjust(4)+','+str(bottom).rjust(4)
-            print("AppPos: ", posStr1)
-            width = right - left
-            height = bottom - top
-            print(width, height)
-        except:
-            def Mbox(title, text, style):
-                return windll.user32.MessageBoxW(0, text, title, style)
-            Mbox('沒有找到視窗', '請選擇GBF的視窗標題', 0)
 
-    def GetScreenFunc(self):
-        titles = set()
-        def foo(hwnd,mouse):
-            if IsWindow(hwnd) and IsWindowEnabled(hwnd) and IsWindowVisible(hwnd):
-                titles.add(GetWindowText(hwnd))
-        EnumWindows(foo, 0)
-        lt = [t for t in titles if t]
-        lt.sort()
-        print("#Sortting Windows-------------")
-        for t in lt:
-            if t == "GBF Broswers":
-                self.WindowsComboBox.addItem(t)
-                self.WindowsComboBox.setCurrentText(t)
-            else:
-                self.WindowsComboBox.addItem(t)
-            print (t)
-        self.WindowsComboBox.addItem("自動人 我的超人")
-        try:
-            windowsgetstr = self.WindowsComboBox.currentText()
-            Fun.WindowsHandle = win32gui.FindWindow(None, windowsgetstr)
-            left, top, right, bottom = win32gui.GetWindowRect(Fun.WindowsHandle)
-        except:
-            print("沒有找到視窗")
+
+    
 
     def SetSommonValue(self):
         Index = self.FightcomboBox.currentIndex()
@@ -418,6 +378,14 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         elif self.TSommonRadio.isChecked() or self.AutoRadio.isChecked():
             self.AutoGroupBox.setEnabled(False)
             self.UserSetgroupBox.setEnabled(False)
+
+    def CloseRadio(self):
+        if self.OneTradio.isChecked():
+            self.ScoreSpin.setEnabled(False)
+        elif self.QuestClearradio.isChecked():
+            self.ScoreSpin.setEnabled(False)
+        elif self.Scoreradio.isChecked():
+            self.ScoreSpin.setEnabled(True)
 
 
     def ReadMap(self):
