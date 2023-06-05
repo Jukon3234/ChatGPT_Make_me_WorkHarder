@@ -8,8 +8,7 @@ README.md ver.0.1.0
 # GBF_scrept
 	
 歡迎技術及意見交流:
-discord ID: 疾月空#2975
-Skype: live:zzz971504_1
+discord 群聊 : https://discord.gg/4YdgaYMv
 
 僅用於個人Python UI修練
 請不要使用於商業。
