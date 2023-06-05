@@ -34,6 +34,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.default()
         self.SetArcarumPIC()
         self.SetSommonValue()
+        self.SRadio()
         self.GetScreenFunc()
         
 
@@ -69,6 +70,20 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                 item.setIcon(Icon_sort21)
             elif i == 4:#古戰場
                 item.setIcon(Icon_sort21)
+
+    def default(self):#框架預設#最初全域變數歸檔
+        if os.path.exists('./systemdata/datasave/data.json'):
+            SaveFile = open('systemdata/datasave/data.json')
+        else:
+            SaveFile = open('systemdata/datasave/Default.json')
+        savedata= json.load(SaveFile)
+        Fun.DCBOT_Token = savedata['Bot']['TOKEN']
+        Fun.DCBOT_ChannalID = savedata['Bot']['Channal_ID']
+        self.Times_spinBox_2.setValue(savedata['function']['FightCount'])
+        self.PageTitle.setText("轉世")
+        self.Arcarum_1.show()
+        self.Arcarum_2.show() 
+        self.Sommon.hide()
 
     def SetArcarumPIC(self):
         PicGetIndex = self.FightcomboBox_2.currentIndex()
@@ -190,12 +205,20 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.WindowsComboBox.currentIndexChanged.connect(self.showDialog)
         self.PositionButton.clicked.connect(self.showDialog)
         self.FRWidge.clicked.connect(self.showDialog)
+        #地區及關卡
         self.FightcomboBox_2.currentIndexChanged.connect(self.showDialog)
         self.FightcomboBox_4.currentIndexChanged.connect(self.showDialog)
         #self.DebugButton.clicked.connect(self.showDialog)
+        #手動設定腳色腳本
         self.AddButton.clicked.connect(self.showDialog)
         self.DelButton.clicked.connect(self.showDialog)
         self.FightcomboBox.currentIndexChanged.connect(self.showDialog)
+        self.tableWidget.cellClicked.connect(self.showDialog)
+        #執行方式
+        self.ScreptRadio.toggled.connect(self.showDialog)
+        self.HandRadio.toggled.connect(self.showDialog)
+        self.TSommonRadio.toggled.connect(self.showDialog)
+        self.AutoRadio.toggled.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
@@ -234,8 +257,13 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.addRow()
         elif sender == self.DelButton:
             self.delRow()
+            self.DelButton.setEnabled(False)
         elif sender == self.FightcomboBox:
             self.SetSommonValue()
+        elif sender == self.tableWidget:
+            self.DelButton.setEnabled(True)
+        elif sender == self.ScreptRadio or sender == self.HandRadio or sender == self.TSommonRadio or sender == self.AutoRadio:
+            self.SRadio()
         #elif sender == self.DebugButton:
         #   if Fun.DCBOT_EN == True:
         #       DET = GetPicFunction()
@@ -250,37 +278,25 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         #    self.SetScreenfuntion()
         #    x=Debugfunction()
         #    x.debugLog()
-                       
-
-    def default(self):#框架預設#最初全域變數歸檔
-        if os.path.exists('./systemdata/datasave/data.json'):
-            SaveFile = open('systemdata/datasave/data.json')
-        else:
-            SaveFile = open('systemdata/datasave/Default.json')
-        savedata= json.load(SaveFile)
-        Fun.DCBOT_Token = savedata['Bot']['TOKEN']
-        Fun.DCBOT_ChannalID = savedata['Bot']['Channal_ID']
-        self.Times_spinBox_2.setValue(savedata['function']['FightCount'])
-        self.PageTitle.setText("轉世")
-        self.Page1.show() 
-        self.Page2.hide()
 
     def change_Page(self):
         text = self.Funtionlist.currentItem().text()
-        self.Page1.hide()
-        self.Page2.hide()
+        self.Arcarum_1.hide()
+        self.Arcarum_2.hide()
+        self.Sommon.hide()
         if text == "轉世":
             self.PageTitle.setText("轉世")
-            self.Page1.show()
+            self.Arcarum_1.show()
+            self.Arcarum_2.show()
         if text == "十天眾天使關":
             self.PageTitle.setText("十天眾天使關")
-            self.Page2.show()
+            self.Sommon.show()
         if text == "刷巴哈角":
             self.PageTitle.setText("刷巴哈角")
-            self.Page2.show()
+            self.Sommon.show()
         if text == "古戰場":
             self.PageTitle.setText("古戰場")
-            self.Page2.show()
+            self.Sommon.show()
 
     def settingtext(self):
         Fun.Function1FightCount = self.Times_spinBox_2.value()
@@ -343,7 +359,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     def SetSommonValue(self):
         Index = self.FightcomboBox.currentIndex()
         item_count = self.sommonCombox.count()
-        print("Item_Count",item_count)
         def insertindex():
             if Index == 6:#特殊
                 self.sommonCombox.addItem("黃龍")
@@ -392,7 +407,18 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         if DET.FuncBlockPicDet() == True:
             DET.SysGetPic()
             DET.DC_Get_Verify()
-            time.sleep(3)
+    
+    def SRadio(self):
+        if self.ScreptRadio.isChecked():
+            self.AutoGroupBox.setEnabled(True)
+            self.UserSetgroupBox.setEnabled(False)
+        elif self.HandRadio.isChecked():
+            self.UserSetgroupBox.setEnabled(True)
+            self.AutoGroupBox.setEnabled(False)
+        elif self.TSommonRadio.isChecked() or self.AutoRadio.isChecked():
+            self.AutoGroupBox.setEnabled(False)
+            self.UserSetgroupBox.setEnabled(False)
+
 
     def ReadMap(self):
         if Fun.Map == "1":

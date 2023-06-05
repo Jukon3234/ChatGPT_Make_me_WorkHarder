@@ -107,6 +107,6 @@ class Ui_Setting(object):
         self.OKButton.setText(_translate("Setting", "OK"))
         self.CancelButton.setText(_translate("Setting", "Cancel"))
         self.groupBox.setTitle(_translate("Setting", "Discord BOT 通風報信"))
-        self.label_3.setText(_translate("Setting", "建立自己的DC機器人之後，提供機器人的Token以及房號ID填入對應欄位。"))
+        self.label_3.setText(_translate("Setting", "建立自己的DC機器人之後，提供機器人的Token以及房號ID填入對應欄位，並按下OK。"))
         self.label.setText(_translate("Setting", "Token"))
         self.label_2.setText(_translate("Setting", "ID"))
