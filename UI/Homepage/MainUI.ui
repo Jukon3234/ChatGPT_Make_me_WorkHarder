@@ -172,6 +172,9 @@
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
+               <property name="handleWidth">
+                <number>4</number>
+               </property>
                <widget class="QGroupBox" name="groupBox_6">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
@@ -195,7 +198,7 @@
                 </property>
                 <layout class="QGridLayout" name="gridLayout_5">
                  <property name="leftMargin">
-                  <number>3</number>
+                  <number>0</number>
                  </property>
                  <property name="topMargin">
                   <number>3</number>
@@ -206,9 +209,31 @@
                  <property name="bottomMargin">
                   <number>0</number>
                  </property>
-                 <property name="spacing">
-                  <number>3</number>
+                 <property name="horizontalSpacing">
+                  <number>0</number>
                  </property>
+                 <property name="verticalSpacing">
+                  <number>1</number>
+                 </property>
+                 <item row="2" column="3" alignment="Qt::AlignLeft">
+                  <widget class="QPushButton" name="FRWidge">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>23</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>調整視窗大小</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="2" column="0">
                   <widget class="QPushButton" name="DebugButton">
                    <property name="sizePolicy">
@@ -261,10 +286,10 @@
                    </attribute>
                   </widget>
                  </item>
-                 <item row="1" column="0" colspan="4">
+                 <item row="1" column="0" colspan="7">
                   <widget class="QGroupBox" name="Page1">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                      <horstretch>0</horstretch>
                      <verstretch>10</verstretch>
                     </sizepolicy>
@@ -291,8 +316,11 @@
                     <property name="bottomMargin">
                      <number>3</number>
                     </property>
-                    <property name="spacing">
-                     <number>5</number>
+                    <property name="horizontalSpacing">
+                     <number>4</number>
+                    </property>
+                    <property name="verticalSpacing">
+                     <number>2</number>
                     </property>
                     <item row="2" column="1">
                      <widget class="QGroupBox" name="Arcarum_2">
@@ -736,7 +764,10 @@
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
-                       <property name="spacing">
+                       <property name="horizontalSpacing">
+                        <number>6</number>
+                       </property>
+                       <property name="verticalSpacing">
                         <number>0</number>
                        </property>
                        <item row="0" column="0">
@@ -824,8 +855,15 @@
                          </item>
                         </widget>
                        </item>
-                       <item row="1" column="0" colspan="2" alignment="Qt::AlignLeft">
-                        <widget class="QComboBox" name="sommonCombox"/>
+                       <item row="0" column="2">
+                        <widget class="QComboBox" name="sommonCombox">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                        </widget>
                        </item>
                       </layout>
                      </widget>
@@ -833,7 +871,7 @@
                    </layout>
                   </widget>
                  </item>
-                 <item row="0" column="0" colspan="4">
+                 <item row="0" column="0" colspan="7">
                   <widget class="QGroupBox" name="groupBox_4">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -1013,7 +1051,7 @@
                    </layout>
                   </widget>
                  </item>
-                 <item row="2" column="1">
+                 <item row="2" column="1" alignment="Qt::AlignLeft">
                   <widget class="QPushButton" name="AllstopButton">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1065,27 +1103,8 @@
                    </attribute>
                   </widget>
                  </item>
-                 <item row="2" column="2">
+                 <item row="2" column="2" alignment="Qt::AlignLeft">
                   <widget class="QPushButton" name="PositionButton">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>100</width>
-                     <height>23</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>環境設定</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="3">
-                  <widget class="QPushButton" name="FRWidge">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -1099,7 +1118,7 @@
                     </size>
                    </property>
                    <property name="text">
-                    <string>調整視窗大小</string>
+                    <string>環境設定</string>
                    </property>
                   </widget>
                  </item>
@@ -2336,7 +2355,7 @@
                    </layout>
                   </widget>
                  </item>
-                 <item row="1" column="0" alignment="Qt::AlignLeft">
+                 <item row="1" column="0">
                   <widget class="QGroupBox" name="UserSetgroupBox">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
