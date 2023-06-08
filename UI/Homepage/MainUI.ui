@@ -749,59 +749,28 @@
                        </size>
                       </property>
                       <property name="title">
-                       <string>召喚石選擇(通用)</string>
+                       <string>關卡設定(通用)</string>
                       </property>
                       <layout class="QGridLayout" name="gridLayout_23">
                        <property name="leftMargin">
-                        <number>0</number>
+                        <number>3</number>
                        </property>
                        <property name="topMargin">
-                        <number>0</number>
+                        <number>3</number>
                        </property>
                        <property name="rightMargin">
-                        <number>0</number>
+                        <number>3</number>
                        </property>
                        <property name="bottomMargin">
+                        <number>3</number>
+                       </property>
+                       <property name="spacing">
                         <number>0</number>
                        </property>
-                       <property name="horizontalSpacing">
-                        <number>6</number>
-                       </property>
-                       <property name="verticalSpacing">
-                        <number>0</number>
-                       </property>
-                       <item row="0" column="0">
-                        <widget class="QLabel" name="label_22">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                           <horstretch>1</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>57</width>
-                           <height>40</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string>召喚石</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="1" alignment="Qt::AlignLeft">
+                       <item row="1" column="3" alignment="Qt::AlignLeft">
                         <widget class="QComboBox" name="FightcomboBox">
                          <property name="sizePolicy">
-                          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                            <horstretch>0</horstretch>
                            <verstretch>1</verstretch>
                           </sizepolicy>
@@ -814,8 +783,8 @@
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>57</width>
-                           <height>25</height>
+                           <width>16777215</width>
+                           <height>16777215</height>
                           </size>
                          </property>
                          <item>
@@ -855,7 +824,35 @@
                          </item>
                         </widget>
                        </item>
-                       <item row="0" column="2">
+                       <item row="1" column="1">
+                        <widget class="QLabel" name="label_22">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                           <horstretch>1</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>召喚石</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="4">
                         <widget class="QComboBox" name="sommonCombox">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -863,6 +860,38 @@
                            <verstretch>0</verstretch>
                           </sizepolicy>
                          </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="1">
+                        <widget class="QLabel" name="label_3">
+                         <property name="text">
+                          <string>外放欄位</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="3">
+                        <widget class="QComboBox" name="comboBox">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <item>
+                          <property name="text">
+                           <string>1</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>2</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>3</string>
+                          </property>
+                         </item>
                         </widget>
                        </item>
                       </layout>
@@ -2089,6 +2118,110 @@
                        <property name="spacing">
                         <number>3</number>
                        </property>
+                       <item row="3" column="2">
+                        <widget class="QSpinBox" name="spinBox_21">
+                         <property name="buttonSymbols">
+                          <enum>QAbstractSpinBox::UpDownArrows</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="2">
+                        <widget class="QSpinBox" name="spinBox_22">
+                         <property name="buttonSymbols">
+                          <enum>QAbstractSpinBox::UpDownArrows</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="3" column="1">
+                        <widget class="QComboBox" name="comboBox_119">
+                         <property name="maximumSize">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                         <item>
+                          <property name="text">
+                           <string>N</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>1</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>2</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>3</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>4</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>5</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>6</string>
+                          </property>
+                         </item>
+                        </widget>
+                       </item>
+                       <item row="2" column="1">
+                        <widget class="QComboBox" name="comboBox_118">
+                         <property name="maximumSize">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                         <item>
+                          <property name="text">
+                           <string>N</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>1</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>2</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>3</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>4</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>5</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>6</string>
+                          </property>
+                         </item>
+                        </widget>
+                       </item>
                        <item row="0" column="0">
                         <widget class="QCheckBox" name="checkBox_111">
                          <property name="maximumSize">
@@ -2186,13 +2319,6 @@
                          </item>
                         </widget>
                        </item>
-                       <item row="1" column="2">
-                        <widget class="QSpinBox" name="spinBox_23">
-                         <property name="buttonSymbols">
-                          <enum>QAbstractSpinBox::UpDownArrows</enum>
-                         </property>
-                        </widget>
-                       </item>
                        <item row="1" column="1">
                         <widget class="QComboBox" name="comboBox_117">
                          <property name="maximumSize">
@@ -2238,105 +2364,8 @@
                          </item>
                         </widget>
                        </item>
-                       <item row="3" column="1">
-                        <widget class="QComboBox" name="comboBox_119">
-                         <property name="maximumSize">
-                          <size>
-                           <width>40</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                         <item>
-                          <property name="text">
-                           <string>N</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>1</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>2</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>3</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>4</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>5</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>6</string>
-                          </property>
-                         </item>
-                        </widget>
-                       </item>
-                       <item row="2" column="1">
-                        <widget class="QComboBox" name="comboBox_118">
-                         <property name="maximumSize">
-                          <size>
-                           <width>40</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                         <item>
-                          <property name="text">
-                           <string>N</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>1</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>2</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>3</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>4</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>5</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>6</string>
-                          </property>
-                         </item>
-                        </widget>
-                       </item>
-                       <item row="3" column="2">
-                        <widget class="QSpinBox" name="spinBox_21">
-                         <property name="buttonSymbols">
-                          <enum>QAbstractSpinBox::UpDownArrows</enum>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="2" column="2">
-                        <widget class="QSpinBox" name="spinBox_22">
+                       <item row="1" column="2">
+                        <widget class="QSpinBox" name="spinBox_23">
                          <property name="buttonSymbols">
                           <enum>QAbstractSpinBox::UpDownArrows</enum>
                          </property>

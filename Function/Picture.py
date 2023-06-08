@@ -54,7 +54,7 @@ class GetPicFunction:
             if self.PicDetTF(Picture) == True:
                 break
             else:
-                time.sleep(0.5)  # 等待0.5秒后再次检测
+                time.sleep(0.5)  # 等待0.5秒后再次檢測
 
 
     def PicDetTF(self,Picture):#檢測圖是否存在
@@ -88,4 +88,4 @@ class GetPicFunction:
                 if self.PicDetTF(Picture) == True:
                     break
                 else:
-                    time.sleep(0.5)  # 等待0.5秒后再次检测
+                    time.sleep(0.5)  # 等待0.5秒后再次檢測

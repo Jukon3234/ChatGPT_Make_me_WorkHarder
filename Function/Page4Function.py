@@ -4,6 +4,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from Function.Picture import GetPicFunction
 import cv2
 import os
 import sys
@@ -14,7 +15,7 @@ import time
 import win32gui
 import pyperclip
 
-#刷巴哈角頁面內容
+#外放舔關內容
 #1.該模式為接外放
 #2.接外放有兩種模式可以選擇，1T mode 及 貢獻mode
 #3.請預先測試過隊伍沒問題在使用腳本
@@ -33,6 +34,7 @@ class RunFunction4:
         print("RunFlag: ", Fun.RunFlag)    
     #====================================function
     def RunFGscrept(self):
+        x = GetPicFunction()
         if Fun.RunFlag == False:
             Fun.RunFlag = True
             Fun.StopFunction = False
@@ -60,14 +62,14 @@ class RunFunction4:
                             Picture=cv2.imread("./systemdata/img/systemimg/Arcarum.PNG")
                             Flag = True
                             while(Flag):
-                                lox,loy = self.PicDet(Picture)
+                                lox,loy = x.PicDet(Picture)
                                 if any(lox):
                                     pyautogui.click(lox+50,loy+55)
                                     Flag=False
                                     time.sleep(0.5)
                                 else:
                                     pyautogui.scroll(-12)
-                            self.GoHome()
+                            x.GoHome()
 
                             time.sleep(1)
 
@@ -84,29 +86,5 @@ class RunFunction4:
             functionthread = Thread(target=GBFloop)
             functionthread.setDaemon(True)
             functionthread.start()
-    def GoHome(self):
-        Picture=cv2.imread("./systemdata/img/systemimg/home.PNG")
-        lox,loy = self.PicDet(Picture)
-        pyautogui.click(lox+50,loy+55)
-    
-    def PicDet(self,Picture):#檢測圖位置
-        window_rect = win32gui.GetWindowRect(Fun.WindowsHandle)
-        x, y, width, height = window_rect
-        print("Fun.WindowsHandle: ",Fun.WindowsHandle)
-        screen = QApplication.primaryScreen()
-        Fun.capture = screen.grabWindow(Fun.WindowsHandle)
-        Fun.capture.save("./systemdata/img/systemimg/screenshot.png")
-        PicCapture = cv2.imread("./systemdata/img/systemimg/screenshot.png")
-
-        result = cv2.matchTemplate(PicCapture, Picture, cv2.TM_CCOEFF_NORMED)
-        threshold = 0.9
-        locations = np.where(result >= threshold)
-        Xmatch_locations = []
-        Ymatch_locations = []
-        for pt in zip(*locations[::-1]):
-            Xmatch_locations.append(pt[0] + x)
-            Ymatch_locations.append(pt[1] + y)
-        print("PIClocations:", Xmatch_locations[0],Ymatch_locations[0])
-        return Xmatch_locations[0],Ymatch_locations[0]
         
    

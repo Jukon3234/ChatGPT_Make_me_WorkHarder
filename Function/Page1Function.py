@@ -72,7 +72,7 @@ class RunFunction:
                         Picture = Fun.ReadArcarumPIC
                         x.ClickPIC(Picture)
                         
-                        #self.GoHome()
+                        #x.GoHome()
                         time.sleep(1)
                         print("stopfunction=",Fun.StopFunction)
                         print("Function1FightCount=",Fun.Function1FightCount)
