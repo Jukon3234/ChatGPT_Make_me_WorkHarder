@@ -1,4 +1,3 @@
-from threading import Thread
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
@@ -37,26 +36,7 @@ class GetPicFunction:
             return Xmatch_locations[0],Ymatch_locations[0]            
         else: 
             return None,None
-    
-    def ClickPIC(self,Picture):
-        while not Fun.StopFunction:
-            lox,loy = self.PicDet(Picture)
-            if lox == None:
-                pyautogui.scroll(-200)
-            else:                                
-                pyautogui.click(lox+50,loy+55)
-                break
-                time.sleep(0.5)
-    
-    def LoopWait(self,Picture):
-        #連續偵測是否已經轉到畫面            
-        while True:
-            if self.PicDetTF(Picture) == True:
-                break
-            else:
-                time.sleep(0.5)  # 等待0.5秒后再次檢測
-
-
+            
     def PicDetTF(self,Picture):#檢測圖是否存在
         window_rect = win32gui.GetWindowRect(Fun.WindowsHandle)
         x, y, width, height = window_rect
@@ -72,20 +52,3 @@ class GetPicFunction:
             return True            
         else: 
             return False
-        
-    def GoHome(self):
-        Picture=cv2.imread("./systemdata/img/systemimg/home.PNG")
-        lox,loy = self.PicDet(Picture)
-        pyautogui.click(lox+50,loy+55)
-
-    def HomepageCheck(self):
-        #確認進場前為主畫面
-        Picture = cv2.imread("./systemdata/img/systemimg/Top.PNG")
-        if self.PicDetTF(Picture) == False:
-            self.GoHome()
-            #連續偵測是否已經轉到畫面            
-            while True:
-                if self.PicDetTF(Picture) == True:
-                    break
-                else:
-                    time.sleep(0.5)  # 等待0.5秒后再次檢測

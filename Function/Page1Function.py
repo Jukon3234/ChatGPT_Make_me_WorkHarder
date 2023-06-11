@@ -2,6 +2,7 @@
 from threading import Thread
 from Function.DiscordBlockDet import GetBlockDET
 from Function.Picture import GetPicFunction
+from Function.Action import FCAction
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
@@ -38,9 +39,8 @@ class RunFunction:
         if Fun.RunFlag == False:
             Fun.RunFlag = True
             Fun.StopFunction = False
-            x = GetPicFunction()
-            x.HomepageCheck()
-            #找到主畫面時
+            x = FCAction()
+            x.HomepageCheck()#確認主畫面            
             if Fun.Function1FightCount == 0:
                 #無限迴圈
                 def GBFloop():
@@ -59,9 +59,7 @@ class RunFunction:
                 def GBFloop():
                     for i in range(Fun.Function1FightCount):
                         C=i+1
-                        TC=Fun.Function1FightCount                            
-                        print(f"test run run run: {C}/{TC}")                        
-                                
+                        TC=Fun.Function1FightCount 
                         #找到轉世                        
                         Picture = cv2.imread("./systemdata/img/systemimg/Arcarum.PNG")                                                
                         x.ClickPIC(Picture)
@@ -77,6 +75,7 @@ class RunFunction:
                         print("stopfunction=",Fun.StopFunction)
                         print("Function1FightCount=",Fun.Function1FightCount)
                         if Fun.StopFunction:
+                            Fun.RunFlag = False
                             break
                     Fun.RunFlag = False
         
