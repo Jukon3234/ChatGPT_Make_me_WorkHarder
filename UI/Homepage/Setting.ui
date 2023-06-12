@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>502</width>
-    <height>244</height>
+    <height>270</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -63,6 +63,11 @@
           <width>16777215</width>
           <height>16777215</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>執行視窗選擇</string>
@@ -151,7 +156,7 @@
           </property>
           <property name="font">
            <font>
-            <pointsize>14</pointsize>
+            <pointsize>15</pointsize>
            </font>
           </property>
           <property name="text">
@@ -275,25 +280,9 @@
    <item row="5" column="0" colspan="2">
     <widget class="QGroupBox" name="groupBox_3">
      <property name="title">
-      <string>偏移量設定</string>
+      <string>擬人化偏移量設定</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="0" column="3">
-       <widget class="QLabel" name="label_6">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Y</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="1">
        <widget class="QLabel" name="label_5">
         <property name="sizePolicy">
@@ -304,6 +293,22 @@
         </property>
         <property name="text">
          <string>X</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="label_6">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Y</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -349,7 +354,14 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item row="2" column="1">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>step</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
        <widget class="QLabel" name="label_7">
         <property name="font">
          <font>
@@ -357,29 +369,54 @@
          </font>
         </property>
         <property name="text">
-         <string>Delay正負偏差值(ms)</string>
+         <string>延遲正負偏差值(ms)</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QLabel" name="label_8">
-        <property name="text">
-         <string>step</string>
-        </property>
-       </widget>
+      <item row="2" column="2">
+       <widget class="QSpinBox" name="StepPMData"/>
       </item>
-      <item row="1" column="3">
+      <item row="2" column="3">
        <widget class="QLabel" name="label_9">
         <property name="text">
          <string>Round</string>
         </property>
        </widget>
       </item>
+      <item row="2" column="4">
+       <widget class="QSpinBox" name="RoundPMData"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_11">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>出擊延遲(ms)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>step</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLabel" name="label_12">
+        <property name="text">
+         <string>Round</string>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="2">
-       <widget class="QSpinBox" name="spinBox"/>
+       <widget class="QSpinBox" name="DelayStep"/>
       </item>
       <item row="1" column="4">
-       <widget class="QSpinBox" name="spinBox_2"/>
+       <widget class="QSpinBox" name="DelayRound"/>
       </item>
      </layout>
     </widget>

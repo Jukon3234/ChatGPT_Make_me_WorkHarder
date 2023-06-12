@@ -69,7 +69,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Fun.DCBOT_ChannalID = savedata['Bot']['Channal_ID']
         self.Times_spinBox_2.setValue(savedata['function']['FightCount'])
         self.SaveText.setText("")
-        self.PageTitle.setText("轉世")
+        self.PageTitle.setText("轉世沙盒")
         self.Arcarum_1.show()
         self.Arcarum_2.show() 
         self.Sommon.hide()
@@ -191,6 +191,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.SetButton.clicked.connect(self.showDialog)
         self.Times_spinBox_2.valueChanged.connect(self.showDialog)
 
+        #換頁
+        self.tabWidget.currentChanged.connect(self.showDialog)
+
         self.PositionButton.clicked.connect(self.showDialog)
         self.FRWidge.clicked.connect(self.showDialog)
         self.FunctionBox.currentIndexChanged.connect(self.showDialog)
@@ -257,6 +260,14 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.SRadio()
         elif sender == self.Scoreradio or sender == self.OneTradio or sender == self.QuestClearradio:
             self.CloseRadio()
+        elif sender == self.tabWidget:
+            current_index = self.tabWidget.currentIndex()
+            if current_index == 0:
+                self.change_Page()
+            elif current_index == 1:
+                self.PageTitle.setText("自訂點擊")
+                
+
         #elif sender == self.DebugButton:
         #   if Fun.DCBOT_EN == True:
         #       DET = GetPicFunction()
