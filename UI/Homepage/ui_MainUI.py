@@ -1462,7 +1462,7 @@ class Ui_GBF_MAIN(object):
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(GBF_MAIN)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(GBF_MAIN)
 
     def retranslateUi(self, GBF_MAIN):

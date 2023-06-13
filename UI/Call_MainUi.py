@@ -226,9 +226,12 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         elif sender == self.FunctionBox:
             self.change_Page()
         elif sender == self.Screptrun:
-            self.Info_broswer.setText("腳本執行中")
-            x=RunFunction()
-            x.RunFGscrept()
+            if Fun.TabPage == 0:
+                self.Info_broswer.setText("腳本執行中")
+                x=RunFunction()
+                x.RunFGscrept()
+            elif Fun.TabPage == 1:
+                print("執行Page2的 Funciton")
         elif sender == self.FuncStopButton or sender == self.AllstopButton:
             Fun.StopFunction = True
             self.Info_broswer.clear()
@@ -265,8 +268,10 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             current_index = self.tabWidget.currentIndex()
             if current_index == 0:
                 self.change_Page()
+                Fun.TabPage = 0
             elif current_index == 1:
-                self.PageTitle.setText("自訂點擊") 
+                self.PageTitle.setText("自訂點擊")
+                Fun.TabPage = 1
         #elif sender == self.DebugButton:
         #    x=FCAction()
         #    x.MoveCurtoGamePage()
