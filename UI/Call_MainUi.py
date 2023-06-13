@@ -22,6 +22,7 @@ import win32gui
 import os
 import pyautogui as pag
 import cv2
+from Function.Action import FCAction
 
 class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     chooseSignal = pyqtSignal(str)
@@ -265,10 +266,10 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             if current_index == 0:
                 self.change_Page()
             elif current_index == 1:
-                self.PageTitle.setText("自訂點擊")
-                
-
+                self.PageTitle.setText("自訂點擊") 
         #elif sender == self.DebugButton:
+        #    x=FCAction()
+        #    x.MoveCurtoGamePage()
         #   if Fun.DCBOT_EN == True:
         #       DET = GetPicFunction()
         #       DET2 = GetBlockDET()

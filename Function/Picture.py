@@ -40,7 +40,7 @@ class GetPicFunction:
     def PicDetTF(self,Picture):#檢測圖是否存在
         window_rect = win32gui.GetWindowRect(Fun.WindowsHandle)
         x, y, width, height = window_rect
-        print("Fun.WindowsHandle: ",Fun.WindowsHandle)
+        print("(PicDetTF)Fun.WindowsHandle: ",Fun.WindowsHandle)
         screen = QApplication.primaryScreen()
         Fun.capture = screen.grabWindow(Fun.WindowsHandle)
         Fun.capture.save("./systemdata/img/systemimg/screenshot.png")

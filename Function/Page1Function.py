@@ -40,7 +40,8 @@ class RunFunction:
             Fun.RunFlag = True
             Fun.StopFunction = False
             x = FCAction()
-            x.HomepageCheck()#確認主畫面            
+            x.HomepageCheck()#確認是否已經回到主畫面
+            x.MoveCurtoGamePage()#鼠標歸位
             if Fun.Function1FightCount == 0:
                 #無限迴圈
                 def GBFloop():
@@ -59,13 +60,13 @@ class RunFunction:
                 def GBFloop():
                     for i in range(Fun.Function1FightCount):
                         C=i+1
-                        TC=Fun.Function1FightCount 
+                        TC=Fun.Function1FightCount
                         #找到轉世                        
                         Picture = cv2.imread("./systemdata/img/systemimg/Arcarum.PNG")                                                
                         x.ClickPIC(Picture)
                         #等畫面看到title
                         Picture = cv2.imread("./systemdata/img/systemimg/Title.PNG")
-                        x.LoopWait(Picture)
+                        x.LoopWait(Picture)#有問題要檢查
                         #找到關卡
                         Picture = Fun.ReadArcarumPIC
                         x.ClickPIC(Picture)

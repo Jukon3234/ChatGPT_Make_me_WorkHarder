@@ -39,11 +39,15 @@ class FCAction:
             #連續偵測是否已經轉到畫面
             while True:
                 if x.PicDetTF(Picture) == True:
-                    print("Homepage check = True")
                     break
                 else:
-                    print("Homepage check = False")
                     time.sleep(0.5)  # 等待0.5秒后再次檢測
+
+    def MoveCurtoGamePage(self):
+        window_rect = win32gui.GetWindowRect(Fun.WindowsHandle)
+        lox,loy,Loxx,Loyy = window_rect
+        print(lox,loy,Loxx,Loyy)
+        pyautogui.moveTo(lox+((Loxx-lox)/2),loy+((Loyy-loy)/2))
 
     def ClickPIC(self,Picture):
         x = GetPicFunction()
