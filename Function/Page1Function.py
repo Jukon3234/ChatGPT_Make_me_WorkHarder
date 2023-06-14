@@ -65,13 +65,16 @@ class RunFunction:
                         Picture = cv2.imread("./systemdata/img/systemimg/Arcarum.PNG")                                                
                         x.ClickPIC(Picture)
                         #等畫面看到title
-                        Picture = cv2.imread("./systemdata/img/systemimg/Title.PNG")
-                        x.LoopWait(Picture)#有問題要檢查
+                        Target = cv2.imread("./systemdata/img/systemimg/Arcarum_New_Title.PNG")
+                        Non_Target = cv2.imread("./systemdata/img/systemimg/Arcarum_Old_Title.PNG")
+                        if x.TwoPIC_LoopWait(Target,Non_Target) == False:
+                            Picture = cv2.imread("./systemdata/img/systemimg/Arcarum.PNG")
+                            x.ClickPIC(Picture)
                         #找到關卡
                         Picture = Fun.ReadArcarumPIC
                         x.ClickPIC(Picture)
                         
-                        #x.GoHome()
+                        x.GoHome()
                         time.sleep(1)
                         print("stopfunction=",Fun.StopFunction)
                         print("Function1FightCount=",Fun.Function1FightCount)

@@ -13,6 +13,7 @@ import time
 import pyperclip
 import win32gui
 import numpy as np
+import cv2
 
 class FCAction:
 
@@ -51,20 +52,34 @@ class FCAction:
 
     def ClickPIC(self,Picture):
         x = GetPicFunction()
+        PsizeH,PsizeW = x.PicSize(Picture)
         while not Fun.StopFunction:
             lox,loy = x.PicDet(Picture)
             if lox == None:
                 pyautogui.scroll(-200)
             else:                                
-                pyautogui.click(lox+50,loy+55)
+                pyautogui.click(lox+(PsizeW/2),loy+(PsizeH/2))
                 break
                 time.sleep(0.5)
     
-    def LoopWait(self,Picture):
+    def OnePic_LoopWait(self,Target):
         x = GetPicFunction()
         #連續偵測是否已經轉到畫面            
         while True:
-            if x.PicDetTF(Picture) == True:
+            if x.PicDetTF(Target) == True:
+                break
+            else:
+                time.sleep(0.5)  # 等待0.5秒后再次檢測
+    
+    def TwoPIC_LoopWait(self,Target,Non_Target):
+        x = GetPicFunction()
+        #連續偵測是否已經轉到畫面            
+        while True:
+            if x.PicDetTF(Target) == True :
+                return True
+                break
+            elif x.PicDetTF(Non_Target) == True :
+                return False
                 break
             else:
                 time.sleep(0.5)  # 等待0.5秒后再次檢測

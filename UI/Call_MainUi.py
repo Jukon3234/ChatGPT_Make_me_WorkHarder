@@ -274,6 +274,10 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                 Fun.TabPage = 1
         #elif sender == self.DebugButton:
         #    x=FCAction()
+        #    Picture = cv2.imread("./systemdata/img/systemimg/Arcarum_New_Title.PNG")
+        #    x.ClickPIC(Picture)
+            
+        #    
         #    x.MoveCurtoGamePage()
         #   if Fun.DCBOT_EN == True:
         #       DET = GetPicFunction()

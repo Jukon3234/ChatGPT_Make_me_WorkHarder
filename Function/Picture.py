@@ -52,3 +52,8 @@ class GetPicFunction:
             return True            
         else: 
             return False
+
+    def PicSize(self,Picture):
+        height, width, channels = Picture.shape
+        print(height,width)
+        return height,width
