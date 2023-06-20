@@ -14,22 +14,26 @@ import pyperclip
 import win32gui
 import numpy as np
 import cv2
+import random
 
 class FCAction:
-
-    x = GetPicFunction()
-
     def GoHome(self):
         x = GetPicFunction()
         Picture=cv2.imread("./systemdata/img/systemimg/home.PNG")
+        PsizeH,PsizeW = x.PicSize(Picture)
         lox,loy = x.PicDet(Picture)
-        pyautogui.click(lox+50,loy+55)
-
+        CurX = lox+(PsizeW/2)
+        CurY = loy+(PsizeH/2)
+        self.curmvClick(CurX,CurY)
+    
     def Reload(self):
         x = GetPicFunction()
         Picture=cv2.imread("./systemdata/img/systemimg/Reload.PNG")
+        PsizeH,PsizeW = x.PicSize(Picture)
         lox,loy = x.PicDet(Picture)
-        pyautogui.click(lox+50,loy+55)
+        CurX = lox+(PsizeW/2)
+        CurY = loy+(PsizeH/2)
+        self.curmvClick(CurX,CurY)
     
     def HomepageCheck(self): #Homepage處理
         x = GetPicFunction()
@@ -48,7 +52,7 @@ class FCAction:
         window_rect = win32gui.GetWindowRect(Fun.WindowsHandle)
         lox,loy,Loxx,Loyy = window_rect
         print(lox,loy,Loxx,Loyy)
-        pyautogui.moveTo(lox+((Loxx-lox)/2),loy+((Loyy-loy)/2))
+        self.curmv(lox+((Loxx-lox)/2),loy+((Loyy-loy)/2))
 
     def ClickPIC(self,Picture):
         x = GetPicFunction()
@@ -57,8 +61,10 @@ class FCAction:
             lox,loy = x.PicDet(Picture)
             if lox == None:
                 pyautogui.scroll(-200)
-            else:                                
-                pyautogui.click(lox+(PsizeW/2),loy+(PsizeH/2))
+            else:
+                CurX = lox+(PsizeW/2)
+                CurY = loy+(PsizeH/2)
+                self.curmvClick(CurX,CurY)
                 break
                 time.sleep(0.5)
     
@@ -71,7 +77,7 @@ class FCAction:
             else:
                 time.sleep(0.5)  # 等待0.5秒后再次檢測
     
-    def TwoPIC_LoopWait(self,Target,Non_Target):
+    def TwoPIC_LoopWait(self,Target,Non_Target):#當看到不同的item 可以回傳設定做切換判斷
         x = GetPicFunction()
         #連續偵測是否已經轉到畫面            
         while True:
@@ -83,3 +89,17 @@ class FCAction:
                 break
             else:
                 time.sleep(0.5)  # 等待0.5秒后再次檢測
+    
+    def curmvClick(self,x,y): #位移後點擊
+        random_Curmove = random.randint(Fun.NCurmoveTimeRan,Fun.CurmoveTimeRan)
+        CurTime=(Fun.CurmoveTime/1000)+ random_Curmove/1000
+        print("CurTime",CurTime)
+        pyautogui.moveTo(x, y, duration = CurTime)
+        pyautogui.mouseDown(x, y, button = 'left')
+        pyautogui.mouseUp(x, y, button = 'left')
+
+    def curmv(self,x,y): #僅位移
+        random_Curmove = random.randint(Fun.NCurmoveTimeRan,Fun.CurmoveTimeRan)
+        CurTime=(Fun.CurmoveTime/1000)+ random_Curmove/1000
+        print("CurTime",CurTime)
+        pyautogui.moveTo(x, y, duration = CurTime)

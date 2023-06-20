@@ -49,7 +49,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Icon_sort7 = QtGui.QIcon()#方陣2.0
         Icon_sort21 = QtGui.QIcon()#十天眾
         self.setWindowIcon(titleicon)
-        self.setWindowTitle('自動人 我的超人 V0.0.1')#title
+        self.setWindowTitle(Fun.version)#title
         Helpicon.addPixmap(QtGui.QPixmap(":/Heip.ico"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         Icon_sort30.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_30.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         Icon_sort25.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_25.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)

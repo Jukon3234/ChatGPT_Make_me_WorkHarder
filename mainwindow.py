@@ -5,6 +5,7 @@ from UI.Call_Help import HelpPageWindow
 from UI.Call_Setting import SettingPageWindow
 from PyQt5.QtGui import QPixmap
 import systemdata.icon.ICON
+import Function.Foundation as Fun
 
 class MainWindow(QWidget):
     
@@ -17,7 +18,7 @@ class MainWindow(QWidget):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/ICON.ico"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         self.setWindowIcon(icon)
-        self.setWindowTitle('自動人 我的超人')
+        self.setWindowTitle(Fun.version)
 
     def initMainUI(self):
         self.resize(953,700)
