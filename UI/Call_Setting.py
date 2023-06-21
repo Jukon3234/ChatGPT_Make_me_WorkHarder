@@ -22,15 +22,54 @@ class SettingPageWindow(QWidget,Ui_Setting):
         self.setupUi(self)
         self.Init()
         self.ButtonSetup()
+        self.ButtonDef()
+            
+    def ButtonDef(self):
+        #視窗
+        self.WindowsComboBox.currentIndexChanged.connect(self.showDialog)
+        #Discord BOT 通風報信
         self.groupBox.toggled.connect(self.showDialog)
+        #延遲
+        self.stepspinBox.valueChanged.connect(self.showDialog)
+        self.RoundspinBox.valueChanged.connect(self.showDialog)
+        self.CurMoveTime.valueChanged.connect(self.showDialog)
+        self.CurMoveTimeRan.valueChanged.connect(self.showDialog)
+        self.RandomXSpin.valueChanged.connect(self.showDialog)
+        self.RandomYSpin.valueChanged.connect(self.showDialog)
+        self.stepdelayran.valueChanged.connect(self.showDialog)
+        self.Rounddelayran.valueChanged.connect(self.showDialog)
+        #OKBUtton
         self.OKButton.clicked.connect(self.showDialog)
         self.CancelButton.clicked.connect(self.showDialog)
-        self.WindowsComboBox.currentIndexChanged.connect(self.showDialog)
 
     def showDialog(self):
+        #視窗選擇
+        elif sender == self.WindowsComboBox:
+            self.SetScreenfuntion()
+
+        #DC
         sender = self.sender()
         if sender == self.groupBox:
-            self.ButtonSetup()
+            self.ButtonSetup()        
+
+        #延遲
+        elif sender == self.RandomXSpin:
+            Fun.RandomX = self.RandomXSpin.value()
+            Fun.NRandomX = self.setobset(Fun.RandomX)
+        elif sender == self.RandomYSpin:
+            Fun.RandomY = self.RandomYSpin.value()
+            Fun.NRandomY = self.setobset(Fun.RandomY)
+        elif sender == self.stepdelayran:
+            Fun.stepdelayRandom = self.stepdelayran.value()
+            Fun.NstepdelayRandom = self.setobset(Fun.stepdelayRandom)
+        elif sender == self.Rounddelayran:
+            Fun.RounddelayRandom = self.Rounddelayran.value()
+            Fun.NRounddelayRandom = self.setobset(Fun.RounddelayRandom)
+        elif sender == self.CurMoveTimeRan:
+            Fun.CurmoveTimeRandom = self.CurMoveTimeRan.value()
+            Fun.NCurmoveTimeRandom = self.setobset(Fun.CurmoveTimeRandom)
+        
+        #Button
         elif sender == self.OKButton:
             self.SetupSet()
             self.Init()
@@ -38,8 +77,6 @@ class SettingPageWindow(QWidget,Ui_Setting):
         elif sender == self.CancelButton:
             self.Init()
             self.close()
-        elif sender == self.WindowsComboBox:
-            self.SetScreenfuntion()
 
     def Init(self):        
         self.GetScreenFunc()
@@ -72,7 +109,7 @@ class SettingPageWindow(QWidget,Ui_Setting):
             else:
                 self.WindowsComboBox.addItem(t)
             print (t)
-        self.WindowsComboBox.addItem("自動人 我的超人")
+        self.WindowsComboBox.addItem(Fun.version)
         try:
             windowsgetstr = self.WindowsComboBox.currentText()
             Fun.WindowsHandle = win32gui.FindWindow(None, windowsgetstr)
@@ -109,4 +146,5 @@ class SettingPageWindow(QWidget,Ui_Setting):
         if self.groupBox.isChecked() == False:
             Fun.DCBOT_EN = False
         else:
-            Fun.DCBOT_EN = True    
+            Fun.DCBOT_EN = True
+    
