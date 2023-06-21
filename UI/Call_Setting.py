@@ -52,7 +52,7 @@ class SettingPageWindow(QWidget,Ui_Setting):
         if sender == self.groupBox:
             self.ButtonSetup()        
 
-        #延遲
+        #偏移延遲
         elif sender == self.RandomXSpin:
             Fun.RandomX = self.RandomXSpin.value()
             Fun.NRandomX = self.setobset(Fun.RandomX)

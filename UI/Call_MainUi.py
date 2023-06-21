@@ -327,7 +327,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Savedata = {}
         Savedata['function'] = {'FightCount': Fun.Function1FightCount, 'TypeSelect': 0}
         Savedata['Bot'] = {'TOKEN': Fun.DCBOT_Token,'Channal_ID': Fun.DCBOT_ChannalID,'Enabled' : Fun.DCBOT_EN}
-
+        Savedata['Delay'] = {'StepDelay': Fun.StepDelay, 'RoundDelay': Fun.RoundDelay,'stepdelayRandom': Fun.stepdelayRandom,'RounddelayRandom': Fun.RounddelayRandom,'CurMoveTime': Fun.CurmoveTime,'CurmoveTimeRan': Fun.CurmoveTimeRandom}
         with open('systemdata/datasave/data.json', 'w') as datafile:
             json.dump(Savedata,datafile)
         self.SaveText.setText("set成功")
