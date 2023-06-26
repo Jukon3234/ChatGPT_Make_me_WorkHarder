@@ -2,13 +2,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from UI.Homepage.ui_Setting import Ui_Setting
 from PyQt5.QtCore import pyqtSignal,Qt
-import Function.Foundation as Fun
 from ctypes import windll, byref
 from ctypes.wintypes import HWND, POINT
 from win32gui import *
+from Function.Action import FCAction
 import win32gui
-import json
 import os
+import Function.Foundation as Fun
 
 
 
@@ -43,13 +43,13 @@ class SettingPageWindow(QWidget,Ui_Setting):
         self.CancelButton.clicked.connect(self.showDialog)
 
     def showDialog(self):
-        #視窗選擇
-        elif sender == self.WindowsComboBox:
-            self.SetScreenfuntion()
-
-        #DC
         sender = self.sender()
-        if sender == self.groupBox:
+        #視窗選擇
+        if sender == self.WindowsComboBox:
+            self.SetScreenfuntion()
+            
+        #DC        
+        elif sender == self.groupBox:
             self.ButtonSetup()        
 
         #偏移延遲
@@ -68,6 +68,12 @@ class SettingPageWindow(QWidget,Ui_Setting):
         elif sender == self.CurMoveTimeRan:
             Fun.CurmoveTimeRandom = self.CurMoveTimeRan.value()
             Fun.NCurmoveTimeRandom = self.setobset(Fun.CurmoveTimeRandom)
+        elif sender == self.stepspinBox:
+            Fun.StepDelay = self.stepspinBox.value()
+        elif sender == self.RoundspinBox:
+            Fun.RoundDelay = self.RoundspinBox.value()
+        elif sender == self.CurMoveTime:
+            Fun.CurmoveTime = self.CurMoveTime.value()
         
         #Button
         elif sender == self.OKButton:
@@ -80,14 +86,28 @@ class SettingPageWindow(QWidget,Ui_Setting):
 
     def Init(self):        
         self.GetScreenFunc()
-        if os.path.exists('./systemdata/datasave/data.json'):
-            SaveFile = open('systemdata/datasave/data.json')
-        else:
-            SaveFile = open('systemdata/datasave/Default.json')
-        savedata= json.load(SaveFile)
-        self.DC_TOKEN.setText(savedata['Bot']['TOKEN'])
-        self.DC_CHID.setText(savedata['Bot']['Channal_ID'])
-        Fun.DCBOT_EN = savedata['Bot']['Enabled']
+
+        #點擊間距延遲(ms)
+        self.stepspinBox.setValue(Fun.StepDelay)
+        self.stepdelayran.setValue(Fun.stepdelayRandom)        
+        Fun.NstepdelayRandom = self.setobset(Fun.stepdelayRandom)
+
+        #迴圈延遲(ms)        
+        self.RoundspinBox.setValue(Fun.RoundDelay)
+        self.Rounddelayran.setValue(Fun.RounddelayRandom)
+        Fun.NRounddelayRandom = self.setobset(Fun.RounddelayRandom)
+
+        #移動時長(ms)        
+        self.CurMoveTime.setValue(Fun.CurmoveTime)        
+        self.CurMoveTimeRan.setValue(Fun.CurmoveTimeRandom)        
+        Fun.NCurMoveTimeRan = self.setobset(Fun.CurmoveTimeRandom)        
+        
+        #正負偏移量(X/Y)        
+        self.RandomXSpin.setValue(Fun.RandomX)        
+        Fun.NRandomX = self.setobset(Fun.RandomX)
+        self.RandomYSpin.setValue(Fun.RandomY)        
+        Fun.NRandomY = self.setobset(Fun.RandomY)
+
         if Fun.DCBOT_EN == True:
             self.groupBox.setChecked(True)
         elif Fun.DCBOT_EN == False:
@@ -134,13 +154,11 @@ class SettingPageWindow(QWidget,Ui_Setting):
             Mbox('沒有找到視窗', '請選擇GBF的視窗標題', 0)
 
     def SetupSet(self):
+        x = FCAction()
         Fun.DCBOT_Token = self.DC_TOKEN.text()
         Fun.DCBOT_ChannalID = self.DC_CHID.text()
-        Savedata = {}
-        Savedata['function'] = {'FightCount': Fun.Function1FightCount, 'TypeSelect': 0}
-        Savedata['Bot'] = {'TOKEN': Fun.DCBOT_Token,'Channal_ID': Fun.DCBOT_ChannalID,'Enabled' : Fun.DCBOT_EN}
-        with open('systemdata/datasave/data.json', 'w') as datafile:
-            json.dump(Savedata,datafile)
+        
+        x.SaveChange()
 
     def ButtonSetup(self):
         if self.groupBox.isChecked() == False:
@@ -148,3 +166,7 @@ class SettingPageWindow(QWidget,Ui_Setting):
         else:
             Fun.DCBOT_EN = True
     
+    def setobset(self,number):
+        num = number - number*2
+        return num
+

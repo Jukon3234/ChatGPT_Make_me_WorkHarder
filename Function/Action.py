@@ -15,6 +15,7 @@ import win32gui
 import numpy as np
 import cv2
 import random
+import json
 
 class FCAction:
     def GoHome(self):
@@ -103,3 +104,33 @@ class FCAction:
         CurTime=(Fun.CurmoveTime/1000)+ random_Curmove/1000
         print("CurTime",CurTime)
         pyautogui.moveTo(x, y, duration = CurTime)
+    
+    def LoadFile(self):
+        if os.path.exists('./systemdata/datasave/data.json'):
+            SaveFile = open('systemdata/datasave/data.json')
+        else:
+            SaveFile = open('systemdata/datasave/Default.json')
+        savedata= json.load(SaveFile)
+
+        Fun.Function1FightCount = savedata['function']['FightCount']        
+        Fun.DCBOT_Token = savedata['Bot']['TOKEN']
+        Fun.DCBOT_ChannalID = savedata['Bot']['Channal_ID']
+        Fun.DCBOT_EN = savedata['Bot']['Enabled']
+        Fun.StepDelay = savedata['Delay']['StepDelay']
+        Fun.stepdelayRandom = savedata['Delay']['stepdelayRandom']
+        Fun.RoundDelay = savedata['Delay']['RoundDelay']
+        Fun.RounddelayRandom = savedata['Delay']['RounddelayRandom']
+        Fun.CurmoveTime = savedata['Delay']['CurMoveTime']
+        Fun.CurmoveTimeRandom = savedata['Delay']['CurmoveTimeRan']
+        Fun.RandomX = savedata['Point']['RandomXSpin']
+        Fun.RandomY = savedata['Point']['RandomYSpin']        
+    
+    def SaveChange(Self):
+        Savedata = {}
+        Savedata['function'] = {'FightCount': Fun.Function1FightCount, 'TypeSelect': 0}
+        Savedata['Bot'] = {'TOKEN': Fun.DCBOT_Token,'Channal_ID': Fun.DCBOT_ChannalID,'Enabled' : Fun.DCBOT_EN}
+        Savedata['Delay'] = {'StepDelay': Fun.StepDelay, 'RoundDelay': Fun.RoundDelay,'stepdelayRandom': Fun.stepdelayRandom,'RounddelayRandom': Fun.RounddelayRandom,'CurMoveTime': Fun.CurmoveTime,'CurmoveTimeRan': Fun.CurmoveTimeRandom}
+        Savedata['Point'] = {'RandomXSpin' : Fun.RandomX,'RandomYSpin' : Fun.RandomY}
+        with open('systemdata/datasave/data.json', 'w') as datafile:
+            json.dump(Savedata,datafile)
+    

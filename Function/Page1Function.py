@@ -27,7 +27,7 @@ import numpy as np
 #5.隊伍可以指定X/Y方法，或是額外不選擇，僅使用前一場使用的隊伍
 #6.需要FA直到關卡完成。若中途失敗可選擇是否使用大紅復活，復活後執行reload auto
 
-class RunFunction:
+class RunFunction1:
     #===================================debug
     def debugLog(self):
         print("StopFunction: ", Fun.StopFunction)

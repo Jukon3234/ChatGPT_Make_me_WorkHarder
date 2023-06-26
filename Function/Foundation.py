@@ -14,6 +14,9 @@ ReadArcarumPIC = None#地區圖片
 ReadArcarumLPIC= None#小關圖片
 SommonPic= None#召喚石圖片
 TabPage=0
+#迴圈及步進延遲
+StepDelay = 0
+RoundDelay = 0
 #偏移數據
 RandomX = 0
 RandomY = 0
@@ -28,6 +31,8 @@ WindowsHandle = 0
 CurmoveTime = 0
 CurmoveTimeRandom = 0
 NCurmoveTimeRandom = 0 #負值
+
+Type = 0
 
 HTML_Text = "https://game.granbluefantasy.jp/#top"
 WindowsHandle = 0

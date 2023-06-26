@@ -1,1 +1,1 @@
-{"function": {"FightCount": 0, "TypeSelect": 0}, "Bot": {"TOKEN": "", "Channal_ID": "", "Enabled": false}}
+{"function": {"FightCount": 0, "TypeSelect": 0}, "Bot": {"TOKEN": "", "Channal_ID": "", "Enabled": false}, "Delay": {"StepDelay": 0, "RoundDelay": 0, "stepdelayRandom": 0, "RounddelayRandom": 0, "CurMoveTime": 0, "CurmoveTimeRan": 0}, "Point": {"RandomXSpin": 0, "RandomYSpin": 0}}
