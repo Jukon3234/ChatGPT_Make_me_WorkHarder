@@ -5,7 +5,7 @@ GBF_Broswers V.0.1 Pre_Release
 
 README.md ver.0.1.0
 
-# GBF_scrept
+# ChatGPT_Make_me_WorkHarder
 	
 歡迎技術及意見交流:
 discord 群聊 : https://discord.gg/4YdgaYMv
@@ -21,16 +21,17 @@ discord 群聊 : https://discord.gg/4YdgaYMv
 - [ ] 腳本UI<BR>
 - [ ] UI細節處理<BR>
 
-2.Funcstion:<BR>
+2.Page1:<BR>
 - [X] 基本UI<BR>
 - [ ] 轉世<BR>
-- [ ] 1T轉世<BR>
-- [ ] 方陣<BR>
-- [ ] 方陣速刷<BR>
+- [ ] 舔關速刷<BR>
 - [ ] 活動天使關<BR>
 - [ ] 十天眾天使關<BR>
 - [ ] 古戰場<BR>
 - [ ] 1T古戰場<BR>
+  Page2:
+- [X] 基本UI<BR>
+- [ ] 手動mode<BR>
 	
 3.GBF的腳本專用瀏覽器<BR>
 - [X] UI架構<BR>
