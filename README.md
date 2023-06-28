@@ -21,7 +21,7 @@ discord 群聊 : https://discord.gg/4YdgaYMv
 - [ ] 腳本UI<BR>
 - [ ] UI細節處理<BR>
 
-2.Functions
+2.Functions<BR>
 Page1:<BR>
 - [X] 基本UI<BR>
 - [ ] 轉世<BR>
