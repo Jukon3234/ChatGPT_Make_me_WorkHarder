@@ -294,10 +294,18 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     def on_hotkey_triggered(self):
         if Fun.RunFlag == False:
             QMetaObject.invokeMethod(self.Info_broswer, 'setText', Qt.QueuedConnection, Q_ARG(str, "腳本執行中"))
+
             if Fun.Type == 0:
+                x = RunFunction1()
+            elif Fun.Type == 1:
+                x = RunFunction1()
+            elif Fun.Type == 2:
+                x = RunFunction1()
+            elif Fun.Type == 3:
                 x = RunFunction1()
             elif Fun.Type == 4:
                 x = RunFunction4()
+                
             x.RunFGscrept()
             if Fun.BroswerText != " ":
                 QMetaObject.invokeMethod(self.Info_broswer, 'setText', Qt.QueuedConnection, Q_ARG(str, Fun.BroswerText))

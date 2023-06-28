@@ -156,8 +156,7 @@ class SettingPageWindow(QWidget,Ui_Setting):
     def SetupSet(self):
         x = FCAction()
         Fun.DCBOT_Token = self.DC_TOKEN.text()
-        Fun.DCBOT_ChannalID = self.DC_CHID.text()
-        
+        Fun.DCBOT_ChannalID = self.DC_CHID.text()        
         x.SaveChange()
 
     def ButtonSetup(self):
