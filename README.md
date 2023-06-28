@@ -29,7 +29,7 @@ discord 群聊 : https://discord.gg/4YdgaYMv
 - [ ] 十天眾天使關<BR>
 - [ ] 古戰場<BR>
 - [ ] 1T古戰場<BR>
-  Page2:
+ Page2:
 - [X] 基本UI<BR>
 - [ ] 手動mode<BR>
 	
