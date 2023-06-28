@@ -21,7 +21,8 @@ discord 群聊 : https://discord.gg/4YdgaYMv
 - [ ] 腳本UI<BR>
 - [ ] UI細節處理<BR>
 
-2.Page1:<BR>
+2.Functions
+Page1:<BR>
 - [X] 基本UI<BR>
 - [ ] 轉世<BR>
 - [ ] 舔關速刷<BR>
@@ -29,7 +30,7 @@ discord 群聊 : https://discord.gg/4YdgaYMv
 - [ ] 十天眾天使關<BR>
 - [ ] 古戰場<BR>
 - [ ] 1T古戰場<BR>
- Page2:
+Page2:<BR>
 - [X] 基本UI<BR>
 - [ ] 手動mode<BR>
 	
