@@ -250,6 +250,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         elif sender == self.FightcomboBox_4:
             Fun.challenge = self.FightcomboBox_4.currentText()
         elif sender == self.AddButton:
+            self.chooseSignal.emit('BattleSetting')
             self.addRow()
         elif sender == self.DelButton:
             self.delRow()

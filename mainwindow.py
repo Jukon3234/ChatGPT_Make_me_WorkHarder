@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from UI.Call_MainUi import MainPageWindow
 from UI.Call_Help import HelpPageWindow
 from UI.Call_Setting import SettingPageWindow
+from UI.Call_BattleSetting import BattleSettingPageWindow
 from PyQt5.QtGui import QPixmap
 import systemdata.icon.ICON
 import Function.Foundation as Fun
@@ -32,6 +33,7 @@ class MainWindow(QWidget):
         self.CallMainUi = MainPageWindow()
         self.CallHelpUi = HelpPageWindow()
         self.CallSettingUI = SettingPageWindow()
+        self.CallBattleSettingUI = BattleSettingPageWindow()
         
         self.Stack.addWidget(self.CallMainUi)
 
@@ -40,6 +42,7 @@ class MainWindow(QWidget):
     def closeEvent(self, event):
         self.CallHelpUi.close()
         self.CallSettingUI.close()
+        self.CallBattleSettingUI.close()
 
         
 
@@ -51,5 +54,7 @@ class MainWindow(QWidget):
             self.resize(953,700)
         elif msg == 'setting':
             self.CallSettingUI.show()
+        elif msg == 'BattleSetting':
+            self.CallBattleSettingUI.show()
         #if msg == 'Hide':
         #    self.groupBox_2.Hide()
