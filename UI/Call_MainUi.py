@@ -203,7 +203,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.AddButton.clicked.connect(self.showDialog)
         self.DelButton.clicked.connect(self.showDialog)
         self.FightcomboBox.currentIndexChanged.connect(self.showDialog)
-        self.tableWidget.cellClicked.connect(self.showDialog)
+        self.Battle_TbW.cellClicked.connect(self.showDialog)
         #執行方式
         self.ScreptRadio.toggled.connect(self.showDialog)
         self.HandRadio.toggled.connect(self.showDialog)
@@ -256,7 +256,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.DelButton.setEnabled(False)
         elif sender == self.FightcomboBox:
             self.SetSommonValue()
-        elif sender == self.tableWidget:
+        elif sender == self.Battle_TbW:
             self.DelButton.setEnabled(True)
         elif sender == self.ScreptRadio or sender == self.HandRadio or sender == self.TSommonRadio or sender == self.AutoRadio:
             self.SRadio()
@@ -305,7 +305,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                 x = RunFunction1()
             elif Fun.Type == 4:
                 x = RunFunction4()
-                
+
             x.RunFGscrept()
             if Fun.BroswerText != " ":
                 QMetaObject.invokeMethod(self.Info_broswer, 'setText', Qt.QueuedConnection, Q_ARG(str, Fun.BroswerText))
@@ -428,15 +428,15 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
     def addRow(self):
         # 在表格中新增一行
-        row_count = self.tableWidget.rowCount()
-        self.tableWidget.setRowCount(row_count + 1)
+        row_count = self.Battle_TbW.rowCount()
+        self.Battle_TbW.setRowCount(row_count + 1)
 
         # 添加下拉選項列
         for col in range(6):
-            self.tableWidget.setCellWidget(row_count, col, None)
+            self.Battle_TbW.setCellWidget(row_count, col, None)
 
     def delRow(self):
         # 删除所選行
-        current_row = self.tableWidget.currentRow()
+        current_row = self.Battle_TbW.currentRow()
         if current_row >= 0:
-            self.tableWidget.removeRow(current_row)
+            self.Battle_TbW.removeRow(current_row)

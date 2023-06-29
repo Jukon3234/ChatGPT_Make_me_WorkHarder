@@ -1313,7 +1313,7 @@ p, li { white-space: pre-wrap; }
                 </item>
                </layout>
               </widget>
-              <widget class="QGroupBox" name="groupBox_2">
+              <widget class="QGroupBox" name="CorSet">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                  <horstretch>0</horstretch>
@@ -1354,7 +1354,7 @@ p, li { white-space: pre-wrap; }
                    </sizepolicy>
                   </property>
                   <property name="currentIndex">
-                   <number>0</number>
+                   <number>1</number>
                   </property>
                   <widget class="QWidget" name="tab">
                    <attribute name="title">
@@ -2644,7 +2644,7 @@ p, li { white-space: pre-wrap; }
                         </widget>
                        </item>
                        <item row="0" column="2">
-                        <widget class="QPushButton" name="pushButton">
+                        <widget class="QPushButton" name="SaveSCButton">
                          <property name="maximumSize">
                           <size>
                            <width>40</width>
@@ -2673,7 +2673,7 @@ p, li { white-space: pre-wrap; }
                         </widget>
                        </item>
                        <item row="0" column="3" alignment="Qt::AlignLeft">
-                        <widget class="QPushButton" name="pushButton_2">
+                        <widget class="QPushButton" name="LoadSCButton">
                          <property name="maximumSize">
                           <size>
                            <width>40</width>
@@ -2686,7 +2686,7 @@ p, li { white-space: pre-wrap; }
                         </widget>
                        </item>
                        <item row="1" column="0" colspan="4">
-                        <widget class="QTableWidget" name="tableWidget">
+                        <widget class="QTableWidget" name="Battle_TbW">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
                            <horstretch>0</horstretch>
