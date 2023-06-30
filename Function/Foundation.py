@@ -32,6 +32,65 @@ CurmoveTime = 0
 CurmoveTimeRandom = 0
 NCurmoveTimeRandom = 0 #負值
 
+#回合設定參數
+Currenttable = 0
+#啟用
+C1_Skill1_CB = False
+C1_Skill2_CB = False
+C1_Skill3_CB = False
+C1_Skill4_CB = False
+C2_Skill1_CB = False
+C2_Skill2_CB = False
+C2_Skill3_CB = False
+C2_Skill4_CB = False
+C3_Skill1_CB = False
+C3_Skill2_CB = False
+C3_Skill3_CB = False
+C3_Skill4_CB = False
+C4_Skill1_CB = False
+C4_Skill2_CB = False
+C4_Skill3_CB = False
+C4_Skill4_CB = False
+#施放腳色
+C1_Skill1_CoB = 0
+C1_Skill2_CoB = 0
+C1_Skill3_CoB = 0
+C1_Skill4_CoB = 0
+C2_Skill1_CoB = 0
+C2_Skill2_CoB = 0
+C2_Skill3_CoB = 0
+C2_Skill4_CoB = 0
+C3_Skill1_CoB = 0
+C3_Skill2_CoB = 0
+C3_Skill3_CoB = 0
+C3_Skill4_CoB = 0
+C4_Skill1_CoB = 0
+C4_Skill2_CoB = 0
+C4_Skill3_CoB = 0
+C4_Skill4_CoB = 0
+#順序
+C1_Skill1_SB = 0
+C1_Skill2_SB = 0
+C1_Skill3_SB = 0
+C1_Skill4_SB = 0
+C2_Skill1_SB = 0
+C2_Skill2_SB = 0
+C2_Skill3_SB = 0
+C2_Skill4_SB = 0
+C3_Skill1_SB = 0
+C3_Skill2_SB = 0
+C3_Skill3_SB = 0
+C3_Skill4_SB = 0
+C4_Skill1_SB = 0
+C4_Skill2_SB = 0
+C4_Skill3_SB = 0
+C4_Skill4_SB = 0
+#召喚石啟用
+SommonEn = False
+Sommon1 = 0
+Sommon2 = 0
+
+
 Type = 0
 
 HTML_Text = "https://game.granbluefantasy.jp/#top"

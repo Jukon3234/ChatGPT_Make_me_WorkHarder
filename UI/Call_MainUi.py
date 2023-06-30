@@ -181,19 +181,24 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
 
     def initbuttonUI(self):#按鈕設定
-        self.actionHelp.triggered.connect(self.showDialog)
-        self.actionsetting.triggered.connect(self.showDialog)
+        #副視窗
+        self.actionHelp.triggered.connect(lambda: self.chooseSignal.emit('Help'))
+        self.actionsetting.triggered.connect(lambda: self.chooseSignal.emit('setting'))
+        #執行腳本
         self.Screptrun.clicked.connect(self.showDialog)
+        #停止
         self.FuncStopButton.clicked.connect(self.showDialog)
         self.AllstopButton.clicked.connect(self.showDialog)
+        #儲存
         self.SetButton.clicked.connect(self.showDialog)
+        #次數
         self.Times_spinBox_2.valueChanged.connect(self.showDialog)
-
-        #換頁
+        #分頁
         self.tabWidget.currentChanged.connect(self.showDialog)
 
-        self.PositionButton.clicked.connect(self.showDialog)
-        self.FRWidge.clicked.connect(self.showDialog)
+        #self.PositionButton.clicked.connect(self.showDialog)
+        #重整大小
+        self.FRWidge.clicked.connect(lambda: self.chooseSignal.emit('change'))
         self.FunctionBox.currentIndexChanged.connect(self.showDialog)
         #地區及關卡
         self.FightcomboBox_2.currentIndexChanged.connect(self.showDialog)
@@ -213,18 +218,16 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.OneTradio.toggled.connect(self.showDialog)
         self.QuestClearradio.toggled.connect(self.showDialog)
         self.Scoreradio.toggled.connect(self.showDialog)
-
+        #hotkey
         keyboard.add_hotkey('F2', self.on_hotkey_triggered)
         keyboard.add_hotkey('Esc', self.on_hotkey_Stop)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
-        if sender == self.actionHelp:
-            self.chooseSignal.emit('Help')
-        elif sender == self.actionsetting:
-            self.chooseSignal.emit('setting')
-        elif sender == self.FunctionBox:
+        #換頁
+        if sender == self.FunctionBox:
             self.change_Page()
+        #跑腳本
         elif sender == self.Screptrun:
             if Fun.TabPage == 0:
                 self.Info_broswer.setText("腳本執行中")
@@ -232,29 +235,29 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                 x.RunFGscrept()
             elif Fun.TabPage == 1:
                 print("執行Page2的 Funciton")
+        #停止
         elif sender == self.FuncStopButton or sender == self.AllstopButton:
             Fun.StopFunction = True
             self.Info_broswer.clear()
+        #存檔
         elif sender == self.SetButton:
             self.SaveFile()
         elif sender == self.Times_spinBox_2:
-            self.settingtext()        
-        elif sender == self.PositionButton:
-            x=GBFPosition()
-            x.postion()
-        elif sender == self.FRWidge:
-            self.chooseSignal.emit('change')
+            self.settingtext()
+        #地區
         elif sender == self.FightcomboBox_2:
             self.SetArcarumPIC()
             Fun.Map = self.FightcomboBox_2.currentText()
+        #關卡
         elif sender == self.FightcomboBox_4:
             Fun.challenge = self.FightcomboBox_4.currentText()
+        #動態增減欄位
         elif sender == self.AddButton:
-            self.chooseSignal.emit('BattleSetting')
             self.addRow()
         elif sender == self.DelButton:
             self.delRow()
             self.DelButton.setEnabled(False)
+            
         elif sender == self.FightcomboBox:
             self.SetSommonValue()
         elif sender == self.Battle_TbW:
@@ -271,6 +274,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             elif current_index == 1:
                 self.PageTitle.setText("自訂點擊")
                 Fun.TabPage = 1
+
         #elif sender == self.DebugButton:
         #    x=FCAction()
         #    Picture = cv2.imread("./systemdata/img/systemimg/Arcarum_New_Title.PNG")
@@ -424,17 +428,26 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         elif self.Scoreradio.isChecked():
             self.ScoreSpin.setEnabled(True)
 
-
-
-
     def addRow(self):
         # 在表格中新增一行
         row_count = self.Battle_TbW.rowCount()
         self.Battle_TbW.setRowCount(row_count + 1)
 
-        # 添加下拉選項列
-        for col in range(6):
-            self.Battle_TbW.setCellWidget(row_count, col, None)
+        # 添加下拉選項列        
+        combo_box = QComboBox()
+        combo_box.addItems([str(i) for i in range(1, 100)])
+        RowBotton = QPushButton("...")
+        
+        self.Battle_TbW.setCellWidget(row_count, 0, combo_box)
+        self.Battle_TbW.setCellWidget(row_count, 1, RowBotton)
+        self.Battle_TbW.setCellWidget(row_count, 2, None)
+        def setting():             
+            Fun.Currenttable = self.Battle_TbW.currentRow()
+            print("Currenttable",Fun.Currenttable)
+            self.chooseSignal.emit('BattleSetting')
+        RowBotton.clicked.connect(setting)
+
+        
 
     def delRow(self):
         # 删除所選行

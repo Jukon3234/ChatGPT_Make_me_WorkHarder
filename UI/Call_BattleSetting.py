@@ -19,23 +19,26 @@ class BattleSettingPageWindow(QWidget,Ui_BattleSetting):
     def __init__(self,parent=None):
         super(BattleSettingPageWindow, self).__init__(parent)
         self.setupUi(self)
+        self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
         self.Init()
         self.ButtonDef()
             
     def ButtonDef(self):
-        #OKBUtton
-        self.OKButton.clicked.connect(self.showDialog)
-        self.CancelButton.clicked.connect(self.showDialog)
+        self.BS_OK_BT.clicked.connect(self.showDialog)
+        self.BS_Cancel_BT.clicked.connect(self.showDialog)
 
     def showDialog(self):        
-        #Button
-        if sender == self.OKButton:
-            self.SetupSet()
+        sender = self.sender()
+
+        if sender == self.BS_OK_BT:
             self.Init()
             self.close()
-        elif sender == self.CancelButton:
-            self.Init()
+        elif sender == self.BS_Cancel_BT:
             self.close()
 
-    def Init(self):        
-        print("Resolve")
+    def Init(self):
+        print(Fun.Currenttable)
+        self.Table_Text.setText(str(Fun.Currenttable))
+
+    def Clean_All_Item(self):
+        print("Clean")

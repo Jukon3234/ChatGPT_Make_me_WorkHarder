@@ -11,6 +11,7 @@ class HelpPageWindow(QWidget,Ui_Form):
     def __init__(self,parent=None):
         super(HelpPageWindow, self).__init__(parent)
         self.setupUi(self)
+        self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
         self.ButtonAction()
     
     def ButtonAction(self):

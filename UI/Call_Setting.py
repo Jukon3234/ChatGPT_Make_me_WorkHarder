@@ -20,6 +20,7 @@ class SettingPageWindow(QWidget,Ui_Setting):
     def __init__(self,parent=None):
         super(SettingPageWindow, self).__init__(parent)
         self.setupUi(self)
+        self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
         self.Init()
         self.ButtonSetup()
         self.ButtonDef()
@@ -29,15 +30,6 @@ class SettingPageWindow(QWidget,Ui_Setting):
         self.WindowsComboBox.currentIndexChanged.connect(self.showDialog)
         #Discord BOT 通風報信
         self.groupBox.toggled.connect(self.showDialog)
-        #延遲
-        self.stepspinBox.valueChanged.connect(self.showDialog)
-        self.RoundspinBox.valueChanged.connect(self.showDialog)
-        self.CurMoveTime.valueChanged.connect(self.showDialog)
-        self.CurMoveTimeRan.valueChanged.connect(self.showDialog)
-        self.RandomXSpin.valueChanged.connect(self.showDialog)
-        self.RandomYSpin.valueChanged.connect(self.showDialog)
-        self.stepdelayran.valueChanged.connect(self.showDialog)
-        self.Rounddelayran.valueChanged.connect(self.showDialog)
         #OKBUtton
         self.OKButton.clicked.connect(self.showDialog)
         self.CancelButton.clicked.connect(self.showDialog)
@@ -154,7 +146,21 @@ class SettingPageWindow(QWidget,Ui_Setting):
             Mbox('沒有找到視窗', '請選擇GBF的視窗標題', 0)
 
     def SetupSet(self):
+        #偏移延遲紀錄給全域變數
         x = FCAction()
+        Fun.RandomX = self.RandomXSpin.value()
+        Fun.NRandomX = self.setobset(Fun.RandomX)
+        Fun.RandomY = self.RandomYSpin.value()
+        Fun.NRandomY = self.setobset(Fun.RandomY)
+        Fun.stepdelayRandom = self.stepdelayran.value()
+        Fun.NstepdelayRandom = self.setobset(Fun.stepdelayRandom)
+        Fun.RounddelayRandom = self.Rounddelayran.value()
+        Fun.NRounddelayRandom = self.setobset(Fun.RounddelayRandom)
+        Fun.CurmoveTimeRandom = self.CurMoveTimeRan.value()
+        Fun.NCurmoveTimeRandom = self.setobset(Fun.CurmoveTimeRandom)
+        Fun.StepDelay = self.stepspinBox.value()
+        Fun.RoundDelay = self.RoundspinBox.value()
+        Fun.CurmoveTime = self.CurMoveTime.value()        
         Fun.DCBOT_Token = self.DC_TOKEN.text()
         Fun.DCBOT_ChannalID = self.DC_CHID.text()        
         x.SaveChange()

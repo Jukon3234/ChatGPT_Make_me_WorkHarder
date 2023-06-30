@@ -2630,61 +2630,6 @@ p, li { white-space: pre-wrap; }
                        <property name="spacing">
                         <number>3</number>
                        </property>
-                       <item row="0" column="0">
-                        <widget class="QPushButton" name="AddButton">
-                         <property name="maximumSize">
-                          <size>
-                           <width>40</width>
-                           <height>16777215</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string>新增</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="2">
-                        <widget class="QPushButton" name="SaveSCButton">
-                         <property name="maximumSize">
-                          <size>
-                           <width>40</width>
-                           <height>16777215</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string>Save</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="1">
-                        <widget class="QPushButton" name="DelButton">
-                         <property name="enabled">
-                          <bool>false</bool>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>40</width>
-                           <height>16777215</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string>刪除</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="3" alignment="Qt::AlignLeft">
-                        <widget class="QPushButton" name="LoadSCButton">
-                         <property name="maximumSize">
-                          <size>
-                           <width>40</width>
-                           <height>16777215</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string>Load</string>
-                         </property>
-                        </widget>
-                       </item>
                        <item row="1" column="0" colspan="4">
                         <widget class="QTableWidget" name="Battle_TbW">
                          <property name="sizePolicy">
@@ -2748,14 +2693,23 @@ p, li { white-space: pre-wrap; }
                          <property name="autoScrollMargin">
                           <number>16</number>
                          </property>
+                         <property name="dragDropMode">
+                          <enum>QAbstractItemView::NoDragDrop</enum>
+                         </property>
+                         <property name="defaultDropAction">
+                          <enum>Qt::IgnoreAction</enum>
+                         </property>
+                         <property name="alternatingRowColors">
+                          <bool>false</bool>
+                         </property>
                          <property name="selectionMode">
-                          <enum>QAbstractItemView::ExtendedSelection</enum>
+                          <enum>QAbstractItemView::SingleSelection</enum>
                          </property>
                          <property name="selectionBehavior">
                           <enum>QAbstractItemView::SelectRows</enum>
                          </property>
                          <property name="textElideMode">
-                          <enum>Qt::ElideLeft</enum>
+                          <enum>Qt::ElideMiddle</enum>
                          </property>
                          <property name="verticalScrollMode">
                           <enum>QAbstractItemView::ScrollPerItem</enum>
@@ -2763,8 +2717,14 @@ p, li { white-space: pre-wrap; }
                          <property name="horizontalScrollMode">
                           <enum>QAbstractItemView::ScrollPerItem</enum>
                          </property>
+                         <property name="showGrid">
+                          <bool>true</bool>
+                         </property>
                          <property name="gridStyle">
                           <enum>Qt::SolidLine</enum>
+                         </property>
+                         <property name="sortingEnabled">
+                          <bool>false</bool>
                          </property>
                          <property name="cornerButtonEnabled">
                           <bool>true</bool>
@@ -2773,10 +2733,10 @@ p, li { white-space: pre-wrap; }
                           <bool>false</bool>
                          </attribute>
                          <attribute name="horizontalHeaderDefaultSectionSize">
-                          <number>57</number>
+                          <number>35</number>
                          </attribute>
                          <attribute name="horizontalHeaderMinimumSectionSize">
-                          <number>25</number>
+                          <number>9</number>
                          </attribute>
                          <attribute name="horizontalHeaderStretchLastSection">
                           <bool>true</bool>
@@ -2815,7 +2775,7 @@ p, li { white-space: pre-wrap; }
                          </column>
                          <column>
                           <property name="text">
-                           <string>劇本設定</string>
+                           <string>設定</string>
                           </property>
                          </column>
                          <column>
@@ -2823,6 +2783,61 @@ p, li { white-space: pre-wrap; }
                            <string>數據參數顯示</string>
                           </property>
                          </column>
+                        </widget>
+                       </item>
+                       <item row="0" column="0">
+                        <widget class="QPushButton" name="AddButton">
+                         <property name="maximumSize">
+                          <size>
+                           <width>40</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>新增</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="2">
+                        <widget class="QPushButton" name="SaveSCButton">
+                         <property name="maximumSize">
+                          <size>
+                           <width>40</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>Save</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="1">
+                        <widget class="QPushButton" name="DelButton">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>40</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>刪除</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="3" alignment="Qt::AlignLeft">
+                        <widget class="QPushButton" name="LoadSCButton">
+                         <property name="maximumSize">
+                          <size>
+                           <width>40</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>Load</string>
+                         </property>
                         </widget>
                        </item>
                       </layout>
