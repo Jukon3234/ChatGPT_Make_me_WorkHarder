@@ -42,3 +42,5 @@ class BattleSettingPageWindow(QWidget,Ui_BattleSetting):
 
     def Clean_All_Item(self):
         print("Clean")
+
+    

@@ -221,6 +221,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         #hotkey
         keyboard.add_hotkey('F2', self.on_hotkey_triggered)
         keyboard.add_hotkey('Esc', self.on_hotkey_Stop)
+        #存讀檔
+        self.SaveSCButton.clicked.connect(self.showDialog)
+        self.LoadSCButton.clicked.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
@@ -231,7 +234,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         elif sender == self.Screptrun:
             if Fun.TabPage == 0:
                 self.Info_broswer.setText("腳本執行中")
-                x=RunFunction()
+                x = RunFunction()
                 x.RunFGscrept()
             elif Fun.TabPage == 1:
                 print("執行Page2的 Funciton")
@@ -274,6 +277,11 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             elif current_index == 1:
                 self.PageTitle.setText("自訂點擊")
                 Fun.TabPage = 1
+        #存讀檔
+        elif sender == self.SaveSCButton:
+            self.saveFile()
+        elif sender == self.LoadSCButton:
+            self.loadFile()
 
         #elif sender == self.DebugButton:
         #    x=FCAction()
@@ -445,12 +453,25 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             Fun.Currenttable = self.Battle_TbW.currentRow()
             print("Currenttable",Fun.Currenttable)
             self.chooseSignal.emit('BattleSetting')
-        RowBotton.clicked.connect(setting)
-
-        
+        RowBotton.clicked.connect(setting)        
 
     def delRow(self):
         # 删除所選行
         current_row = self.Battle_TbW.currentRow()
         if current_row >= 0:
             self.Battle_TbW.removeRow(current_row)
+
+    def saveFile(self):
+        options = QFileDialog.Options()
+        fileName, _ = QFileDialog.getSaveFileName(self, "Save File", "./systemdata/datasave/BattleScrept", "Text Files (*.json)", options=options)
+        if fileName:
+            with open(fileName, "w") as file:
+                file.write("Hello, World!")
+
+    def loadFile(self):
+        options = QFileDialog.Options()
+        fileName, _ = QFileDialog.getOpenFileName(self, "Open File", "./systemdata/datasave/BattleScrept", "Text Files (*.json)", options=options)
+        if fileName:
+            with open(fileName, "r") as file:
+                content = file.read()
+                print(content)

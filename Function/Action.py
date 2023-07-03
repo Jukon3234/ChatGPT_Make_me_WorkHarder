@@ -125,7 +125,7 @@ class FCAction:
         Fun.RandomX = savedata['Point']['RandomXSpin']
         Fun.RandomY = savedata['Point']['RandomYSpin']        
     
-    def SaveChange(Self):
+    def SaveChange(self):
         Savedata = {}
         Savedata['function'] = {'FightCount': Fun.Function1FightCount, 'TypeSelect': 0}
         Savedata['Bot'] = {'TOKEN': Fun.DCBOT_Token,'Channal_ID': Fun.DCBOT_ChannalID,'Enabled' : Fun.DCBOT_EN}
