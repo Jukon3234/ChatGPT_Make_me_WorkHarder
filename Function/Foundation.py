@@ -99,4 +99,7 @@ WindowsHandle = 0
 RunFlag = False
 StopFunction = False
 
+#UI設定
+resizeX = 953
+resizeY = 700
 version = '自動人 我的超人 V0.0.1'

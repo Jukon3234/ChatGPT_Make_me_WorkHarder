@@ -56,8 +56,8 @@ class SettingPageWindow(QWidget,Ui_Setting):
 
         #點擊間距延遲(ms)
         self.stepspinBox.setValue(Fun.StepDelay)
-        self.stepdelayran.setValue(Fun.stepdelayRandom)        
-        Fun.NstepdelayRandom = self.setobset(Fun.stepdelayRandom)
+        self.stepdelayran.setValue(Fun.StepdelayRandom)        
+        Fun.NstepdelayRandom = self.setobset(Fun.StepdelayRandom)
 
         #迴圈延遲(ms)        
         self.RoundspinBox.setValue(Fun.RoundDelay)

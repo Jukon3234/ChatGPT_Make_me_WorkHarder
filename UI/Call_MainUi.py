@@ -25,11 +25,16 @@ import cv2
 from Function.Action import FCAction
 import keyboard
 
+
+from UI.Call_Help import HelpPageWindow
+from UI.Call_Setting import SettingPageWindow
+from UI.Call_BattleSetting import BattleSettingPageWindow
+
 class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     chooseSignal = pyqtSignal(str)
 
     def __init__(self,parent=None):#起始位置
-        super(MainPageWindow, self).__init__(parent)
+        super().__init__()
         self.setupUi(self)
         self.initUiindex()
         self.initbuttonUI()
@@ -38,9 +43,20 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.SetSommonValue()
         self.SRadio()
         self.CloseRadio()
+
+
+    def initMainUI(self):
+        self.CallMainUi.chooseSignal.connect(self.showDialog)
         
 
     def initUiindex(self):#UI框架基礎設定
+        self.resize(Fun.resizeX,Fun.resizeY)
+        self.layout = QGridLayout()
+        self.setLayout(self.layout)
+        self.CallHelpUi = HelpPageWindow()
+        self.CallSettingUI = SettingPageWindow()
+        self.CallBattleSettingUI = BattleSettingPageWindow()
+
         titleicon = QtGui.QIcon()
         titleicon.addPixmap(QtGui.QPixmap(":/ICON.ico"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         Helpicon = QtGui.QIcon()
@@ -182,8 +198,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
     def initbuttonUI(self):#按鈕設定
         #副視窗
-        self.actionHelp.triggered.connect(lambda: self.chooseSignal.emit('Help'))
-        self.actionsetting.triggered.connect(lambda: self.chooseSignal.emit('setting'))
+        self.actionHelp.triggered.connect(lambda: self.CallHelpUi.show())
+        self.actionsetting.triggered.connect(lambda: self.CallSettingUI.show())
         #執行腳本
         self.Screptrun.clicked.connect(self.showDialog)
         #停止
@@ -198,7 +214,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
         #self.PositionButton.clicked.connect(self.showDialog)
         #重整大小
-        self.FRWidge.clicked.connect(lambda: self.chooseSignal.emit('change'))
+        self.FRWidge.clicked.connect(lambda: self.resize(Fun.resizeX,Fun.resizeY))
         self.FunctionBox.currentIndexChanged.connect(self.showDialog)
         #地區及關卡
         self.FightcomboBox_2.currentIndexChanged.connect(self.showDialog)
@@ -460,7 +476,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         def setting():             
             Fun.Currenttable = self.Battle_TbW.currentRow()
             print("Currenttable",Fun.Currenttable)
-            self.chooseSignal.emit('BattleSetting')
+            self.CallBattleSettingUI.show()
         RowBotton.clicked.connect(setting)        
 
     def delRow(self):
