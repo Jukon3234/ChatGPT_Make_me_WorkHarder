@@ -469,6 +469,10 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.Battle_TbW.setCellWidget(row_count, 1, RowBotton)
         self.Battle_TbW.setCellWidget(row_count, 2, None)        
         RowBotton.clicked.connect(self.setting)
+
+    def hasValue(self, row, col):
+        data = self.getData(row, col)
+        return data is not None and data != ""
     
     def setting(self):             
         Fun.Currenttable = self.Battle_TbW.currentRow()
@@ -511,3 +515,8 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             with open(fileName, "r") as file:
                 content = file.read()
                 print(content)
+
+    def closeEvent(self, event):
+        self.CallHelpUi.close()
+        self.CallSettingUI.close()
+        self.CallBattleSettingUI.close()

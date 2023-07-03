@@ -19,11 +19,10 @@ class BattleSettingPageWindow(QWidget,Ui_BattleSetting):
         self.setupUi(self)
         self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
         self.ButtonDef()
-        self.Init()
 
     #接收訊號臨時更改細項
     def handleSignal(self):
-        self.Table_Text.setText(str(Fun.Currenttable))
+        self.Init()
             
     def ButtonDef(self):
         self.BS_OK_BT.clicked.connect(self.showDialog)
@@ -31,15 +30,12 @@ class BattleSettingPageWindow(QWidget,Ui_BattleSetting):
 
     def showDialog(self):        
         sender = self.sender()
-
         if sender == self.BS_OK_BT:
-            self.Init()
             self.close()
         elif sender == self.BS_Cancel_BT:
             self.close()
 
     def Init(self):
-        print(Fun.Currenttable)
         #checkBox
         self.C1_Skill1_CB.setChecked(Fun.C1_Skill1_CB)
         self.C1_Skill2_CB.setChecked(Fun.C1_Skill2_CB)
