@@ -905,6 +905,9 @@ p, li { white-space: pre-wrap; }
                       </property>
                       <item row="3" column="0">
                        <widget class="QRadioButton" name="AutoRadio">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
                         <property name="text">
                          <string>AUTO</string>
                         </property>
@@ -965,7 +968,7 @@ p, li { white-space: pre-wrap; }
                          <string>手動</string>
                         </property>
                         <property name="checked">
-                         <bool>false</bool>
+                         <bool>true</bool>
                         </property>
                        </widget>
                       </item>
@@ -981,6 +984,9 @@ p, li { white-space: pre-wrap; }
                       </item>
                       <item row="2" column="0">
                        <widget class="QRadioButton" name="TSommonRadio">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
                         <property name="text">
                          <string>召喚石1T</string>
                         </property>
@@ -988,18 +994,21 @@ p, li { white-space: pre-wrap; }
                       </item>
                       <item row="0" column="0">
                        <widget class="QRadioButton" name="ScreptRadio">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
                         <property name="text">
                          <string>腳本自動</string>
                         </property>
                         <property name="checked">
-                         <bool>true</bool>
+                         <bool>false</bool>
                         </property>
                        </widget>
                       </item>
                       <item row="0" column="1">
                        <widget class="QCheckBox" name="checkBox">
                         <property name="enabled">
-                         <bool>true</bool>
+                         <bool>false</bool>
                         </property>
                         <property name="text">
                          <string>召喚石</string>
@@ -1292,7 +1301,7 @@ p, li { white-space: pre-wrap; }
                   </attribute>
                  </widget>
                 </item>
-                <item row="1" column="2" alignment="Qt::AlignLeft">
+                <item row="1" column="2">
                  <widget class="QPushButton" name="PositionButton">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -2879,7 +2888,7 @@ p, li { white-space: pre-wrap; }
                <string>自訂點位</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
-               <item row="2" column="0" colspan="4">
+               <item row="2" column="0" colspan="5">
                 <widget class="QTableWidget" name="tableWidget_2">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -3021,19 +3030,6 @@ p, li { white-space: pre-wrap; }
                  </column>
                 </widget>
                </item>
-               <item row="1" column="0">
-                <widget class="QPushButton" name="AddButton_2">
-                 <property name="maximumSize">
-                  <size>
-                   <width>40</width>
-                   <height>16777215</height>
-                  </size>
-                 </property>
-                 <property name="text">
-                  <string>新增</string>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="1">
                 <widget class="QPushButton" name="DelButton_2">
                  <property name="enabled">
@@ -3050,7 +3046,46 @@ p, li { white-space: pre-wrap; }
                  </property>
                 </widget>
                </item>
-               <item row="0" column="0" colspan="3">
+               <item row="1" column="0">
+                <widget class="QPushButton" name="AddButton_2">
+                 <property name="maximumSize">
+                  <size>
+                   <width>40</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>新增</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QPushButton" name="UserSaveButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Save</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="3">
+                <widget class="QPushButton" name="UserLoadButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Load</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0" colspan="4">
                 <widget class="QGroupBox" name="Sommon_2">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">

@@ -224,6 +224,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         #存讀檔
         self.SaveSCButton.clicked.connect(self.showDialog)
         self.LoadSCButton.clicked.connect(self.showDialog)
+        #User存讀檔
+        self.UserSaveButton.clicked.connect(self.showDialog)
+        self.UserLoadButton.clicked.connect(self.showDialog)
     
     def showDialog(self):#按鈕function
         sender = self.sender()
@@ -282,6 +285,11 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.saveFile()
         elif sender == self.LoadSCButton:
             self.loadFile()
+        #自訂存讀檔
+        elif sender == self.UserSaveButton:
+            self.UserSaveFile()
+        elif sender == self.UserLoadButton:
+            self.UserLoadFile()
 
         #elif sender == self.DebugButton:
         #    x=FCAction()
@@ -471,6 +479,21 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     def loadFile(self):
         options = QFileDialog.Options()
         fileName, _ = QFileDialog.getOpenFileName(self, "Open File", "./systemdata/datasave/BattleScrept", "Text Files (*.json)", options=options)
+        if fileName:
+            with open(fileName, "r") as file:
+                content = file.read()
+                print(content)
+
+    def UserSaveFile(self):
+        options = QFileDialog.Options()
+        fileName, _ = QFileDialog.getSaveFileName(self, "Save File", "./systemdata/datasave/UserScrept", "Text Files (*.json)", options=options)
+        if fileName:
+            with open(fileName, "w") as file:
+                file.write("Hello, World!")
+
+    def UserLoadFile(self):
+        options = QFileDialog.Options()
+        fileName, _ = QFileDialog.getOpenFileName(self, "Open File", "./systemdata/datasave/UserScrept", "Text Files (*.json)", options=options)
         if fileName:
             with open(fileName, "r") as file:
                 content = file.read()

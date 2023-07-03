@@ -38,35 +38,10 @@ class SettingPageWindow(QWidget,Ui_Setting):
         sender = self.sender()
         #視窗選擇
         if sender == self.WindowsComboBox:
-            self.SetScreenfuntion()
-            
+            self.SetScreenfuntion()            
         #DC        
         elif sender == self.groupBox:
-            self.ButtonSetup()        
-
-        #偏移延遲
-        elif sender == self.RandomXSpin:
-            Fun.RandomX = self.RandomXSpin.value()
-            Fun.NRandomX = self.setobset(Fun.RandomX)
-        elif sender == self.RandomYSpin:
-            Fun.RandomY = self.RandomYSpin.value()
-            Fun.NRandomY = self.setobset(Fun.RandomY)
-        elif sender == self.stepdelayran:
-            Fun.stepdelayRandom = self.stepdelayran.value()
-            Fun.NstepdelayRandom = self.setobset(Fun.stepdelayRandom)
-        elif sender == self.Rounddelayran:
-            Fun.RounddelayRandom = self.Rounddelayran.value()
-            Fun.NRounddelayRandom = self.setobset(Fun.RounddelayRandom)
-        elif sender == self.CurMoveTimeRan:
-            Fun.CurmoveTimeRandom = self.CurMoveTimeRan.value()
-            Fun.NCurmoveTimeRandom = self.setobset(Fun.CurmoveTimeRandom)
-        elif sender == self.stepspinBox:
-            Fun.StepDelay = self.stepspinBox.value()
-        elif sender == self.RoundspinBox:
-            Fun.RoundDelay = self.RoundspinBox.value()
-        elif sender == self.CurMoveTime:
-            Fun.CurmoveTime = self.CurMoveTime.value()
-        
+            self.ButtonSetup()
         #Button
         elif sender == self.OKButton:
             self.SetupSet()
