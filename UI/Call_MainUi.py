@@ -31,7 +31,7 @@ from UI.Call_Setting import SettingPageWindow
 from UI.Call_BattleSetting import BattleSettingPageWindow
 
 class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
-    chooseSignal = pyqtSignal()
+    chooseSignal = pyqtSignal(bool)
 
     def __init__(self,parent=None):#起始位置
         super().__init__()
@@ -471,14 +471,17 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         RowBotton.clicked.connect(self.setting)
 
     def hasValue(self, row, col):
-        data = self.getData(row, col)
+        data = self.Battle_TbW.item(row, col)
         return data is not None and data != ""
     
     def setting(self):             
         Fun.Currenttable = self.Battle_TbW.currentRow()
         print("Currenttable",Fun.Currenttable)            
         self.CallBattleSettingUI.show()
-        self.chooseSignal.emit()
+        if self.hasValue(Fun.Currenttable,2):
+            self.chooseSignal.emit(True)
+        else:
+            self.chooseSignal.emit(False)
 
     def delRow(self):
         # 删除所選行

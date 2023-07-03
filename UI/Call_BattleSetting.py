@@ -21,8 +21,12 @@ class BattleSettingPageWindow(QWidget,Ui_BattleSetting):
         self.ButtonDef()
 
     #接收訊號臨時更改細項
-    def handleSignal(self):
-        self.Init()
+    def handleSignal(self,value):
+        if value:
+            self.Init()
+        else:
+            self.Clean_All_Item()
+            self.Init()
             
     def ButtonDef(self):
         self.BS_OK_BT.clicked.connect(self.showDialog)
