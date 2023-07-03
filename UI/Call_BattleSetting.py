@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from UI.Homepage.ui_BattleSetting import Ui_BattleSetting
-from PyQt5.QtCore import pyqtSignal,Qt
+from PyQt5.QtCore import pyqtSignal,Qt,pyqtSlot
 from ctypes import windll, byref
 from win32gui import *
 from Function.Action import FCAction
@@ -20,6 +20,10 @@ class BattleSettingPageWindow(QWidget,Ui_BattleSetting):
         self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
         self.ButtonDef()
         self.Init()
+
+    #接收訊號臨時更改細項
+    def handleSignal(self):
+        self.Table_Text.setText(str(Fun.Currenttable))
             
     def ButtonDef(self):
         self.BS_OK_BT.clicked.connect(self.showDialog)
@@ -92,6 +96,7 @@ class BattleSettingPageWindow(QWidget,Ui_BattleSetting):
         self.SommonCB.setCurrentIndex(Fun.Sommon1)
         self.SommonCB_2.setCurrentIndex(Fun.Sommon2)
         self.Table_Text.setText(str(Fun.Currenttable))
+        
 
     def Clean_All_Item(self):
         print("Clean")

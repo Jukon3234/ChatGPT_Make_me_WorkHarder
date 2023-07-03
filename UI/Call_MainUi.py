@@ -31,11 +31,12 @@ from UI.Call_Setting import SettingPageWindow
 from UI.Call_BattleSetting import BattleSettingPageWindow
 
 class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
-    chooseSignal = pyqtSignal(str)
+    chooseSignal = pyqtSignal()
 
     def __init__(self,parent=None):#起始位置
         super().__init__()
         self.setupUi(self)
+        self.InitWindows()
         self.initUiindex()
         self.initbuttonUI()
         self.default()
@@ -43,20 +44,14 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.SetSommonValue()
         self.SRadio()
         self.CloseRadio()
-
-
-    def initMainUI(self):
-        self.CallMainUi.chooseSignal.connect(self.showDialog)
-        
+    
+    def InitWindows(self):
+        self.CallHelpUi = HelpPageWindow()
+        self.CallSettingUI = SettingPageWindow()
+        self.CallBattleSettingUI = BattleSettingPageWindow()        
 
     def initUiindex(self):#UI框架基礎設定
         self.resize(Fun.resizeX,Fun.resizeY)
-        self.layout = QGridLayout()
-        self.setLayout(self.layout)
-        self.CallHelpUi = HelpPageWindow()
-        self.CallSettingUI = SettingPageWindow()
-        self.CallBattleSettingUI = BattleSettingPageWindow()
-
         titleicon = QtGui.QIcon()
         titleicon.addPixmap(QtGui.QPixmap(":/ICON.ico"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         Helpicon = QtGui.QIcon()
@@ -73,7 +68,6 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         Icon_sort8.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_08.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         Icon_sort7.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_07.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         Icon_sort21.addPixmap(QtGui.QPixmap(":/icon_sort_wepon_21.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-
         #set icon
         self.actionHelp.setIcon(Helpicon)#help
 
@@ -197,6 +191,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
 
     def initbuttonUI(self):#按鈕設定
+        self.chooseSignal.connect(self.CallBattleSettingUI.handleSignal)
         #副視窗
         self.actionHelp.triggered.connect(lambda: self.CallHelpUi.show())
         self.actionsetting.triggered.connect(lambda: self.CallSettingUI.show())
@@ -472,12 +467,14 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         
         self.Battle_TbW.setCellWidget(row_count, 0, combo_box)
         self.Battle_TbW.setCellWidget(row_count, 1, RowBotton)
-        self.Battle_TbW.setCellWidget(row_count, 2, None)
-        def setting():             
-            Fun.Currenttable = self.Battle_TbW.currentRow()
-            print("Currenttable",Fun.Currenttable)
-            self.CallBattleSettingUI.show()
-        RowBotton.clicked.connect(setting)        
+        self.Battle_TbW.setCellWidget(row_count, 2, None)        
+        RowBotton.clicked.connect(self.setting)
+    
+    def setting(self):             
+        Fun.Currenttable = self.Battle_TbW.currentRow()
+        print("Currenttable",Fun.Currenttable)            
+        self.CallBattleSettingUI.show()
+        self.chooseSignal.emit()
 
     def delRow(self):
         # 删除所選行
