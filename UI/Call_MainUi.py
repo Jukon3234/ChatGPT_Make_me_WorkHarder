@@ -523,3 +523,60 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.CallHelpUi.close()
         self.CallSettingUI.close()
         self.CallBattleSettingUI.close()
+
+    def showlist(self):
+        #checkBox
+        Fun.C1_Skill1_CB
+        Fun.C1_Skill2_CB
+        Fun.C1_Skill3_CB
+        Fun.C1_Skill4_CB
+        Fun.C2_Skill1_CB
+        Fun.C2_Skill2_CB
+        Fun.C2_Skill3_CB
+        Fun.C2_Skill4_CB
+        Fun.C3_Skill1_CB
+        Fun.C3_Skill2_CB
+        Fun.C3_Skill3_CB
+        Fun.C3_Skill4_CB
+        Fun.C4_Skill1_CB
+        Fun.C4_Skill2_CB
+        Fun.C4_Skill3_CB
+        Fun.C4_Skill4_CB
+        #施放腳色
+        Fun.C1_Skill1_CoB
+        Fun.C1_Skill2_CoB
+        Fun.C1_Skill3_CoB
+        Fun.C1_Skill4_CoB
+        Fun.C2_Skill1_CoB
+        Fun.C2_Skill2_CoB
+        Fun.C2_Skill3_CoB
+        Fun.C2_Skill4_CoB
+        Fun.C3_Skill1_CoB
+        Fun.C3_Skill2_CoB
+        Fun.C3_Skill3_CoB
+        Fun.C3_Skill4_CoB
+        Fun.C4_Skill1_CoB
+        Fun.C4_Skill2_CoB
+        Fun.C4_Skill3_CoB
+        Fun.C4_Skill4_CoB
+        #順序
+        Fun.C1_Skill1_SB
+        Fun.C1_Skill2_SB
+        Fun.C1_Skill3_SB
+        Fun.C1_Skill4_SB
+        Fun.C2_Skill1_SB
+        Fun.C2_Skill2_SB
+        Fun.C2_Skill3_SB
+        Fun.C2_Skill4_SB
+        Fun.C3_Skill1_SB
+        Fun.C3_Skill2_SB
+        Fun.C3_Skill3_SB
+        Fun.C3_Skill4_SB
+        Fun.C4_Skill1_SB
+        Fun.C4_Skill2_SB
+        Fun.C4_Skill3_SB
+        Fun.C4_Skill4_SB
+        #召喚石啟用
+        Fun.SommonEn
+        Fun.Sommon1
+        Fun.Sommon2
