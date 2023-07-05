@@ -31,7 +31,7 @@ from UI.Call_Setting import SettingPageWindow
 from UI.Call_BattleSetting import BattleSettingPageWindow
 
 class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
-    chooseSignal = pyqtSignal(bool)
+    chooseSignal = pyqtSignal()
 
     def __init__(self,parent=None):#起始位置
         super().__init__()
@@ -192,6 +192,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
     def initbuttonUI(self):#按鈕設定
         self.chooseSignal.connect(self.CallBattleSettingUI.handleSignal)
+        self.CallBattleSettingUI.chooseSignal2.connect(self.handleSignal) 
         #副視窗
         self.actionHelp.triggered.connect(lambda: self.CallHelpUi.show())
         self.actionsetting.triggered.connect(lambda: self.CallSettingUI.show())
@@ -258,7 +259,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.Info_broswer.clear()
         #存檔
         elif sender == self.SetButton:
-            self.SaveFile()
+            self.SaveData()
         elif sender == self.Times_spinBox_2:
             self.settingtext()
         #地區
@@ -293,9 +294,9 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                 Fun.TabPage = 1
         #存讀檔
         elif sender == self.SaveSCButton:
-            self.saveFile()
+            self.SaveFile()
         elif sender == self.LoadSCButton:
-            self.loadFile()
+            self.LoadFile()
         #自訂存讀檔
         elif sender == self.UserSaveButton:
             self.UserSaveFile()
@@ -377,7 +378,7 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         else:
             self.label_1.setText("Set :"+str(Fun.Function1FightCount))
 
-    def SaveFile(self):
+    def SaveData(self):
         x = FCAction()
         Fun.Function1FightCount = self.Times_spinBox_2.value()
         x.SaveChange()
@@ -454,9 +455,18 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
             self.ScoreSpin.setEnabled(False)
         elif self.Scoreradio.isChecked():
             self.ScoreSpin.setEnabled(True)
-
+    
+    #設定表格-----------------------------------------------------------
     def addRow(self):
-        # 在表格中新增一行
+        # 在表格中新增一行        
+        for i in range(16):
+            Fun.TrueList[i] = False
+            Fun.Skill_Set[i] = 0
+            Fun.SortList[i] = 0            
+        Fun.TotleTrueList.append(Fun.TrueList)
+        Fun.TotleSkillSet.append(Fun.Skill_Set)
+        Fun.TotleSortList.append(Fun.SortList)
+
         row_count = self.Battle_TbW.rowCount()
         self.Battle_TbW.setRowCount(row_count + 1)
 
@@ -467,38 +477,66 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         
         self.Battle_TbW.setCellWidget(row_count, 0, combo_box)
         self.Battle_TbW.setCellWidget(row_count, 1, RowBotton)
-        self.Battle_TbW.setCellWidget(row_count, 2, None)        
+        self.Battle_TbW.setCellWidget(row_count, 2, None)
+        self.Battle_TbW.setCellWidget(row_count, 3, None)
         RowBotton.clicked.connect(self.setting)
 
-    def hasValue(self, row, col):
-        data = self.Battle_TbW.item(row, col)
-        return data is not None and data != ""
-    
-    def setting(self):             
+    def setting(self):
         Fun.Currenttable = self.Battle_TbW.currentRow()
-        print("Currenttable",Fun.Currenttable)            
+        print("Currenttable",Fun.Currenttable)
         self.CallBattleSettingUI.show()
-        if self.hasValue(Fun.Currenttable,2):
-            self.chooseSignal.emit(True)
-        else:
-            self.chooseSignal.emit(False)
+        data = self.Battle_TbW.item(Fun.Currenttable, 3)
+        self.chooseSignal.emit()
 
     def delRow(self):
         # 删除所選行
         current_row = self.Battle_TbW.currentRow()
         if current_row >= 0:
             self.Battle_TbW.removeRow(current_row)
+    
+    def handleSignal(self):#訊號接收通道
+        Temp_data = self.TempList()
+        show_data = self.showlist()
+        text = QTableWidgetItem(show_data)
+        print("show_data",show_data)
+        self.Battle_TbW.setItem(Fun.Currenttable, 3, text)
 
-    def saveFile(self):
+    def resenderlist(self):
+        print("wait")
+    
+    def TempList(self):
+        Fun.TotleTrueList[Fun.Currenttable] = Fun.TrueList
+        Fun.TotleSkillSet[Fun.Currenttable] = Fun.Skill_Set
+        Fun.TotleSortList[Fun.Currenttable] = Fun.SortList
+
+    def showlist(self):
+        selected_data = list(zip(Fun.TrueList, Fun.SkillName, Fun.SortList))
+        filtered_data = [item for item in selected_data if item[2] != 0]
+        if len(filtered_data) > 0:
+            show_data = sorted(filtered_data, key=lambda x: x[2])
+            text = str(show_data)
+            print("showtext= ",text)
+            return text
+        else:
+            return None
+        
+        #召喚石使用
+        #Fun.SommonEn
+        #Fun.Sommon1
+        #Fun.Sommon2
+
+
+
+    def SaveFile(self):
         options = QFileDialog.Options()
-        fileName, _ = QFileDialog.getSaveFileName(self, "Save File", "./systemdata/datasave/BattleScrept", "Text Files (*.json)", options=options)
+        fileName, _ = QFileDialog.getSaveFileName(self, "Save File", "./systemdata/datasave/BattleScrept", "Text Files (*.json)", options = options)
         if fileName:
             with open(fileName, "w") as file:
                 file.write("Hello, World!")
 
-    def loadFile(self):
+    def LoadFile(self):
         options = QFileDialog.Options()
-        fileName, _ = QFileDialog.getOpenFileName(self, "Open File", "./systemdata/datasave/BattleScrept", "Text Files (*.json)", options=options)
+        fileName, _ = QFileDialog.getOpenFileName(self, "Open File", "./systemdata/datasave/BattleScrept", "Text Files (*.json)", options = options)
         if fileName:
             with open(fileName, "r") as file:
                 content = file.read()
@@ -506,14 +544,14 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
 
     def UserSaveFile(self):
         options = QFileDialog.Options()
-        fileName, _ = QFileDialog.getSaveFileName(self, "Save File", "./systemdata/datasave/UserScrept", "Text Files (*.json)", options=options)
+        fileName, _ = QFileDialog.getSaveFileName(self, "Save File", "./systemdata/datasave/UserScrept", "Text Files (*.json)", options = options)
         if fileName:
             with open(fileName, "w") as file:
                 file.write("Hello, World!")
 
     def UserLoadFile(self):
         options = QFileDialog.Options()
-        fileName, _ = QFileDialog.getOpenFileName(self, "Open File", "./systemdata/datasave/UserScrept", "Text Files (*.json)", options=options)
+        fileName, _ = QFileDialog.getOpenFileName(self, "Open File", "./systemdata/datasave/UserScrept", "Text Files (*.json)", options = options)
         if fileName:
             with open(fileName, "r") as file:
                 content = file.read()
@@ -523,60 +561,3 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.CallHelpUi.close()
         self.CallSettingUI.close()
         self.CallBattleSettingUI.close()
-
-    def showlist(self):
-        #checkBox
-        Fun.C1_Skill1_CB
-        Fun.C1_Skill2_CB
-        Fun.C1_Skill3_CB
-        Fun.C1_Skill4_CB
-        Fun.C2_Skill1_CB
-        Fun.C2_Skill2_CB
-        Fun.C2_Skill3_CB
-        Fun.C2_Skill4_CB
-        Fun.C3_Skill1_CB
-        Fun.C3_Skill2_CB
-        Fun.C3_Skill3_CB
-        Fun.C3_Skill4_CB
-        Fun.C4_Skill1_CB
-        Fun.C4_Skill2_CB
-        Fun.C4_Skill3_CB
-        Fun.C4_Skill4_CB
-        #施放腳色
-        Fun.C1_Skill1_CoB
-        Fun.C1_Skill2_CoB
-        Fun.C1_Skill3_CoB
-        Fun.C1_Skill4_CoB
-        Fun.C2_Skill1_CoB
-        Fun.C2_Skill2_CoB
-        Fun.C2_Skill3_CoB
-        Fun.C2_Skill4_CoB
-        Fun.C3_Skill1_CoB
-        Fun.C3_Skill2_CoB
-        Fun.C3_Skill3_CoB
-        Fun.C3_Skill4_CoB
-        Fun.C4_Skill1_CoB
-        Fun.C4_Skill2_CoB
-        Fun.C4_Skill3_CoB
-        Fun.C4_Skill4_CoB
-        #順序
-        Fun.C1_Skill1_SB
-        Fun.C1_Skill2_SB
-        Fun.C1_Skill3_SB
-        Fun.C1_Skill4_SB
-        Fun.C2_Skill1_SB
-        Fun.C2_Skill2_SB
-        Fun.C2_Skill3_SB
-        Fun.C2_Skill4_SB
-        Fun.C3_Skill1_SB
-        Fun.C3_Skill2_SB
-        Fun.C3_Skill3_SB
-        Fun.C3_Skill4_SB
-        Fun.C4_Skill1_SB
-        Fun.C4_Skill2_SB
-        Fun.C4_Skill3_SB
-        Fun.C4_Skill4_SB
-        #召喚石啟用
-        Fun.SommonEn
-        Fun.Sommon1
-        Fun.Sommon2

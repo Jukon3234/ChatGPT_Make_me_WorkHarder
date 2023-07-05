@@ -107,10 +107,10 @@ class FCAction:
     
     def LoadFile(self):
         if os.path.exists('./systemdata/datasave/data.json'):
-            SaveFile = open('systemdata/datasave/data.json')
+            SaveData = open('systemdata/datasave/data.json')
         else:
-            SaveFile = open('systemdata/datasave/Default.json')
-        savedata= json.load(SaveFile)
+            SaveData = open('systemdata/datasave/Default.json')
+        savedata= json.load(SaveData)
 
         Fun.Function1FightCount = savedata['function']['FightCount']        
         Fun.DCBOT_Token = savedata['Bot']['TOKEN']
