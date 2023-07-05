@@ -462,10 +462,20 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         for i in range(16):
             Fun.TrueList[i] = False
             Fun.Skill_Set[i] = 0
-            Fun.SortList[i] = 0            
+            Fun.SortList[i] = 0
+
+        #召喚石啟用
+        Fun.SommonCheck[0] = False
+        Fun.Sommon1[0] = 0
+        Fun.Sommon2[0] = 0
+
         Fun.TotleTrueList.append(Fun.TrueList)
         Fun.TotleSkillSet.append(Fun.Skill_Set)
         Fun.TotleSortList.append(Fun.SortList)
+        Fun.TotleSommonCheck.append(Fun.SommonCheck)
+        Fun.TotleSommon1.append(Fun.Sommon1)
+        Fun.TotleSommon2.append(Fun.Sommon2)
+
 
         row_count = self.Battle_TbW.rowCount()
         self.Battle_TbW.setRowCount(row_count + 1)
@@ -491,39 +501,51 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     def delRow(self):
         # 删除所選行
         current_row = self.Battle_TbW.currentRow()
+        print("current_row",current_row)
+
+        del Fun.TotleTrueList[current_row]
+        del Fun.TotleSkillSet[current_row]
+        del Fun.TotleSortList[current_row]
+        del Fun.TotleSommonCheck[current_row]
+        del Fun.TotleSommon1[current_row]
+        del Fun.TotleSommon2[current_row]
+        print("Fun.TotleTrueList=",Fun.TotleTrueList)
+        print("Fun.TotleSkillSet",Fun.TotleSkillSet)
+        print("Fun.TotleSortList",Fun.TotleSortList)
+        print("Fun.TotleSommonCheck",Fun.TotleSommonCheck)
+        print("Fun.TotleSommon1",Fun.TotleSommon1)
+        print("Fun.TotleSommon",Fun.TotleSommon2)
         if current_row >= 0:
             self.Battle_TbW.removeRow(current_row)
     
     def handleSignal(self):#訊號接收通道
-        Temp_data = self.TempList()
         show_data = self.showlist()
         text = QTableWidgetItem(show_data)
+        if Fun.TotleSommonCheck[Fun.Currenttable]:
+            if TotleSommon2 > 0:
+                TS = list(zip(Fun.TotleSommon1[Fun.Currenttable],Fun.TotleSommon2[Fun.Currenttable]))
+                sec = QTableWidgetItem(TS)
+                self.Battle_TbW.setItem(Fun.Currenttable, 2, sec)
+            else:
+                self.Battle_TbW.setItem(Fun.Currenttable, 2, Fun.TotleSommon1[Fun.Currenttable])
+        else:
+            self.Battle_TbW.setItem(Fun.Currenttable, 2, "X")
         print("show_data",show_data)
         self.Battle_TbW.setItem(Fun.Currenttable, 3, text)
 
     def resenderlist(self):
         print("wait")
-    
-    def TempList(self):
-        Fun.TotleTrueList[Fun.Currenttable] = Fun.TrueList
-        Fun.TotleSkillSet[Fun.Currenttable] = Fun.Skill_Set
-        Fun.TotleSortList[Fun.Currenttable] = Fun.SortList
 
     def showlist(self):
-        selected_data = list(zip(Fun.TrueList, Fun.SkillName, Fun.SortList))
-        filtered_data = [item for item in selected_data if item[2] != 0]
+        selected_data = list(zip(Fun.TotleTrueList[Fun.Currenttable], Fun.SkillName, Fun.TotleSortList[Fun.Currenttable]))
+        filtered_data = [item for item in selected_data if item[0] != False]
         if len(filtered_data) > 0:
             show_data = sorted(filtered_data, key=lambda x: x[2])
             text = str(show_data)
             print("showtext= ",text)
             return text
         else:
-            return None
-        
-        #召喚石使用
-        #Fun.SommonEn
-        #Fun.Sommon1
-        #Fun.Sommon2
+            return "Only Attack"
 
 
 

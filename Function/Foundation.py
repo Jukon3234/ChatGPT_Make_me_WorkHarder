@@ -38,6 +38,9 @@ Currenttable = 0
 TotleTrueList = []
 TotleSkillSet = []
 TotleSortList = []
+TotleSommonCheck = []
+TotleSommon1 = []
+TotleSommon2 = []
 #checkbox
 TrueList = [False, False, False, False,
             False, False, False, False,
@@ -58,10 +61,10 @@ SortList = [0, 0, 0, 0,
             0, 0, 0, 0, 
             0, 0, 0, 0, 
             0, 0, 0, 0 ]
-SommonEn = False
-Sommon1 = 0
-Sommon2 = 0
 
+SommonCheck = [False]
+Sommon1 = [0]
+Sommon2 = [0]
 
 
 Type = 0
