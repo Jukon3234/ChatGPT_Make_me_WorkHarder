@@ -522,14 +522,15 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         show_data = self.showlist()
         text = QTableWidgetItem(show_data)
         if Fun.TotleSommonCheck[Fun.Currenttable]:
-            if TotleSommon2 > 0:
+            if TotleSommon2[Fun.Currenttable] > 0:
                 TS = list(zip(Fun.TotleSommon1[Fun.Currenttable],Fun.TotleSommon2[Fun.Currenttable]))
                 sec = QTableWidgetItem(TS)
                 self.Battle_TbW.setItem(Fun.Currenttable, 2, sec)
             else:
                 self.Battle_TbW.setItem(Fun.Currenttable, 2, Fun.TotleSommon1[Fun.Currenttable])
         else:
-            self.Battle_TbW.setItem(Fun.Currenttable, 2, "X")
+            text2 = QTableWidgetItem("X")
+            self.Battle_TbW.setItem(Fun.Currenttable, 2, text2)
         print("show_data",show_data)
         self.Battle_TbW.setItem(Fun.Currenttable, 3, text)
 
