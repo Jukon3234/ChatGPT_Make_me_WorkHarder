@@ -24,6 +24,7 @@ import pyautogui as pag
 import cv2
 from Function.Action import FCAction
 import keyboard
+import json
 
 
 from UI.Call_Help import HelpPageWindow
@@ -294,14 +295,26 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
                 Fun.TabPage = 1
         #存讀檔
         elif sender == self.SaveSCButton:
-            self.SaveFile()
+            options = QFileDialog.Options()
+            x = FCAction()
+            fileName, _ = QFileDialog.getSaveFileName(self, "Save File", "./systemdata/datasave/BattleScrept", "Text Files (*.json)", options = options)
+            x.SaveFile(fileName)
         elif sender == self.LoadSCButton:
-            self.LoadFile()
+            options = QFileDialog.Options()
+            x = FCAction()
+            fileName, _ = QFileDialog.getOpenFileName(self, "Open File", "./systemdata/datasave/BattleScrept", "Text Files (*.json)", options = options)            
+            x.LoadScrept(fileName)
         #自訂存讀檔
         elif sender == self.UserSaveButton:
-            self.UserSaveFile()
+            options = QFileDialog.Options()
+            x = FCAction()
+            fileName, _ = QFileDialog.getSaveFileName(self, "Save File", "./systemdata/datasave/UserScrept", "Text Files (*.json)", options = options)
+            x.UserSaveFile(fileName)
         elif sender == self.UserLoadButton:
-            self.UserLoadFile()
+            options = QFileDialog.Options()
+            x = FCAction()
+            fileName, _ = QFileDialog.getOpenFileName(self, "Open File", "./systemdata/datasave/UserScrept", "Text Files (*.json)", options = options)
+            x.UserLoadScrept(fileName)
 
         #elif sender == self.DebugButton:
         #    x=FCAction()
@@ -458,38 +471,54 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
     
     #設定表格-----------------------------------------------------------
     def addRow(self):
-        # 在表格中新增一行        
-        for i in range(16):
-            Fun.TrueList[i] = False
-            Fun.Skill_Set[i] = 0
-            Fun.SortList[i] = 0
+        TrueList = [False, False, False, False,
+                    False, False, False, False,
+                    False, False, False, False,
+                    False, False, False, False ]
+        #施放腳色
+        Skill_Set = [0, 0, 0, 0, 
+                     0, 0, 0, 0, 
+                     0, 0, 0, 0, 
+                     0, 0, 0, 0 ]
+        #順序
+        SortList = [0, 0, 0, 0, 
+                    0, 0, 0, 0, 
+                    0, 0, 0, 0, 
+                    0, 0, 0, 0 ]
+        
+        SommonCheck = False
+        Sommon1 = 0
+        Sommon2 = 0        
 
-        #召喚石啟用
-        Fun.SommonCheck[0] = False
-        Fun.Sommon1[0] = 0
-        Fun.Sommon2[0] = 0
-
-        Fun.TotleTrueList.append(Fun.TrueList)
-        Fun.TotleSkillSet.append(Fun.Skill_Set)
-        Fun.TotleSortList.append(Fun.SortList)
-        Fun.TotleSommonCheck.append(Fun.SommonCheck)
-        Fun.TotleSommon1.append(Fun.Sommon1)
-        Fun.TotleSommon2.append(Fun.Sommon2)
+        Fun.TotleTrueList.append(TrueList)
+        Fun.TotleSkillSet.append(Skill_Set)
+        Fun.TotleSortList.append(SortList)
+        Fun.TotleSommonCheck.append(SommonCheck)
+        Fun.TotleSommon1.append(Sommon1)
+        Fun.TotleSommon2.append(Sommon2)
+        
+        
+        print("Fun.TrueList",TrueList)
+        print("Fun.Skill_Set",Skill_Set)
+        print("Fun.SortList=",SortList)
 
 
         row_count = self.Battle_TbW.rowCount()
         self.Battle_TbW.setRowCount(row_count + 1)
 
         # 添加下拉選項列        
-        combo_box = QComboBox()
-        combo_box.addItems([str(i) for i in range(1, 100)])
+        ClrBotton = QPushButton("clr")
         RowBotton = QPushButton("...")
         
-        self.Battle_TbW.setCellWidget(row_count, 0, combo_box)
+        self.Battle_TbW.setCellWidget(row_count, 0, ClrBotton)
         self.Battle_TbW.setCellWidget(row_count, 1, RowBotton)
         self.Battle_TbW.setCellWidget(row_count, 2, None)
         self.Battle_TbW.setCellWidget(row_count, 3, None)
         RowBotton.clicked.connect(self.setting)
+        ClrBotton.clicked.connect(self.clearsetting)
+    
+    
+
 
     def setting(self):
         Fun.Currenttable = self.Battle_TbW.currentRow()
@@ -497,6 +526,38 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         self.CallBattleSettingUI.show()
         data = self.Battle_TbW.item(Fun.Currenttable, 3)
         self.chooseSignal.emit()
+    
+    def clearsetting(self):
+        TrueList = [False, False, False, False,
+                    False, False, False, False,
+                    False, False, False, False,
+                    False, False, False, False ]
+        #施放腳色
+        Skill_Set = [0, 0, 0, 0, 
+                     0, 0, 0, 0, 
+                     0, 0, 0, 0, 
+                     0, 0, 0, 0 ]
+        #順序
+        SortList = [0, 0, 0, 0, 
+                    0, 0, 0, 0, 
+                    0, 0, 0, 0, 
+                    0, 0, 0, 0 ]
+        
+        SommonCheck = False
+        Sommon1 = 0
+        Sommon2 = 0
+
+        Fun.Currenttable = self.Battle_TbW.currentRow()
+        print("Currenttable",Fun.Currenttable)
+        self.Battle_TbW.setItem(Fun.Currenttable, 2, None)
+        self.Battle_TbW.setItem(Fun.Currenttable, 3, None)        
+
+        Fun.TotleTrueList[Fun.Currenttable] = TrueList
+        Fun.TotleSkillSet[Fun.Currenttable] = Skill_Set
+        Fun.TotleSortList[Fun.Currenttable] = SortList
+        Fun.TotleSommonCheck[Fun.Currenttable] = SommonCheck
+        Fun.TotleSommon1[Fun.Currenttable] = Sommon1
+        Fun.TotleSommon2[Fun.Currenttable] = Sommon2
 
     def delRow(self):
         # 删除所選行
@@ -509,26 +570,22 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         del Fun.TotleSommonCheck[current_row]
         del Fun.TotleSommon1[current_row]
         del Fun.TotleSommon2[current_row]
-        print("Fun.TotleTrueList=",Fun.TotleTrueList)
-        print("Fun.TotleSkillSet",Fun.TotleSkillSet)
-        print("Fun.TotleSortList",Fun.TotleSortList)
-        print("Fun.TotleSommonCheck",Fun.TotleSommonCheck)
-        print("Fun.TotleSommon1",Fun.TotleSommon1)
-        print("Fun.TotleSommon",Fun.TotleSommon2)
         if current_row >= 0:
             self.Battle_TbW.removeRow(current_row)
     
     def handleSignal(self):#訊號接收通道
         show_data = self.showlist()
-        text = QTableWidgetItem(show_data)
-        if Fun.TotleSommonCheck[Fun.Currenttable]:
+        text = QTableWidgetItem(show_data)        
+        if Fun.TotleSommonCheck[Fun.Currenttable] == True:
             if Fun.TotleSommon2[Fun.Currenttable] > 0:
-                TS = list(zip(Fun.TotleSommon1[Fun.Currenttable],Fun.TotleSommon2[Fun.Currenttable]))
-                sec = QTableWidgetItem(TS)
-                self.Battle_TbW.setItem(Fun.Currenttable, 2, sec)
+                Sec = [Fun.TotleSommon1[Fun.Currenttable]+1,Fun.TotleSommon2[Fun.Currenttable]]
+                Text = str(Sec)
+                Text2 = QTableWidgetItem(Text)
+                self.Battle_TbW.setItem(Fun.Currenttable, 2, Text2)
             else:
-                text2 = QTableWidgetItem(Fun.TotleSommon1[Fun.Currenttable])
-                self.Battle_TbW.setItem(Fun.Currenttable, 2, text2)
+                Text=str(Fun.TotleSommon1[Fun.Currenttable])
+                Text2 = QTableWidgetItem(Text)
+                self.Battle_TbW.setItem(Fun.Currenttable, 2, Text2)
         else:
             text3 = QTableWidgetItem("X")
             self.Battle_TbW.setItem(Fun.Currenttable, 2, text3)
@@ -543,43 +600,12 @@ class MainPageWindow(QtWidgets.QMainWindow,Ui_GBF_MAIN):
         filtered_data = [item for item in selected_data if item[0] != False]
         if len(filtered_data) > 0:
             show_data = sorted(filtered_data, key=lambda x: x[2])
-            text = str(show_data)
+            result = [item[1] for item in show_data]
+            text = str(result)
             print("showtext= ",text)
             return text
         else:
             return "Only Attack"
-
-
-
-    def SaveFile(self):
-        options = QFileDialog.Options()
-        fileName, _ = QFileDialog.getSaveFileName(self, "Save File", "./systemdata/datasave/BattleScrept", "Text Files (*.json)", options = options)
-        if fileName:
-            with open(fileName, "w") as file:
-                file.write("Hello, World!")
-
-    def LoadFile(self):
-        options = QFileDialog.Options()
-        fileName, _ = QFileDialog.getOpenFileName(self, "Open File", "./systemdata/datasave/BattleScrept", "Text Files (*.json)", options = options)
-        if fileName:
-            with open(fileName, "r") as file:
-                content = file.read()
-                print(content)
-
-    def UserSaveFile(self):
-        options = QFileDialog.Options()
-        fileName, _ = QFileDialog.getSaveFileName(self, "Save File", "./systemdata/datasave/UserScrept", "Text Files (*.json)", options = options)
-        if fileName:
-            with open(fileName, "w") as file:
-                file.write("Hello, World!")
-
-    def UserLoadFile(self):
-        options = QFileDialog.Options()
-        fileName, _ = QFileDialog.getOpenFileName(self, "Open File", "./systemdata/datasave/UserScrept", "Text Files (*.json)", options = options)
-        if fileName:
-            with open(fileName, "r") as file:
-                content = file.read()
-                print(content)
 
     def closeEvent(self, event):
         self.CallHelpUi.close()

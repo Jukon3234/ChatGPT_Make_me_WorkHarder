@@ -56,7 +56,7 @@ class BattleSettingPageWindow(QWidget,Ui_BattleSetting):
         self.C4_Skill2_CB.setChecked(Fun.TotleTrueList[Fun.Currenttable][13])
         self.C4_Skill3_CB.setChecked(Fun.TotleTrueList[Fun.Currenttable][14])
         self.C4_Skill4_CB.setChecked(Fun.TotleTrueList[Fun.Currenttable][15])
-        print(Fun.TotleTrueList)
+        print("Fun.TotleTrueList",Fun.TotleTrueList)
         #施放腳色
         self.C1_Skill1_CoB.setCurrentIndex(Fun.TotleSkillSet[Fun.Currenttable][0])
         self.C1_Skill2_CoB.setCurrentIndex(Fun.TotleSkillSet[Fun.Currenttable][1])
@@ -74,7 +74,7 @@ class BattleSettingPageWindow(QWidget,Ui_BattleSetting):
         self.C4_Skill2_CoB.setCurrentIndex(Fun.TotleSkillSet[Fun.Currenttable][13])
         self.C4_Skill3_CoB.setCurrentIndex(Fun.TotleSkillSet[Fun.Currenttable][14])
         self.C4_Skill4_CoB.setCurrentIndex(Fun.TotleSkillSet[Fun.Currenttable][15])
-        print(Fun.TotleSkillSet)
+        print("Fun.TotleSkillSet",Fun.TotleSkillSet)
         #順序
         self.C1_Skill1_SB.setValue(Fun.TotleSortList[Fun.Currenttable][0])
         self.C1_Skill2_SB.setValue(Fun.TotleSortList[Fun.Currenttable][1])
@@ -92,28 +92,17 @@ class BattleSettingPageWindow(QWidget,Ui_BattleSetting):
         self.C4_Skill2_SB.setValue(Fun.TotleSortList[Fun.Currenttable][13])
         self.C4_Skill3_SB.setValue(Fun.TotleSortList[Fun.Currenttable][14])
         self.C4_Skill4_SB.setValue(Fun.TotleSortList[Fun.Currenttable][15])
-        print(Fun.TotleSortList)
+        print("Fun.TotleSortList=",Fun.TotleSortList)
         #召喚石啟用
-        self.SommonEn.setChecked(Fun.TotleSommonCheck[Fun.Currenttable][0])
-        self.SommonCB.setCurrentIndex(Fun.TotleSommon1[Fun.Currenttable][0])
-        self.SommonCB_2.setCurrentIndex(Fun.TotleSommon2[Fun.Currenttable][0])
+        self.SommonEn.setChecked(Fun.TotleSommonCheck[Fun.Currenttable])
+        self.SommonCB.setCurrentIndex(Fun.TotleSommon1[Fun.Currenttable])
+        self.SommonCB_2.setCurrentIndex(Fun.TotleSommon2[Fun.Currenttable])
         self.Table_Text.setText(str(Fun.Currenttable))
         print(Fun.TotleSommonCheck)
         print(Fun.TotleSommon1)
         print(Fun.TotleSommon2)
         
 
-    def Clean_All_Item(self):
-        print("Clean")
-        #checkBox
-        for i in range(16):
-            Fun.TrueList[i] = False
-            Fun.Skill_Set[i] = 0
-            Fun.SortList[i] = 0                
-        #召喚石啟用
-        Fun.SommonEn = False
-        Fun.Sommon1 = 0
-        Fun.Sommon2 = 0
 
 
     def SetupSet(self):

@@ -41,32 +41,12 @@ TotleSortList = []
 TotleSommonCheck = []
 TotleSommon1 = []
 TotleSommon2 = []
-#checkbox
-TrueList = [False, False, False, False,
-            False, False, False, False,
-            False, False, False, False,
-            False, False, False, False ]
+
 #顯示名子
 SkillName = ["1-1", "1-2", "1-3", "1-4", 
              "2-1", "2-2", "2-3", "2-4", 
              "3-1", "3-2", "3-3", "3-4", 
              "4-1", "4-2", "4-3", "4-4" ]
-#施放腳色
-Skill_Set = [0, 0, 0, 0, 
-             0, 0, 0, 0, 
-             0, 0, 0, 0, 
-             0, 0, 0, 0 ]
-#順序
-SortList = [0, 0, 0, 0, 
-            0, 0, 0, 0, 
-            0, 0, 0, 0, 
-            0, 0, 0, 0 ]
-
-SommonCheck = [False]
-Sommon1 = [0]
-Sommon2 = [0]
-
-
 Type = 0
 
 HTML_Text = "https://game.granbluefantasy.jp/#top"

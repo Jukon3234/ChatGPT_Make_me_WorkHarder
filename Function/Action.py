@@ -132,5 +132,33 @@ class FCAction:
         Savedata['Delay'] = {'StepDelay': Fun.StepDelay, 'RoundDelay': Fun.RoundDelay,'stepdelayRandom': Fun.stepdelayRandom,'RounddelayRandom': Fun.RounddelayRandom,'CurMoveTime': Fun.CurmoveTime,'CurmoveTimeRan': Fun.CurmoveTimeRandom}
         Savedata['Point'] = {'RandomXSpin' : Fun.RandomX,'RandomYSpin' : Fun.RandomY}
         with open('systemdata/datasave/data.json', 'w') as datafile:
-            json.dump(Savedata,datafile)
-    
+            json.dump(Savedata,datafile)    
+
+    def SaveFile(self,fileName):        
+        data = {"TotleTrueList": Fun.TotleTrueList,
+                "TotleSkillSet": Fun.TotleSkillSet,
+                "TotleSortList": Fun.TotleSortList,
+                "TotleSommonCheck": Fun.TotleSommonCheck,
+                "TotleSommon1": Fun.TotleSommon1,
+                "TotleSommon2": Fun.TotleSommon2}
+        json_data = json.dumps(data)
+        if fileName:
+            with open(fileName, "w") as file:
+                file.write(json_data)
+
+    def LoadScrept(self,fileName):        
+        if fileName:
+            with open(fileName, "r") as file:
+                content = file.read()
+                print(content)
+
+    def UserSaveFile(self,fileName):        
+        if fileName:
+            with open(fileName, "w") as file:
+                file.write("Hello, World!")
+
+    def UserLoadScrept(self,fileName):        
+        if fileName:
+            with open(fileName, "r") as file:
+                content = file.read()
+                print(content)
