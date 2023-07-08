@@ -15,6 +15,8 @@ discord 群聊 : https://discord.gg/4YdgaYMv
 
 請用於認真工作同時需要節省時間的時候(?
 
+本篇之後會僅供release版本使用
+
 製作里程:<BR>
 1.PYQT UI:<BR>
 - [x] UI架構<BR>
